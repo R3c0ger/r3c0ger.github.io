@@ -1,0 +1,1195 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="false"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_tq6stt6tcg';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"license_type":"by-nc-sa","content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://r3c0ger.github.io';</script>
+  
+  <title>
+    信息安全基础能力训练课程-Web实验 |
+    
+    Recogeta&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Web部分实验报告">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全基础能力训练课程-Web实验">
+<meta property="og:url" content="https://r3c0ger.github.io/2025/07/isfat-web/index.html">
+<meta property="og:site_name" content="Recogeta&#39;s Blog">
+<meta property="og:description" content="西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Web部分实验报告">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/1-01.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/1-02.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/1-03.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-2-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-2-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-2-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-3-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-3-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/2-3-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-2-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-2-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-2-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-3-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-3-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/3-3-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-2-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-2-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-2-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-3-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-4-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/4-4-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-4.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-5.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-6.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-7.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-8.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-2-9.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-3-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/5-3-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/6-1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/6-2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/cover.png">
+<meta property="article:published_time" content="2025-07-03T16:42:46.000Z">
+<meta property="article:modified_time" content="2025-07-03T17:18:50.417Z">
+<meta property="article:author" content="Recogeta">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="cybersecurity">
+<meta property="article:tag" content="kali">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3c0ger.github.io/2025/07/isfat-web/1-01.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Recogeta's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" crossorigin="anonymous">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/2025/07/isfat-web/cover.png" alt="信息安全基础能力训练课程-Web实验">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">信息安全基础能力训练课程-Web实验</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-isfat-web" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-07-03T16:42:46.000Z" itemprop="datePublished">2025-07-04</time>
+    <time style="display: none;" id="post-update-time">2025-07-04</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" data-aos="zoom-in">专业学习</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p>这里是<font color="#548dd4">西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）</font>课程的实验报告！敬请参观与指正！请勿直球抄袭！本人不对任何抄袭借鉴行为及其后果负责。</p>
+<p>题目来源是 CTFHub 中的技能树-Web-Web前置技能-HTTP协议，网上 Writeup 满天飞好吧。</p>
+<h2 id="实验一"><a class="markdownIt-Anchor" href="#实验一"></a> 实验一</h2>
+<h3 id="实验目的"><a class="markdownIt-Anchor" href="#实验目的"></a> 实验目的</h3>
+<p>搭建 DVWA 靶机环境。</p>
+<h3 id="实验过程"><a class="markdownIt-Anchor" href="#实验过程"></a> 实验过程</h3>
+<ol>
+<li>配置代理，使用 NAT 模式，安装 proxychains 并配置。</li>
+<li>下载 DVWA 到本地：输入 <code>proxychains git clone https://github.com/digininja/DVWA.git</code>，再输入 <code>sudo mv DVWA /var/www/html</code> 移动到相应文件夹中。</li>
+<li>开启 apache2 服务： <code>sudo service apache2 start</code></li>
+<li>拷贝配置文件：<code>cp config/config.inc.php.dist config/config.inc.php</code></li>
+</ol>
+<p><img src="1-01.png" alt=""></p>
+<ol start="5">
+<li>开启数据库：<code>service mariadb start</code></li>
+<li>配置数据库，在 root 用户下创建用户，验证创建成功。</li>
+</ol>
+<p><img src="1-02.png" alt=""></p>
+<ol start="7">
+<li>在最新版本（8.2）中开启 PHP function allow_url_include、安装 php-gd 模块、设置文件夹的写权限、在 dvwa/config/config.inc.php 中设置 reCAPTCHA key。</li>
+</ol>
+<p><img src="1-03.png" alt=""></p>
+<ol start="8">
+<li>在 security.php 中设置安全等级，在此设置为 Low。</li>
+</ol>
+<h3 id="网络配置重要"><a class="markdownIt-Anchor" href="#网络配置重要"></a> 网络配置（重要）</h3>
+<ol>
+<li>编辑-虚拟网络编辑器-更改设置-还原默认设置（记得备份），之后添加enth0、1、8(NAT)</li>
+<li>虚拟机-设置-网络适配器-NAT模式</li>
+<li>在 Kali Linux 中，右键“网络管理器”-启动联网。打开终端并输入以下命令：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在打开的文件中，将以下行添加到文件的末尾：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto eth8</span><br><span class="line">iface eth8 inet dhcp</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>
+<p>保存并关闭文件（在 Nano 中，按下 Ctrl+X，然后输入 Y 并按下 Enter）。</p>
+</li>
+<li>
+<p>重启网络服务，使新的配置生效：（<code>reboot</code> 也行）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart networking</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>安装 proxychains，更改 <code>/etc/proxychains4.conf</code> 配置信息，添加 <code>sock5 &lt;IP&gt; &lt;port&gt;</code> 、 <code>http &lt;IP&gt; &lt;port&gt;</code>。（宿主机（WLAN的） IP 更改需要更改这些项）</li>
+<li>终端中的任何命令，只要是想经过代理，都需要在前面添加 <code>proxychains</code>。启动 <code>mariadb</code> 和 <code>apache2</code> 似乎需要经过代理，打开 <code>http://localhost/DVWA/setup.php</code> 似乎不能经过代理。火狐需设置为“使用系统代理设置”。</li>
+</ol>
+<hr>
+<p>下面是 AI 跑出来的连接宿主机的 Clash 代理的方法，未经尝试验证，谨慎试用：</p>
+<p>要在 VMware 中的 Kali Linux 2022.3 虚拟机中连接宿主机的 Clash 代理，您需要执行以下步骤：</p>
+<ol>
+<li>
+<p>在宿主机上安装 Clash 代理并启动。确保您已经设置好了代理服务器的端口和密码。</p>
+</li>
+<li>
+<p>在 VMware 虚拟机中，选择“NAT 模式”，这将允许您的虚拟机与宿主机使用相同的 IP 地址。</p>
+</li>
+<li>
+<p>在 Kali Linux 中，打开终端并输入以下命令：</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/environment</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在打开的文件中添加以下行：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http_proxy=&quot;http://&lt;宿主机 IP 地址&gt;:7890&quot;</span><br><span class="line">https_proxy=&quot;https://&lt;宿主机 IP 地址&gt;:7890&quot;</span><br></pre></td></tr></table></figure>
+<p>请注意将 “&lt;宿主机 IP 地址&gt;” 和 “&lt;Clash 代理端口&gt;” 替换为您实际使用的值。</p>
+<ol start="5">
+<li>
+<p>保存并退出文件（在 Nano 中，按下 Ctrl+X，然后输入 Y 并按下 Enter）。</p>
+</li>
+<li>
+<p>重新启动 Kali Linux，以便它能够读取新的环境变量。</p>
+</li>
+</ol>
+<p>现在您的 Kali Linux 虚拟机应该能够连接到宿主机上运行的 Clash 代理。您可以尝试在终端中运行以下命令来测试代理是否正常工作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://www.google.com</span><br></pre></td></tr></table></figure>
+<p>如果一切正常，您应该能够看到 Google 的 HTML 代码。如果出现错误，请检查代理服务器的设置和连接。</p>
+<h3 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://customerconnect.vmware.com/cn/downloads/#all_products">https://customerconnect.vmware.com/cn/downloads/#all_products</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kali.org/get-kali/#kali-virtual-machines">Get Kali | Kali Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lvlheike/article/details/120584366">VMware 中安装 Linux-kali.2021（详细图文教程）</a></li>
+<li><a target="_blank" rel="noopener" href="https://computingforgeeks.com/install-kali-linux-step-by-step-with-screenshots/">Install Kali Linux 2022.2 – Step by Step with Screenshots</a></li>
+</ul>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/130984945">VMware 虚拟机网络配置-NAT 篇 - 知乎</a><br>
+这其中提到的“虚拟网络编辑器”中的“子网 IP”，在掩码为 255.255.0.0 的情况下，IP 第三部分可以一样。（宿主机 IP 更改需要更改这些项）</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/518319836">Ubuntu22.04 vm 虚拟机使用宿主机 Clash for Windows - 知乎</a><br>
+前半段 VM 中的配置可参考。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/377150903">在 VMware ubuntu 18.04虚拟机中使用主机clash for window代理上网 - 知乎</a><br>
+同样是参考。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7d52ea50b6f2">Kali 虚拟机使用 proxychain4通过主机代理上网 - 简书</a><br>
+<code>/etc/proxychains4.conf</code> 配置信息中，除了需要添加 <code>sock5 &lt;IP&gt; &lt;port&gt;</code> 之外，还需要添加 <code>http &lt;IP&gt; &lt;port&gt;</code>。（宿主机 IP 更改需要更改这些项）<br>
+终端中的任何命令，只要是想经过代理，都需要在前面添加 <code>proxychains</code>。</li>
+<li><a target="_blank" rel="noopener" href="https://wsxq2.55555.io/blog/2018/10/20/Kali-Linux%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/#%E9%80%9A%E8%BF%87%E5%B7%B2%E7%BB%8F%E5%8F%AF%E4%BB%A5%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%9A%84%E7%94%B5%E8%84%91%E5%AE%9E%E7%8E%B0%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91">Kali Linux 科学上网</a><br>
+查看“通过已经可以科学上网的电脑实现科学上网”一章节即可。</li>
+<li><a target="_blank" rel="noopener" href="https://www.dianjilingqu.com/650740.html">简单的 Kali 虚拟机代理配置教程</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.hackdig.com/03/hack-947652.htm">‌Kali Linux 虚拟机连宿主机代理配置！</a></li>
+</ul>
+<h2 id="后续题目参考资料"><a class="markdownIt-Anchor" href="#后续题目参考资料"></a> 后续题目参考资料</h2>
+<h3 id="http"><a class="markdownIt-Anchor" href="#http"></a> HTTP</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48520816/article/details/125274160">HTTP的8种请求方式及常用请求方式的解析</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-messages.html">HTTP 消息结构</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TankXiao/archive/2012/02/13/2342672.html">HTTP协议详解</a></li>
+</ul>
+<h3 id="curl"><a class="markdownIt-Anchor" href="#curl"></a> curl</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/angle_chen123/article/details/120675472">Linux curl 命令最全详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html">curl 的用法指南</a></li>
+</ul>
+<h3 id="burp-suite"><a class="markdownIt-Anchor" href="#burp-suite"></a> Burp Suite</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Id3al/p/11681465.html">BurpSuite_pro_v2.1</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51552173/article/details/113062906">burp suite 1.7安装教程</a> 2.1版本也能使用这个步骤</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xhmico/article/details/122390181">java 环境配置(详细教程)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1X84y1C7FT?p=2&amp;vd_source=5053a1054efc12e95eb76c066ad13f8f">Burp破解及代理抓包.mp4_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/401134233">黑客工具之BurpSuite详解</a></li>
+</ul>
+<h3 id="ctfhub"><a class="markdownIt-Anchor" href="#ctfhub"></a> CTFHub</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/K_ShenH/article/details/125188096">CTFHUB-WEB 前置技能-HTTP 协议-请求方式</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45254208/article/details/105118260">CTFHub-web(基础认证)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/KE5QrrL3dL/">CTFHub - Web（一）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codenong.com/cs109731640/">CTFHuB-技能树-Web前置技能-HTTP协议</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.lmlphp.com/user/61513/article/item/2662515/">CTFhub-WEB前置-http协议闯关 | HTTP</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiniaotjx/article/details/120552389">CTHub–ctf–web–http（1.请求方式2.302跳转3.cookie4.基础认证5.响应包源代码）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_63575829">NANXmm的博客_CSDN博客-writeup,学习笔记领域博主</a></li>
+</ul>
+<h2 id="实验二"><a class="markdownIt-Anchor" href="#实验二"></a> 实验二</h2>
+<h3 id="实验目的-2"><a class="markdownIt-Anchor" href="#实验目的-2"></a> 实验目的</h3>
+<blockquote>
+<p>请求方式：HTTP 请求方法, HTTP/1.1协议中共定义了八种方法（也叫动作）来以不同方式操作指定的资源。</p>
+</blockquote>
+<p>使用某一请求方法对某网页请求以得到 flag。了解 HTTP 消息、HTTP 的八种请求方法；学习 curl、Burp Suite 的使用方法。</p>
+<h3 id="实验过程-2"><a class="markdownIt-Anchor" href="#实验过程-2"></a> 实验过程</h3>
+<h4 id="1-理论学习"><a class="markdownIt-Anchor" href="#1-理论学习"></a> 1. 理论学习</h4>
+<p>HTTP 消息分为请求 Request 和响应 Response。请求报文包括以下格式：请求行 Request line、请求报头 Request header、消息正文 body；响应报文包含：响应行 Response line、响应报头 Response header、消息正文 body。</p>
+<p>在请求报文的请求行中，第一个字段是请求方法。HTTP/1.1协议的八种请求方法为：<code>GET</code>、<code>HEAD</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>、<code>CONNECT</code>、<code>OPTIONS</code>、<code>TRACE</code>。可以使用 <code>curl -X</code> 指定请求方法。</p>
+<h4 id="2-curl-方法"><a class="markdownIt-Anchor" href="#2-curl-方法"></a> 2. curl 方法</h4>
+<p>启动环境，打开给出的网页链接，发现网页内容如下：</p>
+<p><img src="2-2-1.png" alt=""></p>
+<p>可以看到，网页提示使用 <code>CTF**B</code> 方法，而非上述八种方法的任何一种。若提示 <code>HTTP Method Not Allowed</code> 错误，需要请求 <code>index.php</code>。可以很明显地猜出，该方法是 <code>CTFHUB</code> 方法。</p>
+<p>在终端输入 <code>curl -X CTFHUB http://challenge-4c545ef0343a22ef.sandbox.ctfhub.com:10800</code>，结果如下：</p>
+<p><img src="2-2-2.png" alt=""></p>
+<p>可以看到，返回了错误命令 <code>405 Not Allowed</code>，因此我们需要请求 <code>index.php</code>。使用 <code>curl -X CTFHUB http://challenge-4c545ef0343a22ef.sandbox.ctfhub.com:10800/index.php</code>，结果如下：</p>
+<p><img src="2-2-3.png" alt=""></p>
+<p>得到 flag：<code>ctfhub&#123;e84096dc8207f72c5bf5d28b&#125;</code></p>
+<h4 id="3-抓包方法"><a class="markdownIt-Anchor" href="#3-抓包方法"></a> 3. 抓包方法</h4>
+<p>使用 Burp 抓取请求包，发送到 Repeater 之后，修改请求方法为 <code>CTFHUB</code>，再重新请求，得到 flag：<code>ctfhub&#123;3f0a1e15bc79949eceb40623&#125;</code>。（重开环境了）</p>
+<p><img src="2-3-1.png" alt=""></p>
+<p><img src="2-3-2.png" alt=""></p>
+<p><img src="2-3-3.png" alt=""></p>
+<h2 id="实验三"><a class="markdownIt-Anchor" href="#实验三"></a> 实验三</h2>
+<h3 id="实验目的-3"><a class="markdownIt-Anchor" href="#实验目的-3"></a> 实验目的</h3>
+<blockquote>
+<p>302跳转：HTTP 临时重定向</p>
+</blockquote>
+<p>分析网页发生的重定向，规避重定向并获取 Flag。了解 HTTP 消息、状态码、重定向；学习 curl、Burp Suite 的使用方法。</p>
+<h3 id="实验过程-3"><a class="markdownIt-Anchor" href="#实验过程-3"></a> 实验过程</h3>
+<h4 id="1-理论学习-2"><a class="markdownIt-Anchor" href="#1-理论学习-2"></a> 1. 理论学习</h4>
+<p>在响应报文中，响应行包含状态码 Status code。1 开头的状态码表示请求已被接受，需继续处理，这类响应是临时响应；2 开头表示请求已被服务器成功接收；3 开头表示重定向，客户端须采取更多操作来实现请求；4 开头表示客户端出现错误；5 开头表示服务器出现错误。</p>
+<p>HTTP 重定向（redirect）操作由服务器向请求发送特殊的重定向响应而触发，该响应中包含着 3 开头的状态码，和保存重定向 URL 的 Location 字段。浏览器接收到重定向响应后，立刻加载 Location 标头中的新 URL。重定向包含永久重定向、临时重定向、特殊重定向，其中 302 状态码属于临时重定向，表示由于不可预见的原因请求的页面暂不可用。</p>
+<p>在 curl 中，<code>-L</code> 参数可以让请求跟随重定向，而 curl 默认不跟随重定向。</p>
+<h4 id="2-curl-方法-2"><a class="markdownIt-Anchor" href="#2-curl-方法-2"></a> 2. curl 方法</h4>
+<p>启动环境，访问链接，在该网页中点击 <a target="_blank" rel="noopener" href="http://challenge-aab9d63d9632bf8b.sandbox.ctfhub.com:10800/index.php">Give me Flag</a> 链接，发现该网页好像发生了重新加载，根据题目推测发生了 302 重定向。</p>
+<p><img src="3-2-1.png" alt=""></p>
+<p>打开开发者模式，选择“网络”，再次点击链接，发现确实发生了 302 重定向。查看响应头，发现重定向到 <code>/index.html</code>，即为当前打开的 URL，如图所示：</p>
+<p><img src="3-2-2.png" alt=""></p>
+<p>使用 curl 直接请求 <a target="_blank" rel="noopener" href="http://challenge-aab9d63d9632bf8b.sandbox.ctfhub.com:10800/index.php">Give me Flag</a>（即 <code>/index.php</code>）而不加 <code>-L</code> 参数 ，可得到 Flag：<br>
+<code>ctfhub&#123;9234a08cb18828605359a3db&#125;</code></p>
+<p><img src="3-2-3.png" alt=""></p>
+<h4 id="3-抓包方法-2"><a class="markdownIt-Anchor" href="#3-抓包方法-2"></a> 3. 抓包方法</h4>
+<p>使用 Burp 抓取请求包，发送到 Repeater 之后，修改 URN 为 <code>/index.php</code>，再重新请求，得到 flag：<code>ctfhub&#123;0e41b55522fbb7b454eed21b&#125;</code>。（重开环境了）</p>
+<p><img src="3-3-1.png" alt=""></p>
+<p><img src="3-3-2.png" alt=""></p>
+<p><img src="3-3-3.png" alt=""></p>
+<h2 id="实验四"><a class="markdownIt-Anchor" href="#实验四"></a> 实验四</h2>
+<h3 id="实验目的-4"><a class="markdownIt-Anchor" href="#实验目的-4"></a> 实验目的</h3>
+<blockquote>
+<p>Cookie：Cookie 欺骗、认证、伪造</p>
+</blockquote>
+<p>发送修改过 cookie 的请求报文，以获得 Flag。了解 HTTP 消息、cookie；学习 curl、Burp Suite 的使用方法。</p>
+<h3 id="实验过程-4"><a class="markdownIt-Anchor" href="#实验过程-4"></a> 实验过程</h3>
+<h4 id="1-理论学习-3"><a class="markdownIt-Anchor" href="#1-理论学习-3"></a> 1. 理论学习</h4>
+<p>Cookie 由服务器端创建后返回给浏览器。cookie 以字符串的形式存储，其表示形式为键值对。客户端发送请求时，请求报头携带了在 Path 属性中包含了请求的 URL 的 cookie。curl 中 <code>-b</code> 参数可用来向服务器发送 cookie。</p>
+<h4 id="2-开发者模式方法"><a class="markdownIt-Anchor" href="#2-开发者模式方法"></a> 2. 开发者模式方法</h4>
+<p>打开环境给出的链接，发现网页提示 <code>only admin can get flag.</code></p>
+<p><img src="4-2-1.png" alt=""></p>
+<p>进入开发者模式，选择“网络”，刷新网站后查看请求头，发现 cookie 中 <code>admin=0</code>：</p>
+<p><img src="4-2-2.png" alt=""></p>
+<p>右键该消息，选择“编辑并重发”，输入网址，在消息头中添加 <code>Cookie</code> 项，写入 <code>admin=1</code>，再点击“发送”，可以在右侧的“响应”中看到 Flag：<code>ctfhub&#123;50624786f30f02058e228bb3&#125;</code></p>
+<p><img src="4-2-3.png" alt=""></p>
+<h4 id="3-curl-方法"><a class="markdownIt-Anchor" href="#3-curl-方法"></a> 3. curl 方法</h4>
+<p>使用 <code>-b</code> 或 <code>--cookie</code> 参数，使用双引号包含 Cookie 键值对 <code>admin=1</code>，可得到 flag。</p>
+<p><img src="4-3-1.png" alt=""></p>
+<p>$p.s.$  <code>-H</code> 参数同样可以用来添加请求的 Cookie 标头来实现同样的功能：<code>-H &quot;Cookie: admin=1&quot;</code></p>
+<h4 id="4-抓包方法"><a class="markdownIt-Anchor" href="#4-抓包方法"></a> 4. 抓包方法</h4>
+<p>抓取请求包，Repeater 中将请求报头里的 <code>admin=0</code> 改为 <code>admin=1</code>，点击“Go”发送即可。</p>
+<p><img src="4-4-1.png" alt=""></p>
+<p><img src="4-4-2.png" alt=""></p>
+<h2 id="实验五"><a class="markdownIt-Anchor" href="#实验五"></a> 实验五</h2>
+<h3 id="实验目的-5"><a class="markdownIt-Anchor" href="#实验目的-5"></a> 实验目的</h3>
+<blockquote>
+<p>基础认证：在 HTTP 中，基本认证（英语：Basic access authentication）是允许 http 用户代理（如：网页浏览器）在请求时，提供 用户名 和 密码 的一种方式。详情请查看 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81">https://zh.wikipedia.org/wiki/HTTP基本认证</a></p>
+</blockquote>
+<p>使用字典爆破账号密码，得到 Flag。了解 HTTP 消息、基础认证；学习 Burp Suite、Python requests 和 urllib 库的使用方法。</p>
+<h3 id="实验过程-5"><a class="markdownIt-Anchor" href="#实验过程-5"></a> 实验过程</h3>
+<h4 id="1-理论学习-4"><a class="markdownIt-Anchor" href="#1-理论学习-4"></a> 1. 理论学习</h4>
+<blockquote>
+<p>在进行基本认证的过程里，请求的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5" title="HTTP 头字段">HTTP 头字段</a>会包含 <code>Authorization</code> 字段，形式如下： <code>Authorization: Basic &lt;凭证&gt;</code>，该凭证是用户和密码的组和的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Base64" title="Base64">base64编码</a>。</p>
+<p>基本认证 并没有为传送凭证（英语：transmitted credentials）提供任何机密性的保护。仅仅使用 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Base64" title="Base64">Base64</a> 编码并传输，而没有使用任何 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8A%A0%E5%AF%86" title="加密">加密</a> 或 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C" title="哈希">散列算法</a>。因此，基本认证常常和 HTTPS 一起使用，以提供机密性。</p>
+</blockquote>
+<h4 id="2-burp-intruder-方法"><a class="markdownIt-Anchor" href="#2-burp-intruder-方法"></a> 2. Burp Intruder 方法</h4>
+<p>打开链接，‌点击 <a target="_blank" rel="noopener" href="http://challenge-4e1b25430bfeaf95.sandbox.ctfhub.com:10800/flag.html">click</a>，抓包发现网站提供一个认证域，其中验证的模式为 <code>Basic</code>，保护域为 <code>realm=&quot;Do u know admin ?&quot;</code> 由此猜测用户名为 <code>admin</code>。</p>
+<p><img src="5-2-1.png" alt=""></p>
+<p><img src="5-2-2.png" alt=""></p>
+<p>用户名中输入 <code>admin</code>，随便输入一个密码，抓取请求包，送到 Intruder 中：</p>
+<p><img src="5-2-3.png" alt=""></p>
+<p><img src="5-2-4.png" alt=""></p>
+<p>选择用户名密码键值对对应的位置，即 <code>Basic</code> 之后的 Base64 密文，点击 <code>Add §</code> 将其添加为 Payload 插入点。</p>
+<p><img src="5-2-5.png" alt=""></p>
+<p>导入附件中的密码表，添加前缀 <code>admin:</code>，设置编码方式为 Base64 加密，取消选择 URL 加密。</p>
+<p><img src="5-2-6.png" alt=""></p>
+<p><img src="5-2-7.png" alt=""></p>
+<p>点击界面最上方的“Start attack”，开始破解，在结果中找出状态码为 200 的项目，选择并查看 Response 即可得到 Flag。（下下图中是将包含正确密码的请求在 Repeater 中发送后得到的响应。）</p>
+<p><img src="5-2-8.png" alt=""></p>
+<p><img src="5-2-9.png" alt=""></p>
+<p>Flag 为：<code>ctfhub&#123;ace6aaaabe1550889c9266d5&#125;</code></p>
+<h4 id="3-python-方法"><a class="markdownIt-Anchor" href="#3-python-方法"></a> 3. Python 方法</h4>
+<p>使用 requests 库，有两种方法。</p>
+<ol>
+<li><code>auth=HTTPBasicAuth()</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line"><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPBasicAuth</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">requests_method_1</span>(<span class="params">password_dict, url</span>):  </span><br><span class="line">    <span class="keyword">for</span> password <span class="keyword">in</span> password_dict:  </span><br><span class="line">        <span class="comment"># 发送基础认证请求  </span></span><br><span class="line">        response = requests.get(url, auth=HTTPBasicAuth(<span class="string">&#x27;admin&#x27;</span>, password.strip()))  </span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:  </span><br><span class="line">            <span class="built_in">print</span>(response.content, response.headers)  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;password is:&#x27;</span>, password.strip())  </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    <span class="comment"># 读取密码本  </span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./10_million_password_list_top_100.txt&#x27;</span>) <span class="keyword">as</span> f:  </span><br><span class="line">        password_dict = f.readlines()  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 获取用户输入的目标url  </span></span><br><span class="line">    url = <span class="built_in">input</span>(<span class="string">&#x27;请输入目标url: &#x27;</span>) + <span class="string">&#x27;/flag.html&#x27;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 枚举所有密码进行尝试  </span></span><br><span class="line">    requests_method_1(password_dict, url)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><code>headers</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">requests_method_2</span>(<span class="params">password_dict, url</span>):  </span><br><span class="line">    <span class="keyword">for</span> password <span class="keyword">in</span> password_dict:  </span><br><span class="line">        auth_str = <span class="string">&#x27;admin:&#x27;</span> + password.strip()  </span><br><span class="line">        auth_bytes = auth_str.encode(<span class="string">&#x27;utf-8&#x27;</span>)  </span><br><span class="line">        base64_bytes = base64.b64encode(auth_bytes)  </span><br><span class="line">        auth_header = &#123;<span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Basic &#x27;</span> + base64_bytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)&#125;  </span><br><span class="line">        <span class="comment"># 发送基础认证请求  </span></span><br><span class="line">        response = requests.get(url, headers=auth_header)  </span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:  </span><br><span class="line">            <span class="built_in">print</span>(response.content, response.headers)  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;password is:&#x27;</span>, password.strip())  </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    <span class="comment"># 读取密码本  </span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./10_million_password_list_top_100.txt&#x27;</span>) <span class="keyword">as</span> f:  </span><br><span class="line">        password_dict = f.readlines()  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 获取用户输入的目标url  </span></span><br><span class="line">    url = <span class="built_in">input</span>(<span class="string">&#x27;请输入目标url: &#x27;</span>) + <span class="string">&#x27;/flag.html&#x27;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 枚举所有密码进行尝试  </span></span><br><span class="line">    requests_method_2(password_dict, url)</span><br></pre></td></tr></table></figure>
+<p><img src="5-3-1.png" alt=""></p>
+<p>得到正确的密码为 <code>000000</code>，认证得到 Flag：</p>
+<p><img src="5-3-2.png" alt=""></p>
+<h2 id="实验六"><a class="markdownIt-Anchor" href="#实验六"></a> 实验六</h2>
+<h3 id="实验目的-6"><a class="markdownIt-Anchor" href="#实验目的-6"></a> 实验目的</h3>
+<blockquote>
+<p>响应包源代码：HTTP 响应包源代码查看</p>
+</blockquote>
+<p>查看网页源码，找出 Flag。学习开发者模式的使用和网页源码的查看方法。</p>
+<h3 id="实验过程-6"><a class="markdownIt-Anchor" href="#实验过程-6"></a> 实验过程</h3>
+<ol>
+<li>打开环境给出的链接，使用 <kbd>F12</kbd> 打开开发者模式：</li>
+</ol>
+<p><img src="6-1.png" alt=""></p>
+<ol start="2">
+<li>使用 <kbd>Ctrl</kbd>+<kbd>U</kbd> 查看网页源代码：</li>
+</ol>
+<p><img src="6-2.png" alt=""></p>
+<p>上述两种方法都可以得到 Flag：<code>ctfhub&#123;89157a9d287bd09afd7db2ca&#125;</code></p>
+<h2 id="彩蛋"><a class="markdownIt-Anchor" href="#彩蛋"></a> 彩蛋</h2>
+<p><img src="cover.png" alt=""></p>
+<ul>
+<li>彩蛋图片：
+<ul>
+<li>作者：羽々斬 twi@u_u_zan，pid：2179695</li>
+<li>来源：Touhou Gensou Eclipse Files</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>Recogeta @ Recogeta's Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/07/isfat-web/">https://r3c0ger.github.io/2025/07/isfat-web/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「信息安全基础能力训练课程-Web实验」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-07-04 00:42:46</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-04 01:18:50</p>
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">赞助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+  <div class="sponsor-tip">~ 给灵梦的赛钱箱投个币吧 ~</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/alipay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/wechat.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          <img data-src="/2025/07/isfat-linux/cover.png" data-sizes="auto" alt="信息安全基础能力训练课程-Linux实验" class="lazyload">
+        
+        <a href="/2025/07/isfat-linux/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            信息安全基础能力训练课程-Linux实验
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="/2025/07/subject-1/cover.png" data-sizes="auto" alt="【自用】驾考科目一口诀" class="lazyload">
+      
+      <a href="/2025/07/subject-1/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          【自用】驾考科目一口诀
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Recogeta
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        42.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:59
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Recogeta",
+          title: "信息安全基础能力训练课程-Web实验",
+          url: "https://r3c0ger.github.io/2025/07/isfat-web/",
+          excerpt: "西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Web部分实验报告",
+          description: "",
+          stripContent: "这里是西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的实验报告！敬请参观与指正！请勿直球抄袭！本人不对任何抄袭借鉴行为及其后果负责。 题目来源是 CTFHub 中的技能树-Web-Web前置技能-HTTP协议，网上 Writeup 满天飞好吧。  实验一  实验目的 搭建 DVWA 靶机环境。  实验过程  配置代理，使用 NAT 模式，安装 proxychains 并配置。 下载 DVWA 到本地：输入 p",
+          date: "Fri Jul 04 2025 00:42:46 GMT+0800",
+          updated: "Fri Jul 04 2025 01:18:50 GMT+0800",
+          cover: "/2025/07/isfat-web/cover.png",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.5' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

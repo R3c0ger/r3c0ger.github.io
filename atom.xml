@@ -6,7 +6,7 @@
   <link href="https://r3c0ger.github.io/atom.xml" rel="self"/>
   
   <link href="https://r3c0ger.github.io/"/>
-  <updated>2025-07-02T09:05:31.373Z</updated>
+  <updated>2025-07-03T17:18:50.385Z</updated>
   <id>https://r3c0ger.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>信息安全基础能力训练课程-Linux实验</title>
+    <link href="https://r3c0ger.github.io/2025/07/isfat-linux/"/>
+    <id>https://r3c0ger.github.io/2025/07/isfat-linux/</id>
+    <published>2025-07-03T16:57:53.000Z</published>
+    <updated>2025-07-03T17:18:50.385Z</updated>
+    
+    
+    <summary type="html">西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Linux部分实验报告</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="linux" scheme="https://r3c0ger.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息安全基础能力训练课程-Web实验</title>
+    <link href="https://r3c0ger.github.io/2025/07/isfat-web/"/>
+    <id>https://r3c0ger.github.io/2025/07/isfat-web/</id>
+    <published>2025-07-03T16:42:46.000Z</published>
+    <updated>2025-07-03T17:18:50.417Z</updated>
+    
+    
+    <summary type="html">西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Web部分实验报告</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
+    
+    <category term="web" scheme="https://r3c0ger.github.io/tags/web/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+  </entry>
   
   <entry>
     <title>【自用】驾考科目一口诀</title>
@@ -147,11 +201,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="yaml" scheme="https://r3c0ger.github.io/tags/yaml/"/>
     
@@ -176,11 +230,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
@@ -203,11 +257,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="latex" scheme="https://r3c0ger.github.io/tags/latex/"/>
     
@@ -230,11 +284,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
@@ -257,11 +311,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
@@ -282,11 +336,11 @@
     <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
     
     
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
     <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
     <category term="navigation" scheme="https://r3c0ger.github.io/tags/navigation/"/>
     

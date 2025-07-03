@@ -1,0 +1,1330 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="false"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_tq6stt6tcg';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"license_type":"by-nc-sa","content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://r3c0ger.github.io';</script>
+  
+  <title>
+    信息安全基础能力训练课程-Linux实验 |
+    
+    Recogeta&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Linux部分实验报告">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全基础能力训练课程-Linux实验">
+<meta property="og:url" content="https://r3c0ger.github.io/2025/07/isfat-linux/index.html">
+<meta property="og:site_name" content="Recogeta&#39;s Blog">
+<meta property="og:description" content="西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Linux部分实验报告">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_1_01_install_gcc_perl_make.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_1_02_Guest_Additions.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_1_03_SharedFolder.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_1_04_vboxsf.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_2_01_ls.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_2_02_history.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_2_03_man&amp;help.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_2_04_date_hostname_top_uname.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_2_05_cat.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_01_Add_new_NATNet.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_02_connection_mode.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_03_NAT_interfaces.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_04_NAT_interfaces_vim.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_05_bridged.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_06_ip.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_07_ping.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_08_nat.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_09_Host_only.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_10_ifconfig.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_11_interfaces.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_3_12_ping.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_4_01_sources.list.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_4_02_apt_update.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_5_01_install_ssl_ssh.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_5_02_ssh_start.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_5_03_sshd_config.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_6_01_MobaXterm_session_settings.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_6_02_MobaXterm_connected.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_1_01_lesson01_connection.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_1_02_lesson01_readme.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_2_01_01-1_connection.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_2_02_01-1_cat-.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_3_01_cat.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_4_01_cat.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_5_01_file.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_6_01_maybehere.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_6_02_find.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_7_01_find.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_8_01_congratulations.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_8_02_ls.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/2_8_03_md5sum.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_0_01_grep.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_0_01_grep1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_1_01_sort_uniq.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_1_01_sort_uniq1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_2_01_strings.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_3_01_find.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/3_3_02_diff.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/4_1_01_lesson03_1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/4_1_02_lesson03_shell1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/4_2_00_cronjob2.png.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/4_2_01_lesson03_shell2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/img/4_2_02_cat_tmp.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_1_01_cronjob.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_1_02_shell.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_1_03_timeout.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_2_01_findpath.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_2_02_write_shell.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/5_2_03_result.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_1_01_test.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_2_01_thought_1.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_2_02_thought_2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_2_03_thought_2_result.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_2_04_thought_3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/6_2_05_thought_3_result.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/7_1_01_auth.log.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/7_1_02_ban_waitlist.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/7_1_02_shell.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/7_1_03_check.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/cover.png">
+<meta property="article:published_time" content="2025-07-03T16:57:53.000Z">
+<meta property="article:modified_time" content="2025-07-03T17:18:50.385Z">
+<meta property="article:author" content="Recogeta">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="cybersecurity">
+<meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="learning">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3c0ger.github.io/2025/07/isfat-linux/1_1_01_install_gcc_perl_make.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Recogeta's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" crossorigin="anonymous">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/2025/07/isfat-linux/cover.png" alt="信息安全基础能力训练课程-Linux实验">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">信息安全基础能力训练课程-Linux实验</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-ubuntu-linux"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 安装 Ubuntu Linux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%9F%E6%82%89-ubuntu-linux-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 熟悉 Ubuntu Linux 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#nat-%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.3.1.</span> <span class="toc-text"> NAT 网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A1%A5%E6%8E%A5%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.3.2.</span> <span class="toc-text"> 桥接网卡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#host-only"><span class="toc-number">1.2.3.3.</span> <span class="toc-text"> Host-only</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-%E6%8D%A2%E6%BA%90"><span class="toc-number">1.2.4.</span> <span class="toc-text"> apt 换源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.5.</span> <span class="toc-text"> ssh 服务端安装与配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.6.</span> <span class="toc-text"> 宿主机远程连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.3.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">2.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-0"><span class="toc-number">2.2.1.</span> <span class="toc-text"> lesson01-0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-1"><span class="toc-number">2.2.2.</span> <span class="toc-text"> lesson01-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-2"><span class="toc-number">2.2.3.</span> <span class="toc-text"> lesson01-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-3"><span class="toc-number">2.2.4.</span> <span class="toc-text"> lesson01-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-4"><span class="toc-number">2.2.5.</span> <span class="toc-text"> lesson01-4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-5"><span class="toc-number">2.2.6.</span> <span class="toc-text"> lesson01-5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-6"><span class="toc-number">2.2.7.</span> <span class="toc-text"> lesson01-6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-7"><span class="toc-number">2.2.8.</span> <span class="toc-text"> lesson01-7</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">3.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> lesson02-0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-1"><span class="toc-number">3.2.2.</span> <span class="toc-text"> lesson02-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-2"><span class="toc-number">3.2.3.</span> <span class="toc-text"> lesson02-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-3"><span class="toc-number">3.2.4.</span> <span class="toc-text"> lesson02-3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">4.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson03-1"><span class="toc-number">4.2.1.</span> <span class="toc-text"> lesson03-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson03-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> lesson03-2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">5.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 分析已经存在的定时任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96-etclesson04_2_pass-%E5%86%85%E5%AE%B9"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 获取 &#x2F;etc&#x2F;lesson04_2_pass 内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">6.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E6%B1%82%E4%B8%8E%E6%80%9D%E8%B7%AF"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 要求与思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 思路1实现与结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF2%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 思路2实现与结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF3%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.4.</span> <span class="toc-text"> 思路3实现与结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%83"><span class="toc-number">7.</span> <span class="toc-text"> 实验七</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-7"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-7"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-isfat-linux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-07-03T16:57:53.000Z" itemprop="datePublished">2025-07-04</time>
+    <time style="display: none;" id="post-update-time">2025-07-04</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" data-aos="zoom-in">专业学习</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p>这里是<font color="#548dd4">西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）</font>课程的实验报告！敬请参观与指正！请勿直球抄袭！本人不对任何抄袭借鉴行为及其后果负责。</p>
+<p>适用版本：</p>
+<ul>
+<li>VirtualBox 6.1.16 r140961 (Qt5.6.2)</li>
+<li>ubuntu-18.04.2-desktop-amd64.iso</li>
+</ul>
+<h2 id="实验一"><a class="markdownIt-Anchor" href="#实验一"></a> 实验一</h2>
+<h3 id="实验目的"><a class="markdownIt-Anchor" href="#实验目的"></a> 实验目的</h3>
+<ol>
+<li>熟悉 VirtualBox 等虚拟机用法，并配置 Ubuntu Linux 实验环境</li>
+<li>了解和使用 Linux 常用 shell 工具，并掌握通用的帮助或手册用法</li>
+<li>能够使用基础命令查看主机名、网络配置</li>
+<li>能够查看 CPU、内存配置与使用状态以及系统内核版本与发行版本</li>
+<li>能够完成与宿主机的网络配置，理解不同网络配置类型的区别</li>
+<li>能够对常用软件镜像源进行修改</li>
+<li>能够在 Linux 环境中配置 SSH 服务</li>
+<li>熟练使用命令行或 GUI 工具通过 SSH 远程连接 Linux</li>
+</ol>
+<h3 id="实验过程"><a class="markdownIt-Anchor" href="#实验过程"></a> 实验过程</h3>
+<h4 id="安装-ubuntu-linux"><a class="markdownIt-Anchor" href="#安装-ubuntu-linux"></a> 安装 Ubuntu Linux</h4>
+<p>从官网安装 VirtualBox，从镜像网站下载 Ubuntu 系统，安装虚拟机。</p>
+<p>“设置”-“网络”-“连接方式”中改为“桥接网卡”，打开“共享粘贴板”的双向共享。输入 <code>sudo passwd root</code> 修改 root 密码。更换 apt 源，输入 <code>sudo apt-get install gcc perl make</code>。</p>
+<p><img src="1_1_01_install_gcc_perl_make.png" alt=""></p>
+<p>加载 VBoxGuestAdditions.iso，在“设备”中安装增强功能，打开 VBox_GAs_6.1.16，运行软件后输入密码进行安装，安装完毕输入 <code>reboot</code> 重启，打开“无缝模式”。</p>
+<p><img src="1_1_02_Guest_Additions.png" alt=""></p>
+<p>在“设置”-“共享文件夹”中添加共享文件夹。终端中输入 <code>sudo usermod -a -G vboxsf nwpu-cs</code>。安装 vim（<code>sudo apt-get install vim</code>），打开 <code>/etc/sudoers</code>，添加 <code>&lt;yourusername&gt; ALL=NOPASSWD: ALL</code>，按 <kbd>Esc</kbd>，输入 <code>:wq!</code> 强制保存。重启后，完成共享文件夹的设置。</p>
+<p><img src="1_1_03_SharedFolder.png" alt=""></p>
+<p><img src="1_1_04_vboxsf.png" alt=""></p>
+<p>$p.s.\quad$ vim 安装失败，未满足依赖（依赖: vim-common (= 2:7.4.1689-3ubuntu1.5) 但是…），输入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get purge vim-common  </span><br><span class="line"><span class="built_in">sudo</span> apt-get update  </span><br><span class="line"><span class="built_in">sudo</span> apt-get upgrade</span><br></pre></td></tr></table></figure>
+<h4 id="熟悉-ubuntu-linux-命令"><a class="markdownIt-Anchor" href="#熟悉-ubuntu-linux-命令"></a> 熟悉 Ubuntu Linux 命令</h4>
+<p>打开终端，输入 <code>ls</code>、<code>ls -a</code>、<code>ls -l</code>、<code>ls -t</code>、<code>ls -R</code> 查看文件，得到如下结果：</p>
+<p><img src="1_2_01_ls.png" alt=""></p>
+<p>使用“Tab”、“↑”、“↓”来补全命令，成功。</p>
+<p>查看 bash 历史记录，输入 <code>history</code> 命令，结果如下：</p>
+<p><img src="1_2_02_history.png" alt=""></p>
+<p>可以看到，这里记录了本用户之前运行过的命令。这些命令被记录在.bash_history 文件中，也可以通过 <code>cat</code> 命令查看。</p>
+<hr>
+<p>使用 <code>man</code> 命令查看 <code>ls</code> 手册，输入 <code>man ls</code> 命令，见下图左；执行 <code>ls --help</code> 查看帮助，见下图右：</p>
+<p><img src="1_2_03_man&amp;help.png" alt=""></p>
+<p>可以发现，两者同样显示命令的语法，对命令选项的描述也相同。但 <code>man</code> 命令的文档中信息更多，包含作者、错误提交、版权信息等信息。</p>
+<p>输入 <code>man pwd</code> 命令，文档在 NAME 栏显示 “print name of current/working directory”, 在 DISCRIPTION 中显示 “Print the full filename of the current working directory.”可以看出 <code>pwd</code> 命令的功能是查看当前工作目录的完整路径。</p>
+<hr>
+<p>使用 <code>date</code>、<code>hostname</code>、<code>top</code>、<code>uname</code> 命令来查看系统时间、主机名、实时系统占用情况和内核版本，结果如下：</p>
+<p><img src="1_2_04_date_hostname_top_uname.png" alt=""></p>
+<p>通过 <code>cat</code> 命令查看当前系统中 CPU 信息、内存信息，分别输入 <code>cat /proc/cpuinfo</code>、<code>cat /proc/meminfo</code> 命令，如下：</p>
+<p><img src="1_2_05_cat.png" alt=""></p>
+<h4 id="网络配置"><a class="markdownIt-Anchor" href="#网络配置"></a> 网络配置</h4>
+<h5 id="nat-网络"><a class="markdownIt-Anchor" href="#nat-网络"></a> NAT 网络</h5>
+<p>打开管理-&gt;全局设定-&gt;网络，点击“添加新 NAT 网络。”再选中添加的网络，点“编辑 NAT 网络。”将“网络 CIDR”改为 192.168.56.0/24。</p>
+<p><img src="1_3_01_Add_new_NATNet.png" alt=""></p>
+<p>打开虚拟机的“设置”，打开“网络”，在“连接方式”中选择 “NAT 网络”。打开“高级”，在“混杂模式”中选择“全部允许”。</p>
+<p><img src="1_3_02_connection_mode.png" alt=""></p>
+<p>在终端中输入 <code>ifconfig</code> 命令，查看使用“NAT 网络”的网卡名称为“enp0s3”。</p>
+<p><img src="1_3_03_NAT_interfaces.png" alt=""></p>
+<p>输入 <code>sudo vim /etc/network/interfaces</code> 命令打开 vim 编辑器修改配置文件，在配置文件中添加如下内容（重新装了个虚拟机又试了一次，inet 地址有变动）：</p>
+<p><img src="1_3_04_NAT_interfaces_vim.png" alt=""></p>
+<p>敲 <kbd>Esc</kbd>，输入 <code>:wq</code> 保存并退出。重启虚拟机，终端中输入 <code>sudo /etc/init.d/network-manager restart</code>，重启网卡。因未知原因无法成功。</p>
+<h5 id="桥接网卡"><a class="markdownIt-Anchor" href="#桥接网卡"></a> 桥接网卡</h5>
+<p><img src="1_3_05_bridged.png" alt=""></p>
+<p>如上图设置。虚拟机可成功联网。</p>
+<p><img src="1_3_06_ip.png" alt=""></p>
+<p>在宿主机中使用 ping 命令来测试与虚拟机的连通性：</p>
+<p><img src="1_3_07_ping.png" alt=""></p>
+<h5 id="host-only"><a class="markdownIt-Anchor" href="#host-only"></a> Host-only</h5>
+<p>打开管理-&gt;全局设定-&gt;网络，点击“添加新 NAT 网络。”再选中添加的网络，点“编辑 NAT 网络。”将“网络 CIDR”改为 192.168.56.0/24。</p>
+<p><img src="1_3_08_nat.png" alt=""></p>
+<p>打开虚拟机的“设置”，打开“网络”，在“连接方式”中选择 “仅主机（Host-Only）网络”。打开“高级”，在“混杂模式”中选择“全部允许”。</p>
+<p><img src="1_3_09_Host_only.png" alt=""></p>
+<p>在终端中输入 <code>ifconfig</code> 命令，查看使用 Host-Only 的网卡名称为“enp0s8”。</p>
+<p><img src="1_3_10_ifconfig.png" alt=""></p>
+<p>输入 <code>sudo vim /etc/network/interfaces</code> 命令打开 vim 编辑器修改配置文件，在配置文件中添加如下内容，并保存、重启：</p>
+<p><img src="1_3_11_interfaces.png" alt=""></p>
+<p>在宿主机中 ping 虚拟机成功，但是虚拟机中不能联网：</p>
+<p><img src="1_3_12_ping.png" alt=""></p>
+<h4 id="apt-换源"><a class="markdownIt-Anchor" href="#apt-换源"></a> apt 换源</h4>
+<p>在终端中输入 <code>sudo cp /etc/apt/sources.list sources_backup.list</code> 进行备份。输入 <code>sudo gedit /etc/apt/sources.list</code> 修改 sources.list 文件，添加阿里云源：</p>
+<p><img src="1_4_01_sources.list.png" alt=""></p>
+<p>保存后在终端中输入如下命令，完成换源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get -f install</span><br><span class="line"><span class="built_in">sudo</span> apt-get upgrade</span><br></pre></td></tr></table></figure>
+<p><img src="1_4_02_apt_update.png" alt=""></p>
+<h4 id="ssh-服务端安装与配置"><a class="markdownIt-Anchor" href="#ssh-服务端安装与配置"></a> ssh 服务端安装与配置</h4>
+<p>输入 <code>openssl version</code>，输出 <code>OpenSSL 1.1.0g  2 Nov 2017</code>，发现已安装。</p>
+<p>安装以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install libssl-dev</span><br><span class="line"><span class="built_in">sudo</span> apt-get install openssh-client</span><br><span class="line"><span class="built_in">sudo</span> apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+<p><img src="1_5_01_install_ssl_ssh.png" alt=""></p>
+<p>使用 <code>dpkg -l |grep ssh</code> 可查看是否安装成功。使用 <code>sudo service ssh start</code> 启动 ssh-server。使用 <code>sudo ps -e|grep ssh</code> 查看是否启动，若有 sshd 则说明 ssh-server 已经启动。</p>
+<p><img src="1_5_02_ssh_start.png" alt=""></p>
+<p>使用 <code>whereis sshd</code> 可找到 ssh-server 所在目录。</p>
+<p>使用 <code>sudo vim /etc/ssh/ssh_config</code> 进行 SSH 服务端配置。配置完成后使用 <code>sudo service ssh restart</code> 重启。</p>
+<p><img src="1_5_03_sshd_config.png" alt=""></p>
+<h4 id="宿主机远程连接"><a class="markdownIt-Anchor" href="#宿主机远程连接"></a> 宿主机远程连接</h4>
+<p>安装网络工具：<code>sudo apt install net-tools</code></p>
+<p>关闭主机和虚拟机防火墙：Ubuntu 中输入 <code>sudo ufw disable</code>，Window 中在 windows 安全中心关闭防火墙。</p>
+<p>在虚拟机中使用 <code>ifconfig</code> 或 <code>ip addr</code> 命令查找到 ip 信息：192.168.1.100</p>
+<p>安装 MobaXterm，在“Session”-“SSH”-“Basic SSH settings”中输入 Ubuntu 系统的 ip 地址、用户名和端口号并连接。输入密码后，连接成功。</p>
+<p><img src="1_6_01_MobaXterm_session_settings.png" alt=""></p>
+<p><img src="1_6_02_MobaXterm_connected.png" alt=""></p>
+<h3 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://b.wuyuru.cn/303.html">Kali Linux 2022.3 vmware-amd64</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jE411c785/?p=3&amp;vd_source=5053a1054efc12e95eb76c066ad13f8f">3 实操部分_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362863381">实验 1 VirtualBox 中安装 Ubuntu16.04 - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://shliang.blog.csdn.net/article/details/108216983">Ubuntu 在命令行下不能够切换字母的大小写，只能输入大写字母_点亮～黑夜的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67402026/article/details/126434739">Linux 进入 root 权限的两种方法_linux root_普通网友的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46523365/article/details/105637612">TLinux: 执行 sudo apt install gcc 提示“软件包 gcc 没有可安装候选”_weixin_46523365 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bitcsljl/article/details/127105445">Ubuntu16.04 更换 apt 阿里源-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40301372/article/details/108622277">ubuntu 16.04 更换国内源_ubuntu16 换源_是你的杰克的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34915141/article/details/127528582">Ubuntu 更换国内源（apt 更换源）_docker ubuntu 换国内源_鬼才血脉的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34479122/article/details/116892194">修改 linux 域名解析失败,Ubuntu16.04 更新源失败暂时不能解析域名＂us.archive.ubuntu.com…_kokosK 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013013023/article/details/109159133">其他笔记 - virtualbox 共享文件夹无访问权限等问题_vboxclient: failed to get display change request, _canmoumou 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_63779958/article/details/126997883">解决 Ubuntu 与 Virtualbox 虚拟机共享文件夹无权限的问题（保姆级）_ubuntu 共享文件夹没有权限访问_孤叶飘飘的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39717029/article/details/116748610">linux 系统没有可用的软件包 gcc, 现在没有可用的软件包 vim, 被其它软件包引用了,gcc 命令无法使用…_weixin_39717029 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Oil__/article/details/113384278">Ubuntu Vim 安装失败未满足依赖_uupweng 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fofawubian/p/8031671.html">ubuntu16.04 使用问题笔记 - 佛法无边 - 博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34246778/article/details/102694993">vim /etc/sudoers 修改只读文件_计算机视觉小白之旅的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52671517/article/details/124673951">Linux 系统 vim 编辑器使用方法：编辑、保存和退出_linux 保存退出 vim_夏茗 xm 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://superuser.com/questions/243662/how-do-i-disable-ubuntu-authenticate-popup-that-is-used-to-elevate-privileges">security - How do I disable Ubuntu Authenticate popup that is used to elevate privileges? - Super User</a></li>
+<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/86040/authentication-for-everything">password - Authentication for everything - Ask Ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/workMATLABhard/article/details/123679197">ubuntu20.04 重启网络方法_ubuntu 重启网络_一只小菜鸟 ya 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38125626/article/details/120569339">openssl 安装与使用_apt install openssl_puppycuty 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42310235/article/details/118084540">ubuntu20.04 安装 openssh-server 报依赖错误的解决方法_apt-get install openssh-server_萝卜丝 18 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50964512/article/details/123588745">ssh 安装与配置（详解版）_余识-的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freesion.com/article/2074388571/">ubuntu18.04 openssh 客户端和服务端 安装及配置 - 灰信网（软件开发博客聚合）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Liqi23/article/details/127466997">SSH 服务配置_ssh 配置_Liq1 的博客-CSDN 博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_59134387/article/details/126854569">MobaXterm远程登录Ubuntu（详细教程）_mobaxterm ubuntu_孤生i的博客-CSDN博客</a></li>
+</ul>
+<h2 id="实验二"><a class="markdownIt-Anchor" href="#实验二"></a> 实验二</h2>
+<h3 id="实验目的-2"><a class="markdownIt-Anchor" href="#实验目的-2"></a> 实验目的</h3>
+<ol>
+<li>学习使用常用命令：ls，cd，cat，find，file</li>
+<li>理解基本的用户与文件权限</li>
+</ol>
+<h3 id="实验过程-2"><a class="markdownIt-Anchor" href="#实验过程-2"></a> 实验过程</h3>
+<h4 id="lesson01-0"><a class="markdownIt-Anchor" href="#lesson01-0"></a> lesson01-0</h4>
+<p>根据实验环境输入命令 <code>ssh -p  20004 lesson01@10.81.2.118</code>，远程连接给定目标。</p>
+<p><img src="2_1_01_lesson01_connection.png" alt=""></p>
+<p>输入 <code>ls</code> 查看文件，输入 <code>cat readme</code> 查看“readme”的内容：ieEWq6ht</p>
+<p><img src="2_1_02_lesson01_readme.png" alt=""></p>
+<h4 id="lesson01-1"><a class="markdownIt-Anchor" href="#lesson01-1"></a> lesson01-1</h4>
+<p>输入 <code>exit</code> 退出，使用原端口号（中途实验延时一次）和 IP 地址，用 lesson01-1 登录，密码为上述的 ieEWq6ht。</p>
+<p><img src="2_2_01_01-1_connection.png" alt=""></p>
+<p>查看文件输入命令：<code>cat ./-</code>，得到密码 gy5f6rs7</p>
+<p><img src="2_2_02_01-1_cat-.png" alt=""></p>
+<h4 id="lesson01-2"><a class="markdownIt-Anchor" href="#lesson01-2"></a> lesson01-2</h4>
+<p>连接方式同上。查看文件输入命令：<code>cat 'spaces in this filename'</code>，得到密码 iJpMOHR5</p>
+<p><img src="2_3_01_cat.png" alt=""></p>
+<blockquote>
+<p>双引号（&quot; &quot;）：弱引用；除 $、‘’、 `、\ 以外所有的字符都解释成字符本身而成为普通字符。</p>
+<p>单引号（’ ‘）：强引用；所有的字符包括特殊字符（ $、’'、`、\ ）都解释成字符本身。</p>
+<p>反引号（` `）：命令替换；在反引号中的字符串将解释成 shell 命令来执行，且优先执行。</p>
+</blockquote>
+<h4 id="lesson01-3"><a class="markdownIt-Anchor" href="#lesson01-3"></a> lesson01-3</h4>
+<p>输入 <code>ls -a</code> 命令查看所有文件和文件夹，发现隐藏文件.hidden，内容/密码为：S5O0FGZb</p>
+<p><img src="2_4_01_cat.png" alt=""></p>
+<h4 id="lesson01-4"><a class="markdownIt-Anchor" href="#lesson01-4"></a> lesson01-4</h4>
+<p>查看主目录下 ASCII 格式的文本文件内容：使用 <code>file</code> 命令辨识文件类型，查找出 File (7) 为 ASCII 格式的文本文件内容，用 <code>cat</code> 命令查看，得到密码为 s3XECIPV</p>
+<p><img src="2_5_01_file.png" alt=""></p>
+<h4 id="lesson01-5"><a class="markdownIt-Anchor" href="#lesson01-5"></a> lesson01-5</h4>
+<p>用 <code>find</code> 命令找出 maybehere 文件夹，进入该文件夹。</p>
+<p><img src="2_6_01_maybehere.png" alt=""></p>
+<p>查看该文件夹满足以下条件文件的内容：“文件大小为 1008 字节，文本文件，不可执行”：使用 <code>find . -size 504w -exec ls -l &#123;&#125; \;</code> 命令，查找 504 个字（2 字节）的文件，列出完整路径，找出该文件并查看，最后 8 字符为 gHm7YP4l</p>
+<p><img src="2_6_02_find.png" alt=""></p>
+<p>$p.s.\quad$ 完整且符合题意的命令应为 <code>find -size 1008c -type f ! -executable -exec ls -l &#123;&#125; \;</code></p>
+<h4 id="lesson01-6"><a class="markdownIt-Anchor" href="#lesson01-6"></a> lesson01-6</h4>
+<p>查找满足以下条件文件：“在<code>/var</code>路径下，属于用户 lesson01-6、属于用户组 lesson01-5、文件大小为 50 字节”，查看该文件内容：使用 <code>find /var -user lesson01-6 -group lesson01-5 -size 50c -exec ls -l &#123;&#125; \;</code> 命令，找出文件并查看，最后 8 字符为 x4jYq8w0</p>
+<p><img src="2_7_01_find.png" alt=""></p>
+<blockquote>
+<p>What does {} \; mean in the find command?</p>
+<p>Save this answer. If you run find with exec , {} <strong>expands to the filename of each file or directory found with find</strong> (so that ls in your example gets every found filename as an argument - note that it calls ls or whatever other command you specify once for each file found). Semicolon ; ends the command executed by exec .</p>
+<p>What is {} \; at the end of find command?</p>
+<p>find -exec uses {} to pass the current file name to the specified command, and \; <strong>to mark the end of the the command’s arguments</strong>. The \ is needed because ; by itself is special to bash; by typing \; , you can pass a literal ; character as an argument. (You can also type ‘;’ or “;” .)</p>
+</blockquote>
+<h4 id="lesson01-7"><a class="markdownIt-Anchor" href="#lesson01-7"></a> lesson01-7</h4>
+<p>使用 <code>./newcat2 /etc/lesson01_pass</code> 查看文件内容，显示 Congratulations! You have passed the lesson01RNclQnRG</p>
+<p><img src="2_8_01_congratulations.png" alt=""></p>
+<p>查看文件，两者均为二进制文件。使用 <code>ls -l</code> 查看 newcat1、newcat2 ，发现两个文件权限不同。</p>
+<p><img src="2_8_02_ls.png" alt=""></p>
+<p>对 newcat1、newcat2 使用 <code>md5sum ./newcat1 ./newcat2</code> 命令计算 md5 校验和，发现校验和相同，说明两者文件内容相同。</p>
+<p><img src="2_8_03_md5sum.png" alt=""></p>
+<p>造成此差异的原因是 <code>md5sum</code> 只能比较文件内容而不能比较文件权限，而两个文件权限不同。</p>
+<h3 id="参考资料-2"><a class="markdownIt-Anchor" href="#参考资料-2"></a> 参考资料</h3>
+<p><strong>实验二到实验六均可以参考<a target="_blank" rel="noopener" href="https://overthewire.org/wargames/bandit/">Bandit</a>的内容。</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bf8cc6b0efd1">【bandit】WarGame之bandit通关日志 - 简书</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.chuanpuyun.com/article/968.html">OverTheWire-Bandit 1-27-网盾安全培训</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/joker-vip/p/13195381.html">OverTheWire–bandit–level0~level33 - joker0xxx3 - 博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/LJFYYJ/article/details/116992592">OverTheWire-Bandit_overthewire bandit_目标是技术宅的博客-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42820274/article/details/122820821">Wargames学习笔记–Bandit_Zhaohg720的博客-CSDN博客</a></li>
+</ul>
+<blockquote>
+<p>绝大部分命令和 Shell 都可以在 <a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">Linux 教程</a> 中找到。</p>
+</blockquote>
+<h2 id="实验三"><a class="markdownIt-Anchor" href="#实验三"></a> 实验三</h2>
+<h3 id="实验目的-3"><a class="markdownIt-Anchor" href="#实验目的-3"></a> 实验目的</h3>
+<ol>
+<li>巩固使用常用命令：ls，cd，cat，find，file</li>
+<li>学习使用常用命令：grep，sort，uniq，strings，diff</li>
+</ol>
+<h3 id="实验过程-3"><a class="markdownIt-Anchor" href="#实验过程-3"></a> 实验过程</h3>
+<h4 id="lesson02-0"><a class="markdownIt-Anchor" href="#lesson02-0"></a> lesson02-0</h4>
+<p>SSH 远程连接同上个实验。</p>
+<p>查找文件 data.txt 中，单词“millionth”后到段落结尾的文本内容：<br>
+使用 <code>grep -n millionth data.txt</code> 查找到单词 millionth 所在段落内容为：<br>
+<code>millionth    TESKZC0XvTetK0ObTUeMb5STk5iWrBvP</code></p>
+<p><img src="3_0_01_grep.png" alt=""></p>
+<p><img src="3_0_01_grep1.png" alt=""></p>
+<p>（出于笔记本电量原因先在 MobaXterm 中做了一遍）</p>
+<p>$p.s.\quad$ 使用 <code>grep -A98567 -n millionth data.txt</code> 可查看从 millionth 之后所有行的内容，98567 是指原文件共有 98567 行，因此使用 -A 参数最多需要输出这么多行。</p>
+<h4 id="lesson02-1"><a class="markdownIt-Anchor" href="#lesson02-1"></a> lesson02-1</h4>
+<p>查找文件 data.txt 中，仅出现一次的文本行：<br>
+使用 <code>sort data.txt | uniq -u</code> 命令，查找文件 data.txt 中仅出现一次的文本行，得到：<br>
+<code>EN632PlfYiZbn3PhVK3XOGSlNInNE00t</code></p>
+<p><img src="3_1_01_sort_uniq.png" alt=""></p>
+<p><img src="3_1_01_sort_uniq1.png" alt=""></p>
+<h4 id="lesson02-2"><a class="markdownIt-Anchor" href="#lesson02-2"></a> lesson02-2</h4>
+<p>查找文件 data.txt 中，查找以几个“=”开头的 ASCII 字符串：</p>
+<p>使用 <code>strings</code> 命令查看文件中的字符串，并用 <code>grep</code> 进行过滤，命令是 <code>strings ./data.txt | grep -n =</code></p>
+<p><img src="3_2_01_strings.png" alt=""></p>
+<p>显然，the password is G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s .</p>
+<h4 id="lesson02-3"><a class="markdownIt-Anchor" href="#lesson02-3"></a> lesson02-3</h4>
+<p>查找文件 passwords.old 和 passwords.new：</p>
+<p><img src="3_3_01_find.png" alt=""></p>
+<p>比较 passwords.old 和 passwords.new 文件内容，获取已更改的行内容：</p>
+<p>使用 <code>diff ./passwords.new ./passwords.old</code> 命令比较文件内容的不同之处，也可以添加 <code>-y --suppress-common-lines</code> 参数：</p>
+<p><img src="3_3_02_diff.png" alt=""></p>
+<p>&quot;&lt;“表示后面文件比前面文件少了该行内容，而”&gt;&quot;表示后面文件比前面文件多了该行内容。显然，更改前该行的原内容是 810zq8IK64u5A9Lb2ibdTGBtlcSZsoe8，而更改后该行的内容是 hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg。</p>
+<h2 id="实验四"><a class="markdownIt-Anchor" href="#实验四"></a> 实验四</h2>
+<h3 id="实验目的-4"><a class="markdownIt-Anchor" href="#实验目的-4"></a> 实验目的</h3>
+<ol>
+<li>学习使用常用命令：crontab</li>
+<li>能够阅读理解简单的 Shell 脚本</li>
+</ol>
+<h3 id="实验过程-4"><a class="markdownIt-Anchor" href="#实验过程-4"></a> 实验过程</h3>
+<p>通过 SSH 远程连接给定目标：同前 2 个实验，<code>ssh -p 25724 lesson03@10.81.2.118</code>。</p>
+<h4 id="lesson03-1"><a class="markdownIt-Anchor" href="#lesson03-1"></a> lesson03-1</h4>
+<p>在 /etc/cron.d 查找定时任务 cronjob_lesson03_1，思考该任务的执行周期是多长？分析该定时任务写入临时文件的内容：</p>
+<p><img src="4_1_01_lesson03_1.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@reboot lesson03-1 /usr/bin/lesson03_shell1.sh &amp;&gt; /dev/null</span><br><span class="line">* * * * * lesson03-1 /usr/bin/lesson03_shell1.sh &amp;&gt; /dev/null</span><br></pre></td></tr></table></figure>
+<p>上面的定时任务出现了五个*，说明该任务执行周期为：每分钟执行一次。</p>
+<p>该脚本在后台运行，并丢弃所有标准输出和标准错误输出。</p>
+<p>vim 打开脚本文件 /usr/bin/lesson03_shell1.sh 发现，它将 /etc/lesson03_pass/lesson03_1 的内容重定向到 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv 中。</p>
+<p><img src="4_1_02_lesson03_shell1.png" alt=""></p>
+<blockquote>
+<p>#!/bin/bash 是指此脚本使用 /bin/bash 来解释执行。其中，#! 是一个特殊的表示符，后面紧跟着解释此脚本的 shell 路径。</p>
+<p>命令&gt;文件名 为 输出重定向；命令&gt;&gt;文件名 为 输出追加重定向，前两者等同于 1&gt;、1&gt;&gt;；符号 2&gt;（或追加符号 2&gt;&gt;）表示对错误输出设备重定向；&amp;&gt;将标准输出和错误输出同时送到同一文件中。</p>
+</blockquote>
+<p>使用 <code>cat</code> 命令查看 <code>/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</code>，其中存放着一串字符 <code>750246E8-F75F-93FF-FBD8-55276B5C80BD</code></p>
+<h4 id="lesson03-2"><a class="markdownIt-Anchor" href="#lesson03-2"></a> lesson03-2</h4>
+<p>在 /etc/cron.d 查找定时任务 cronjob_lesson03_2，分析该定时任务写入临时文件的内容：</p>
+<p>使用 <code>cat</code> 查看 cronjob_lesson03_2，定时任务如下：</p>
+<p><img src="4_2_00_cronjob2.png.png" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@reboot lesson03-1 /usr/bin/lesson03_shell2.sh &amp;&gt; /dev/null</span><br><span class="line">* * * * * lesson03-1 /usr/bin/lesson03_shell2.sh  &amp;&gt; /dev/null</span><br></pre></td></tr></table></figure>
+<p>注意到该任务的用户同样是 lesson03-1。</p>
+<p>vim 打开脚本文件 /usr/bin/lesson03_shell2.sh 发现：</p>
+<p><img src="4_2_01_lesson03_shell2.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">myname=$(<span class="built_in">whoami</span>)</span><br><span class="line">mytarget=$(<span class="built_in">echo</span> I am user <span class="variable">$myname</span> | <span class="built_in">md5sum</span> | <span class="built_in">cut</span> -d <span class="string">&#x27; &#x27;</span> -f 1)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Copying passwordfile /etc/lesson03_pass/<span class="variable">$myname</span> to /tmp/<span class="variable">$mytarget</span>&quot;</span></span><br><span class="line"><span class="built_in">cat</span> /etc/lesson03_pass/<span class="variable">$myname</span> &gt; /tmp/<span class="variable">$mytarget</span></span><br></pre></td></tr></table></figure>
+<p>第二行这里 <code>$( )</code> 与 反引号 一样都用来命令替换，将 <code>whoami</code> 命令（获取用户名）的结果，即用户名赋值给 <code>myname</code>。</p>
+<p>第三行 <code>echo</code> 命令显示字符串 <code>I am user $myname</code>，通过管道对该字符串进行 md5 加密，然后用 <code>cut</code> 命令取以空格为分隔符的第一个字符串，赋值给 <code>mytarget</code>。</p>
+<p>第四行显示字符串 <code>Copying passwordfile /etc/lesson03_pass/$myname to /tmp/$mytarget</code>。</p>
+<p>第五行将 <code>/etc/lesson03_pass/$myname</code> 的内容写入 <code>/tmp/$mytarget</code> 当中。</p>
+<hr>
+<p>使用 <code>sh</code> 直接执行上述脚本文件，发现没有查看 <code>/etc/lesson03_pass/lesson03</code> 的权限。</p>
+<p>使用 <code>cat /etc/passwd</code> 查看所有用户，发现除 <code>lesson03</code> 外还有一个用户 <code>lesson03-1</code>。再结合上文提到了定时任务 cronjob_lesson03_2 的用户是 lesson03-1，可以推知，脚本中的 <code>$myname</code>，即 <code>$(whoami)</code> 应当是 lesson03-1。</p>
+<p>尝试 <code>echo I am user lesson03-1 | md5sum | cut -d ' ' -f 1 </code> 命令，得到一串字符串： <code>f0e75b0176966cb3f4afd42278d75367</code>，再使用 <code>cat /tmp/f0e75b0176966cb3f4afd42278d75367</code> 命令，结果如下，得到 <code>C0B813FC-04B7-A447-9358-5286DFCCE0AC</code>：</p>
+<p><img src="./img/4_2_02_cat_tmp.png" alt=""></p>
+<h2 id="实验五"><a class="markdownIt-Anchor" href="#实验五"></a> 实验五</h2>
+<h3 id="实验目的-5"><a class="markdownIt-Anchor" href="#实验目的-5"></a> 实验目的</h3>
+<ol>
+<li>理解 cron 配置文件和 shell 脚本</li>
+<li>编写简单的 shell 脚本</li>
+</ol>
+<h3 id="实验过程-5"><a class="markdownIt-Anchor" href="#实验过程-5"></a> 实验过程</h3>
+<p>SSH 远程连接：同上</p>
+<h4 id="分析已经存在的定时任务"><a class="markdownIt-Anchor" href="#分析已经存在的定时任务"></a> 分析已经存在的定时任务</h4>
+<p>在 /etc/cron.d 发现定时任务 cronjob_lesson04_1，查看该任务得到：</p>
+<p><img src="5_1_01_cronjob.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * lesson04-root /usr/bin/lesson04_1.sh &amp;&gt; /dev/null</span><br></pre></td></tr></table></figure>
+<p>发现该任务每分钟将 <code>/usr/bin/lesson04_1.sh</code> 执行一次，并丢弃所有标准输出和标准错误输出。查看该脚本，得到：</p>
+<p><img src="5_1_02_shell.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">cd /var/spool/lesson04-1</span><br><span class="line">for i in * .*;</span><br><span class="line">do</span><br><span class="line">    if [ &quot;$i&quot; != &quot;.&quot; -a &quot;$i&quot; != &quot;..&quot; ];</span><br><span class="line">    then</span><br><span class="line">        owner=&quot;$(stat --format &quot;%U&quot; ./$i)&quot;</span><br><span class="line">        if [ &quot;$&#123;owner&#125;&quot; = &quot;lesson04-1&quot; ]; then</span><br><span class="line">            timeout -s 9 30 ./$i</span><br><span class="line">        fi</span><br><span class="line">        rm -f ./$i</span><br><span class="line">    fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>第一行指定 shell 脚本解释器的路径；</p>
+<p>第二行进入 <code>/var/spool/lesson04-1</code> 目录；</p>
+<p>之后，对上述目录下的所有文件：将文件名赋给 <code>i</code>，若文件名不为“<code>.</code>”且文件名不为“<code>..</code>”，则查看（stat：查看文件的 inode 内容）该文件所有者的用户名（参数 --format “%U”），赋值给 <code>owner</code> 。若该用户名是 <code>lesson04-1</code>，则执行 i 文件，在 30 秒后超时，发送 SIGKILL 信号终止进程。之后删除该文件。总而言之，该脚本的作用即执行该目录下脚本文件并删除。</p>
+<p><img src="5_1_03_timeout.png" alt=""></p>
+<center>timeout -s 命令的实例</center>
+<h4 id="获取-etclesson04_2_pass-内容"><a class="markdownIt-Anchor" href="#获取-etclesson04_2_pass-内容"></a> 获取 /etc/lesson04_2_pass 内容</h4>
+<p>获取该内容需要我们自己去写一个脚本，然后放进 <code>/var/spool/lesson04-1</code> 目录中执行，这个脚本的作用是将 <code>/etc/lesson04_2_pass</code> 中的内容重定向到可读的位置。</p>
+<p>实验过程中我们所编写的脚本的用户是 <code>lesson04-1</code>，根据上述对定时任务的分析（若该用户名是 <code>lesson04-1</code>，则执行 i 文件），发现我们编写的脚本可以在 <code>/var/spool/lesson04-1</code> 目录中被自动执行，满足要求。</p>
+<p>该脚本需要在可写的目录下来编写，然后拷贝到 <code>/var/spool/lesson04-1</code> 目录中。<code>/var/spool/lesson04-1</code> 目录的权限是 drwxrwxrwx，因此拷贝操作可以成功执行。使用 <code>find / -type d -perm -222 -exec ls -adl &#123;&#125; \;</code> 命令可以找出主目录中满足用户、群组、其他人可写权限的目录（以及大于此权限的目录），搜索到如下目录：</p>
+<p><img src="5_2_01_findpath.png" alt=""></p>
+<p>我们选择 <code>/tmp</code> 目录作为我们编写脚本的位置。</p>
+<p>在该目录下创建新目录： <code>mkdir /tmp/test</code>，进入该目录： <code>cd /tmp/test</code>，创建并编写脚本文件 test. sh： <code>cat &gt; /tmp/test/test.sh</code>，脚本内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cat</span> /etc/lesson04_2_pass &gt;&gt; /tmp/test/test.sh</span><br></pre></td></tr></table></figure>
+<p>使用 <code>chmod</code> 命令为该文件和所在目录添加可执行权限，然后将该脚本拷贝到 <code>/var/spool/lesson04-1</code> 目录中，等待结果：</p>
+<p><img src="5_2_02_write_shell.png" alt=""></p>
+<p>等待一会之后，输入 <code>vim /tmp/test/test.sh</code> 命令，可以看到文件中多了一行字符串，这行字符串即为 <code>/etc/lesson04_2_pass</code> 的内容：<code>k6t69HILKC</code></p>
+<p><img src="5_2_03_result.png" alt=""></p>
+<p>$p.s.\quad$ <code>^M</code> 是 vim 显示 0xD（\r） 的方式，即回车符。使用 <code>cat</code> 查看就不会出现该字符。</p>
+<p>$p.s.\quad$ 这里不应该使用 test 作为目录名和程序名。不过既然已经成功运行过了，此处就暂且不重新再做了。</p>
+<blockquote>
+<p>在实际工作中，大多数脚本程序都会大量使用“[ ]”或“test”命令——即 shell 的布尔判断命令。… 因为 test 命令在 shell 脚本程序以外用得并不是很频繁，所以许多很少编写 shell 脚本程序的 UNIX 用户往往会自己编写一个简单的程序并把它叫做 test。如果一个这样的程序不能够工作，十有八九是因为它与 shell 中的 test 命令发生了冲突。要想查看你自己的系统是否有一个与此同名的外部命令，可以试试“which test”这祥的命令，检查结果一般会是 /bintest 或 /usr/bin/test。——《Linux 程序设计（原书第 2 版）》</p>
+</blockquote>
+<h2 id="实验六"><a class="markdownIt-Anchor" href="#实验六"></a> 实验六</h2>
+<h3 id="实验目的-6"><a class="markdownIt-Anchor" href="#实验目的-6"></a> 实验目的</h3>
+<ol>
+<li>编写简单的 shell 脚本</li>
+<li>理解 linux 中管道的使用</li>
+</ol>
+<h3 id="实验过程-6"><a class="markdownIt-Anchor" href="#实验过程-6"></a> 实验过程</h3>
+<p>SSH 远程连接给定目标同上，密码为 <code>k6t69HILKC</code>。</p>
+<h4 id="要求与思路"><a class="markdownIt-Anchor" href="#要求与思路"></a> 要求与思路</h4>
+<p>题目：主目录有一个程序，他需要一个正确的口令来告诉你下一关的密码。提示：口令格式为 lesson04-2xxxx，其中 xxxx 为纯数字。</p>
+<p>使用 <code>ls -l</code> 发现主目录中的 <code>crackme</code>，执行该文件发现，该文件最多只能执行五次，而执行之后可尝试输入口令的次数没有限制。</p>
+<p><img src="6_1_01_test.png" alt=""></p>
+<p>由上述条件可知，我们需要写脚本来遍历所有可能的口令，并输入到 crackme 文件中去执行。这一过程是暴力破解的过程。同时，必须保证 crackme 文件只被执行一次。</p>
+<p>可能的思路有：</p>
+<ol>
+<li>编写脚本，该脚本执行过程为：使用 for 循环生成口令的同时，通过管道输出到 crackme 文件中去执行，将执行结果重定向到另一个文件中（rst）；</li>
+<li>编写脚本，在该脚本中使用 for 循环生成口令，执行该脚本，并将输出通过管道传递给 crackme 文件，将执行结果重定向到另一个文件中；</li>
+<li>编写脚本，该脚本执行时生成所有可能的口令并存储到另一个文件中。将该口令文件逐行输出，并使用管道传递给 crackme 文件中去执行，将执行结果重定向到另一个文件中。</li>
+</ol>
+<h4 id="思路1实现与结果"><a class="markdownIt-Anchor" href="#思路1实现与结果"></a> 思路1实现与结果</h4>
+<p>上文的思路 1：使用 <code>cat &gt; a.sh</code> 创建一个脚本文件，并写入如下脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for i in `seq -f %04g 0 9999`</span><br><span class="line">do</span><br><span class="line">  echo &quot;lesson04-2&quot;$i | ./crackme &gt; rst</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p><code>seq -f %04g 0 9999</code> 表示输出一段从 0 到 9999 的指定格式的序列，格式为 4 位输出，不足四位则在高位补 0。对于这个序列中的每一条数字，在前面补上 <code>&quot;lesson04-2&quot;</code> 之后，作为口令用 <code>echo</code> 命令输出，通过管道传递到 crackme 中执行，将执行结果传递到 rst 中。</p>
+<p><img src="6_2_01_thought_1.png" alt=""></p>
+<p>上图为执行脚本后的结果。尽管在 <code>echo &quot;lesson04-2&quot;$i | ./crackme &gt; rst</code> 这一行的命令中有 问题（为避免覆盖掉得到的密码，应该用追加的输出重定向 <code>&gt;&gt;</code> 而非输出重定向 <code>&gt;</code>），我们仍可以通过思路本身和结果看出，这个脚本文件错误地将 crackme 执行了五次以上，从而导致文件无法再被执行，这一思路是错误的。</p>
+<h4 id="思路2实现与结果"><a class="markdownIt-Anchor" href="#思路2实现与结果"></a> 思路2实现与结果</h4>
+<p>思路 2：使用 <code>cat &gt; a.sh</code> 创建一个脚本文件，并写入如下脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for i in `seq -f %04g 0 9999`</span><br><span class="line">do</span><br><span class="line">  echo &quot;lesson04-2&quot;$i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p><img src="6_2_02_thought_2.png" alt=""></p>
+<p>给脚本赋予权限（<code>chmod 777 a.sh</code>），执行该脚本（<code>./a.sh</code>）后，将输出结果（即口令）用管道传给 crackme，将输出结果重定向到 rst：<code>./a.sh | ./crackme &gt; rst</code></p>
+<p>查看 rst 文件（<code>cat rst</code>），结果如下：</p>
+<p><img src="6_2_03_thought_2_result.png" alt=""></p>
+<p>上述脚本和命令成功执行并满足要求，得到下一关的密码为 <code>JlyZprXui1</code></p>
+<h4 id="思路3实现与结果"><a class="markdownIt-Anchor" href="#思路3实现与结果"></a> 思路3实现与结果</h4>
+<p>思路 3：使用 <code>cat &gt; a.sh</code> 创建一个脚本文件，并写入如下脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for i in `seq -f %04g 0 9999`</span><br><span class="line">do</span><br><span class="line">  echo &quot;lesson04-2&quot;$i &gt;&gt; list</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>该脚本的作用是，将 9999 条可能的口令写入 list 文件中，形成一个口令本。</p>
+<p><img src="6_2_04_thought_3.png" alt=""></p>
+<p>赋予该脚本权限并执行脚本，使用 <code>cat list | ./crackme &gt; rst</code> 命令输出 list 文件内容，并将输出结果传递到 crackme 中执行，将结果重定向到 rst 文件中。</p>
+<p>查看 rst 文件，结果如下：</p>
+<p><img src="6_2_05_thought_3_result.png" alt=""></p>
+<p>上述脚本和命令成功执行并满足要求，得到下一关的密码为 <code>JlyZprXui1</code></p>
+<h2 id="实验七"><a class="markdownIt-Anchor" href="#实验七"></a> 实验七</h2>
+<h3 id="实验目的-7"><a class="markdownIt-Anchor" href="#实验目的-7"></a> 实验目的</h3>
+<ol>
+<li>编写简单的 shell 脚本</li>
+</ol>
+<h3 id="实验过程-7"><a class="markdownIt-Anchor" href="#实验过程-7"></a> 实验过程</h3>
+<p>通过 SSH 远程连接给定目标，密码为 <code>JlyZprXui1</code></p>
+<p>要求：主目录下有一个 ssh 登录日志文件，分析文件，将登录失败超过 20 次（不含 20）的 IP 加入到主目录的 ban_waitlist 中，已有 IP 不重复加入。</p>
+<blockquote>
+<p>Q：怎么问 AI，让 AI 来帮我做实验七？</p>
+<p>A：输入：在 Linux 系统中，主目录下有一个 ssh 登录日志文件，请你分析文件，将登录失败超过 20 次（不含 20）的 IP 加入到主目录下已有的 ban_waitlist 中，已有 IP 不重复加入。已知可供查找登陆失败日志记录的关键词为“Failed password”（问助教知道的，括号内的就不用给 AI 说了），请你帮我编写一段脚本来满足上述要求。</p>
+</blockquote>
+<p>查看主目录，发现 ssh 登录日志文件 <code>auth.log</code>。使用 <code>less</code> 命令打开，查看到诸多日志。</p>
+<p><img src="7_1_01_auth.log.png" alt=""></p>
+<p>注意到 ban_waitlist 文件可读可写可执行，查看该文件，发现文件中已经存在一批 IP 条目：</p>
+<p><img src="7_1_02_ban_waitlist.png" alt=""></p>
+<p>分析 日志文件 和 ban_waitlist 文件，我们有如下发现和思路：</p>
+<ol>
+<li>查找登录失败的 IP 可以使用 <code>Failed password</code> 作为查找关键字，而查找步骤使用 <code>grep</code> 命令来完成；</li>
+<li>为查找出登录失败超过 20 次的 IP，由于同一 IP 对应日志记录的端口号不同，我们需要单独提取 IP 地址；</li>
+<li>单独提取 IP 可通过 <code>awk</code> 命令来完成，IP 地址在每条“Failed password”记录中的倒数第四列（字段），用 <code>$(NF-3)</code> 来表示；</li>
+<li>为计算提取出的 IP 的重复次数，并去重输出，可使用 <code>sort | uniq -c </code> 命令；</li>
+<li>最后再使用 <code>awk</code> 命令，将 <code>sort | uniq -c </code> 命令输出的内容中重复次数（<code>$1</code>）大于 20 的 IP （<code>$2</code>）提取出来输出；</li>
+<li>输出的 IP 列表可存入一个变量中，由 <code>echo</code> 命令逐行追加写入 ban_waitlist 中，完成要求。</li>
+<li>ban_waitlist 文件中已经存放了一些 IP 地址，其中可能已经有出现于 auth.log 中且满足筛选要求的 IP，所以还需要判断输出的 IP 列表中的每个条目是否已经在 ban_waitlist 中出现过。</li>
+</ol>
+<p>根据上述思路，编写脚本如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取登录失败超过20次的IP列表</span></span><br><span class="line">ip_list=$(grep <span class="string">&quot;Failed password&quot;</span> auth.log | awk <span class="string">&#x27;&#123;print $(NF-3)&#125;&#x27;</span> | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -c | awk <span class="string">&#x27;$1 &gt; 20 &#123;print $2&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 IP 写入 ban_waitlist</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> <span class="variable">$ip_list</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> ! grep -q <span class="variable">$ip</span> ban_waitlist; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$ip</span> &gt;&gt; ban_waitlist</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><img src="7_1_02_shell.png" alt=""></p>
+<p><img src="7_1_03_check.png" alt=""></p>
+<p>赋予该脚本权限并执行，再执行主目录中 check 程序，获取下一关密码为：<code>nqFy6IxULl</code></p>
+<h2 id="彩蛋"><a class="markdownIt-Anchor" href="#彩蛋"></a> 彩蛋</h2>
+<p><img src="cover.png" alt=""></p>
+<ul>
+<li>彩蛋图片：
+<ul>
+<li>作者：ERykk (user-id: 972314)</li>
+<li>来源：pixiv ID: 104313252（已删除）</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>Recogeta @ Recogeta's Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/07/isfat-linux/">https://r3c0ger.github.io/2025/07/isfat-linux/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「信息安全基础能力训练课程-Linux实验」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-07-04 00:57:53</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-04 01:18:50</p>
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">赞助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+  <div class="sponsor-tip">~ 给灵梦的赛钱箱投个币吧 ~</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/alipay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/wechat.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="/2025/07/isfat-web/cover.png" data-sizes="auto" alt="信息安全基础能力训练课程-Web实验" class="lazyload">
+      
+      <a href="/2025/07/isfat-web/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          信息安全基础能力训练课程-Web实验
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Recogeta
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        42.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        02:59
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-ubuntu-linux"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 安装 Ubuntu Linux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%9F%E6%82%89-ubuntu-linux-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 熟悉 Ubuntu Linux 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#nat-%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.3.1.</span> <span class="toc-text"> NAT 网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A1%A5%E6%8E%A5%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.3.2.</span> <span class="toc-text"> 桥接网卡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#host-only"><span class="toc-number">1.2.3.3.</span> <span class="toc-text"> Host-only</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#apt-%E6%8D%A2%E6%BA%90"><span class="toc-number">1.2.4.</span> <span class="toc-text"> apt 换源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.5.</span> <span class="toc-text"> ssh 服务端安装与配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.6.</span> <span class="toc-text"> 宿主机远程连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.3.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">2.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-0"><span class="toc-number">2.2.1.</span> <span class="toc-text"> lesson01-0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-1"><span class="toc-number">2.2.2.</span> <span class="toc-text"> lesson01-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-2"><span class="toc-number">2.2.3.</span> <span class="toc-text"> lesson01-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-3"><span class="toc-number">2.2.4.</span> <span class="toc-text"> lesson01-3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-4"><span class="toc-number">2.2.5.</span> <span class="toc-text"> lesson01-4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-5"><span class="toc-number">2.2.6.</span> <span class="toc-text"> lesson01-5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-6"><span class="toc-number">2.2.7.</span> <span class="toc-text"> lesson01-6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson01-7"><span class="toc-number">2.2.8.</span> <span class="toc-text"> lesson01-7</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">3.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> lesson02-0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-1"><span class="toc-number">3.2.2.</span> <span class="toc-text"> lesson02-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-2"><span class="toc-number">3.2.3.</span> <span class="toc-text"> lesson02-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson02-3"><span class="toc-number">3.2.4.</span> <span class="toc-text"> lesson02-3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">4.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson03-1"><span class="toc-number">4.2.1.</span> <span class="toc-text"> lesson03-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lesson03-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> lesson03-2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">5.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 分析已经存在的定时任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96-etclesson04_2_pass-%E5%86%85%E5%AE%B9"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 获取 &#x2F;etc&#x2F;lesson04_2_pass 内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">6.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E6%B1%82%E4%B8%8E%E6%80%9D%E8%B7%AF"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 要求与思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF1%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 思路1实现与结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF2%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 思路2实现与结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF3%E5%AE%9E%E7%8E%B0%E4%B8%8E%E7%BB%93%E6%9E%9C"><span class="toc-number">6.2.4.</span> <span class="toc-text"> 思路3实现与结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%83"><span class="toc-number">7.</span> <span class="toc-text"> 实验七</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-7"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-7"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Recogeta",
+          title: "信息安全基础能力训练课程-Linux实验",
+          url: "https://r3c0ger.github.io/2025/07/isfat-linux/",
+          excerpt: "西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的Linux部分实验报告",
+          description: "",
+          stripContent: "这里是西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的实验报告！敬请参观与指正！请勿直球抄袭！本人不对任何抄袭借鉴行为及其后果负责。 适用版本：  VirtualBox 6.1.16 r140961 (Qt5.6.2) ubuntu-18.04.2-desktop-amd64.iso   实验一  实验目的  熟悉 VirtualBox 等虚拟机用法，并配置 Ubuntu Linux 实验环境 了解和使用 L",
+          date: "Fri Jul 04 2025 00:57:53 GMT+0800",
+          updated: "Fri Jul 04 2025 01:18:50 GMT+0800",
+          cover: "/2025/07/isfat-linux/cover.png",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.5' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
