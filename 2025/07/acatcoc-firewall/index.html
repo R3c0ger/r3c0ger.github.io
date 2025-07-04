@@ -1,0 +1,1076 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="false"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_tq6stt6tcg';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"license_type":"by-nc-sa","content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://r3c0ger.github.io';</script>
+  
+  <title>
+    网络空间实战攻防能力训练-防火墙实验 |
+    
+    Recogeta&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络空间实战攻防能力训练-防火墙实验">
+<meta property="og:url" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/index.html">
+<meta property="og:site_name" content="Recogeta&#39;s Blog">
+<meta property="og:description" content="西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image4.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image5.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image6.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image7.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image8.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image9.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image10.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image11.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image12.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image13.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image14.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image15.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image16.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image17.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image18.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image19.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image20.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image2.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image3.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image4.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image5.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image6.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image7.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image8.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image9.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image10.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image11.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image12.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image13.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image14.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image15.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image16.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image17.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image18.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image19.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image20.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image21.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image22.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image23.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image24.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image25.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image26.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image27.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image28.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/2-image29.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/cover.jpg">
+<meta property="article:published_time" content="2025-07-04T16:56:48.000Z">
+<meta property="article:modified_time" content="2025-07-04T17:40:07.463Z">
+<meta property="article:author" content="Recogeta">
+<meta property="article:tag" content="cybersecurity">
+<meta property="article:tag" content="learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3c0ger.github.io/2025/07/acatcoc-firewall/image2.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Recogeta's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" crossorigin="anonymous">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/2025/07/acatcoc-firewall/cover.jpg" alt="网络空间实战攻防能力训练-防火墙实验">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">网络空间实战攻防能力训练-防火墙实验</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C-1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text"> 实验 1 标准分组过滤器实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E8%AE%BE%E5%A4%87%E6%94%BE%E7%BD%AE%E5%92%8C%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 进行设备放置和连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 配置路由器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E7%BB%88%E7%AB%AF%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 配置各终端网络信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%B9%B6%E4%BC%A0%E8%BE%93-ip-%E5%88%86%E7%BB%84"><span class="toc-number">1.1.4.</span> <span class="toc-text"> 封装并传输 IP 分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.1.5.</span> <span class="toc-text"> 配置 R1 标准分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%B9%B6%E4%BC%A0%E8%BE%93-ip-%E5%88%86%E7%BB%84-2"><span class="toc-number">1.1.6.</span> <span class="toc-text"> 封装并传输 IP 分组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验要求内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E5%90%84%E6%8E%A5%E5%8F%A3-ip-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 配置 R1 各接口 IP 地址和子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E5%90%84%E6%8E%A5%E5%8F%A3-ip-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 配置 R2 各接口 IP 地址和子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E8%B7%AF%E7%94%B1%E5%99%A8-rip"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 配置 R1 路由器 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E8%B7%AF%E7%94%B1%E5%99%A8-rip"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 配置 R2 路由器 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8-2"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 配置 R1 标准分组过滤器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text"> 实验分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C-2-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.</span> <span class="toc-text"> 实验 2 扩展分组过滤器实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%BE%E7%BD%AE%E5%92%8C%E8%BF%9E%E6%8E%A5%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E6%8E%A5%E5%8F%A3%E5%92%8C-rip"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 放置和连接设备，配置路由器接口和 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E7%BB%88%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 配置各终端和服务器网络信息</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E9%AA%8C%E8%AF%81%E7%BB%88%E7%AB%AF%E5%92%8C%E7%BB%88%E7%AB%AF%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.1.</span> <span class="toc-text"> （1）验证终端和终端之间的连通性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E9%AA%8C%E8%AF%81%E7%BB%88%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.2.</span> <span class="toc-text"> （2）验证终端和服务器之间的连通性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.3.</span> <span class="toc-text"> （3）验证服务器和服务器之间的连通性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E7%9A%84%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 配置 R1 的扩展分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E7%9A%84%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 配置 R2 的扩展分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E4%B8%8D%E5%90%8C%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%88%E7%AB%AF%E4%B9%8B%E9%97%B4%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD-ping-%E9%80%9A"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 验证不同网络的终端之间和服务器之间不能 ping 通</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E5%8F%91%E9%80%81-ip-%E5%88%86%E7%BB%84"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 尝试发送 IP 分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pc2%E7%BB%88%E7%AB%AF-b%E8%AE%BF%E9%97%AE-ftp-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.1.7.</span> <span class="toc-text"> PC2（终端 B）访问 FTP 服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%E5%86%85%E5%AE%B9-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 实验要求内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 路由器 R1 接口配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 路由器 R2 接口配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-rip-%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 路由器 R1 RIP 配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-rip-%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 路由器 R2 RIP 配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 路由器 R1 扩展分组过滤器配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.6.</span> <span class="toc-text"> 路由器 R2 扩展分组过滤器配置过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 实验分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">3.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-acatcoc-firewall" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-07-04T16:56:48.000Z" itemprop="datePublished">2025-07-05</time>
+    <time style="display: none;" id="post-update-time">2025-07-05</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" data-aos="zoom-in">专业学习</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验</p>
+</blockquote>
+<h2 id="实验-1-标准分组过滤器实验"><a class="markdownIt-Anchor" href="#实验-1-标准分组过滤器实验"></a> 实验 1 标准分组过滤器实验</h2>
+<h3 id="实验过程"><a class="markdownIt-Anchor" href="#实验过程"></a> 实验过程</h3>
+<h4 id="进行设备放置和连接"><a class="markdownIt-Anchor" href="#进行设备放置和连接"></a> 进行设备放置和连接</h4>
+<p>放置 2811 路由器时，打开其物理设备视图，断电后添加两个 WIC-2T 设备：</p>
+<p><img src="image2.png" alt=""></p>
+<p>再进行连接并手动开启路由器的各个端口：</p>
+<p><img src="image3.png" alt=""></p>
+<h4 id="配置路由器"><a class="markdownIt-Anchor" href="#配置路由器"></a> 配置路由器</h4>
+<p>完成路由器各个接口 IP 地址和子网掩码配置过程、RIP 配置过程。</p>
+<p><img src="image4.png" alt=""></p>
+<p><img src="image5.png" alt=""></p>
+<h4 id="配置各终端网络信息"><a class="markdownIt-Anchor" href="#配置各终端网络信息"></a> 配置各终端网络信息</h4>
+<p>完成各个终端的网络信息配置过程。</p>
+<p>打开终端，在 “桌面” → “IP 配置” 中进行配置。PC0 配置的网络信息如下：</p>
+<p><img src="image6.png" alt=""></p>
+<p>使用 ping 命令验证连通性：</p>
+<p><img src="image7.png" alt=""></p>
+<p><img src="image8.png" alt=""></p>
+<h4 id="封装并传输-ip-分组"><a class="markdownIt-Anchor" href="#封装并传输-ip-分组"></a> 封装并传输 IP 分组</h4>
+<p>切换到模拟操作模式，在 PC0 上创建 ICMP 报文：</p>
+<p><img src="image9.png" alt=""></p>
+<p>封装该 ICMP 报文的 IP 分组的源和目的 IP 地址。目的 IP 地址是 PC3 的 IP 地址 192.1.4.1，源 IP 地址是伪造的 IP 地址 192.1.6.1（PC0 的 IP 地址是 192.1.1.l）。</p>
+<p><img src="image10.png" alt=""></p>
+<p><img src="image11.png" alt=""></p>
+<p>启动该 IP 分组 PC0 至 PC3 的传输过程，路由器 Router1 接口 FastEthernet0/0 输入方向允许输入该 IP 分组，Router1 正常转发该 IP 分组。</p>
+<p>Router 1 正常转发伪造源 IP 地址的 IP 分组：</p>
+<p><img src="image12.png" alt=""></p>
+<p><img src="image13.png" alt=""></p>
+<p>分组传输过程如下：</p>
+<p><img src="image14.png" alt=""></p>
+<h4 id="配置-r1-标准分组过滤器"><a class="markdownIt-Anchor" href="#配置-r1-标准分组过滤器"></a> 配置 R1 标准分组过滤器</h4>
+<p>切换到实时操作模式，在 CLI 配置方式下，完成路由器 R1 标准分组过滤器配置过程，并将其作用到接口 FastEthernet0/0 输入方向，使路由器 R1 只允许继续转发源 IP 地址属于 CIDR 地址块 192.1.1.0/24 的 IP 分组。</p>
+<p><img src="image15.png" alt=""></p>
+<h4 id="封装并传输-ip-分组-2"><a class="markdownIt-Anchor" href="#封装并传输-ip-分组-2"></a> 封装并传输 IP 分组</h4>
+<p>切换到模拟操作模式，在 PC0 上创建 ICMP 报文，封装该 ICMP 报文的 IP 分组的源和目的 IP 地址。启动该 IP 分组 PC0 至 PC3 的传输过程，路由器 R1 接口 FastEthernet0/0 输入方向丢弃该 IP 分组。</p>
+<p><img src="image16.png" alt=""></p>
+<p><img src="image17.png" alt=""></p>
+<p>丢弃 IP 分组时的 PDU 信息如下：</p>
+<p><img src="image18.png" alt=""></p>
+<p>分析丢弃原因：</p>
+<p>在 PDU 信息中显示 “1. 设备发回一条 ICMP 管理性禁止不可达消息（The device sends back an ICMP Administratively Prohibited Unreachable message）。” 查看 ICMP 报文，发现 type = 0x03，code = 0x0D，表示禁止通信（Communication Prohibited），即在管理上禁止与目标通信。</p>
+<p><img src="image19.png" alt=""></p>
+<p><img src="image20.png" alt=""></p>
+<p>路由器 R1 设置了只允许 192.1.1.0/24 报文通过的标准分组过滤器，并作用到 f0/0 输入方向，而本过程中传输的 IP 分组，其伪造的源地址 192.1.6.1 并不属于 192.1.1.0/24 网段，因此该分组会被路由器丢弃，出现 “管理性禁止不可达” 的情况。</p>
+<h3 id="实验要求内容"><a class="markdownIt-Anchor" href="#实验要求内容"></a> 实验要求内容</h3>
+<p>给出 Router1 及 Router2 命令行接口配置过程中的命令序列。</p>
+<h4 id="配置-r1-各接口-ip-地址和子网掩码"><a class="markdownIt-Anchor" href="#配置-r1-各接口-ip-地址和子网掩码"></a> 配置 R1 各接口 IP 地址和子网掩码</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Router &gt; en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#hostname R1</span><br><span class="line">R1(config)#int f0/0</span><br><span class="line">R1(config-if)#ip add 192.1.1.254 255.255.255.0</span><br><span class="line">R1(config-if)#no shut</span><br><span class="line">R1(config-if)#ex</span><br><span class="line">R1(config)#int f0/1</span><br><span class="line">R1(config-if)#ip add 192.1.2.254 255.255.255.0</span><br><span class="line">R1(config-if)#no shut</span><br><span class="line">R1(config-if)#ex</span><br><span class="line">R1(config)#int s0/3/0</span><br><span class="line">R1(config-if)#ip add 192.1.5.1 255.255.255.0</span><br><span class="line">R1(config-if)#no shut</span><br><span class="line">R1(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="配置-r2-各接口-ip-地址和子网掩码"><a class="markdownIt-Anchor" href="#配置-r2-各接口-ip-地址和子网掩码"></a> 配置 R2 各接口 IP 地址和子网掩码</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Router &gt; en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#hostname R2</span><br><span class="line">R2(config)#int f0/0</span><br><span class="line">R2(config-if)#ip add 192.1.3.254 255.255.255.0</span><br><span class="line">R2(config-if)#no shut</span><br><span class="line">R2(config-if)#ex</span><br><span class="line">R2(config)#int f0/1</span><br><span class="line">R2(config-if)#ip add 192.1.4.254 255.255.255.0</span><br><span class="line">R2(config-if)#no shut</span><br><span class="line">R2(config-if)#ex</span><br><span class="line">R2(config)#int s0/3/1</span><br><span class="line">R2(config-if)#ip add 192.1.5.2 255.255.255.0</span><br><span class="line">R2(config-if)#no shut</span><br><span class="line">R2(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="配置-r1-路由器-rip"><a class="markdownIt-Anchor" href="#配置-r1-路由器-rip"></a> 配置 R1 路由器 RIP</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R1 &gt; en</span><br><span class="line">R1#conf t</span><br><span class="line">R1(config)#router rip</span><br><span class="line">R1(config-router)#network 192.1.1.0</span><br><span class="line">R1(config-router)#network 192.1.2.0</span><br><span class="line">R1(config-router)#network 192.1.5.0</span><br><span class="line">R1(config-router)#end</span><br></pre></td></tr></table></figure>
+<h4 id="配置-r2-路由器-rip"><a class="markdownIt-Anchor" href="#配置-r2-路由器-rip"></a> 配置 R2 路由器 RIP</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R2 &gt; en</span><br><span class="line">R2#conf t</span><br><span class="line">R2(config)#router rip</span><br><span class="line">R2(config-router)#network 192.1.3.0</span><br><span class="line">R2(config-router)#network 192.1.4.0</span><br><span class="line">R2(config-router)#network 192.1.5.0</span><br><span class="line">R2(config-router)#end</span><br></pre></td></tr></table></figure>
+<h4 id="配置-r1-标准分组过滤器-2"><a class="markdownIt-Anchor" href="#配置-r1-标准分组过滤器-2"></a> 配置 R1 标准分组过滤器</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R1#conf t</span><br><span class="line">R1(config)#access-list 1 permit 192.1.1.0 0.0.0.255</span><br><span class="line">R1(config)#access-list 1 deny any</span><br><span class="line">R1(config)#int f0/0</span><br><span class="line">R1(config-if)#ip access-group 1 in</span><br><span class="line">R1(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h3 id="实验分析"><a class="markdownIt-Anchor" href="#实验分析"></a> 实验分析</h3>
+<p>分析 Router1 丢弃伪造源 IP 地址的 IP 分组的原因：</p>
+<p>路由器 R1 设置了只允许 192.1.1.0/24 报文通过的标准分组过滤器，并作用到 f0/0 输入方向，而本过程中传输的 IP 分组，其伪造的源地址 192.1.6.1 并不属于 192.1.1.0/24 网段，因此该分组会被路由器丢弃，出现 “管理性禁止不可达” 的情况。</p>
+<h2 id="实验-2-扩展分组过滤器实验"><a class="markdownIt-Anchor" href="#实验-2-扩展分组过滤器实验"></a> 实验 2 扩展分组过滤器实验</h2>
+<h3 id="实验过程-2"><a class="markdownIt-Anchor" href="#实验过程-2"></a> 实验过程</h3>
+<h4 id="放置和连接设备配置路由器接口和-rip"><a class="markdownIt-Anchor" href="#放置和连接设备配置路由器接口和-rip"></a> 放置和连接设备，配置路由器接口和 RIP</h4>
+<p><img src="2-image2.png" alt=""></p>
+<p>完成路由器 R1 和 R2 各个接口的配置过程，完成各台路由器 RIP 配置过程。</p>
+<p><img src="2-image3.png" alt=""></p>
+<p><img src="2-image4.png" alt=""></p>
+<h4 id="配置各终端和服务器网络信息"><a class="markdownIt-Anchor" href="#配置各终端和服务器网络信息"></a> 配置各终端和服务器网络信息</h4>
+<p>完成各个终端和服务器网络信息配置过程：</p>
+<p><img src="2-image5.png" alt=""></p>
+<p><img src="2-image6.png" alt=""></p>
+<p><img src="2-image7.png" alt=""></p>
+<p><img src="2-image8.png" alt=""></p>
+<h5 id="1验证终端和终端之间的连通性"><a class="markdownIt-Anchor" href="#1验证终端和终端之间的连通性"></a> （1）验证终端和终端之间的连通性</h5>
+<p>在终端 A 上 ping PC2、终端 B、PC3：</p>
+<p><img src="2-image9.png" alt=""></p>
+<p><img src="2-image10.png" alt=""></p>
+<p><img src="2-image11.png" alt=""></p>
+<h5 id="2验证终端和服务器之间的连通性"><a class="markdownIt-Anchor" href="#2验证终端和服务器之间的连通性"></a> （2）验证终端和服务器之间的连通性</h5>
+<p>在终端 A 上 ping FTP 服务器、Web 服务器：</p>
+<p><img src="2-image12.png" alt=""></p>
+<p><img src="2-image13.png" alt=""></p>
+<p>在终端 B 上 ping FTP 服务器、Web 服务器：</p>
+<p><img src="2-image14.png" alt=""></p>
+<p><img src="2-image15.png" alt=""></p>
+<h5 id="3验证服务器和服务器之间的连通性"><a class="markdownIt-Anchor" href="#3验证服务器和服务器之间的连通性"></a> （3）验证服务器和服务器之间的连通性</h5>
+<p>在 FTP 服务器上 ping Web 服务器：</p>
+<p><img src="2-image16.png" alt=""></p>
+<p>在 Web 服务器上 ping FTP 服务器：</p>
+<p><img src="2-image17.png" alt=""></p>
+<h4 id="配置-r1-的扩展分组过滤器"><a class="markdownIt-Anchor" href="#配置-r1-的扩展分组过滤器"></a> 配置 R1 的扩展分组过滤器</h4>
+<p>在 CLI 配置方式下，完成路由器 R1 编号为 101 的扩展分组过滤器的配置过程，并将其作用到路由器接口 FastEthernet0/0 输入方向。</p>
+<p>需要在路由器 R1 接口 1（f0/0）输入方向配置如下过滤规则集：</p>
+<p>① 协议类型 = TCP，源 IP 地址 = 192.1.1.1/32，源端口号 =*，目的 IP 地址 = 192.1.2.7/32，目的端口号 = 80；正常转发。<br>
+② 协议类型 = TCP，源 IP 地址 = 192.1.1.7/32，源端口号 = 21，目的 IP 地址 = 192.1.2.1/32，目的端口号 =*；正常转发。<br>
+③ 协议类型 = TCP，源 IP 地址 = 192.1.1.7/32，源端口号 ＞1024，目的 IP 地址 = 192.1.2.1/32，目的端口号 =*；正常转发。<br>
+④ 协议类型 =*，源 IP 地址 = any，目的 IP 地址 = any；丢弃。</p>
+<p><img src="2-image18.png" alt=""></p>
+<h4 id="配置-r2-的扩展分组过滤器"><a class="markdownIt-Anchor" href="#配置-r2-的扩展分组过滤器"></a> 配置 R2 的扩展分组过滤器</h4>
+<p>在 CLI 配置方式下，完成路由器 R2 编号为 103 的扩展分组过滤器的配置过程，并将其作用到路由器接口 FastEthernet0/1 输入方向。</p>
+<p>需要在路由器 R2 接口 2（f0/1）输入方向配置如下过滤规则集：</p>
+<p>① 协议类型 = TCP，源 IP 地址 = 192.1.2.7/32，源端口号 = 80，目的 IP 地址 = 192.1.1.1/32，目的端口号 =*；正常转发。<br>
+② 协议类型 = TCP，源 IP 地址 = 192.1.2.1/32，源端口号 =*，目的 IP 地址 = 192.1.1.7/32，目的端口号 = 21；正常转发。<br>
+③ 协议类型 = TCP，源 IP 地址 = 192.1.2.1/32，源端口号 =*，目的 IP 地址 = 192.1.1.7/32，目的端口号 ＞1024；正常转发。<br>
+④ 协议类型 =*，源 IP 地址 = any，目的 IP 地址 = any；丢弃。</p>
+<p><img src="2-image19.png" alt=""></p>
+<h4 id="验证不同网络的终端之间和服务器之间不能-ping-通"><a class="markdownIt-Anchor" href="#验证不同网络的终端之间和服务器之间不能-ping-通"></a> 验证不同网络的终端之间和服务器之间不能 ping 通</h4>
+<p>终端 B 与终端 A（192.1.1.1）、终端 B 与 FTP 服务器（192.1.1.7）之间：</p>
+<p><img src="2-image20.png" alt=""></p>
+<p>Web 服务器（192.1.2.7）与 FTP 服务器（192.1.1.7）之间：</p>
+<p><img src="2-image21.png" alt=""></p>
+<h4 id="尝试发送-ip-分组"><a class="markdownIt-Anchor" href="#尝试发送-ip-分组"></a> 尝试发送 IP 分组</h4>
+<p>PC0（终端 A）发送给 Web 服务器的 ICMP 报文，封装成 IP 分组后沿 PC0 至 Web 服务器的 IP 传输路径传输，到达路由器 R1 接口 FastEthernet0/0 时，被路由器 R1 丢弃。</p>
+<p><img src="2-image22.png" alt=""></p>
+<p><img src="2-image23.png" alt=""></p>
+<p>分析丢弃原因：</p>
+<p><img src="2-image24.png" alt=""></p>
+<p>查看 PDU 信息，可以发现显示 “1. 接收端口具有 ID 为 101 的入站流量访问列表。设备根据访问列表检查数据包。2. 该数据包匹配下列语句的条件: deny ip any any. 拒绝并丢弃该数据包.” 终端 A 主机所发送的 ICMP 报文的端口号不是 80，在路由器 R1 根据访问列表 101 检查数据包时，只能与 “deny ip any any” 这一语句相匹配，因而无法通过，IP 分组被过滤。</p>
+<p>详细信息如下：</p>
+<p><img src="2-image25.png" alt=""></p>
+<h4 id="pc2终端-b访问-ftp-服务器"><a class="markdownIt-Anchor" href="#pc2终端-b访问-ftp-服务器"></a> PC2（终端 B）访问 FTP 服务器</h4>
+<p>允许 PC0 通过浏览器访问 Web 服务器。</p>
+<p><img src="2-image26.png" alt=""></p>
+<p>FTP 服务器配置界面创建两个用户名分别为 aaa 和 cisco 的授权用户，授权用户访问权限是全部操作功能。此时终端 B 可用这两个用户名访问 FTP 服务器。</p>
+<p><img src="2-image27.png" alt=""></p>
+<p><img src="2-image28.png" alt=""></p>
+<p>PC2（终端 B）访问 FTP 服务器的过程如下：</p>
+<p><img src="2-image29.png" alt=""></p>
+<h3 id="实验要求内容-2"><a class="markdownIt-Anchor" href="#实验要求内容-2"></a> 实验要求内容</h3>
+<p>给出路由器 Router1 接口和 RIP 配置过程、路由器 Router2 接口和 RIP 配置过程、路由器 Router1 扩展分组过滤器配置过程及路由器 Router2 扩展分组过滤器配置过程中的命令序列。</p>
+<h4 id="路由器-r1-接口配置过程"><a class="markdownIt-Anchor" href="#路由器-r1-接口配置过程"></a> 路由器 R1 接口配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Router#conf t</span><br><span class="line">Router(config)#hostname R1</span><br><span class="line">R1(config)#int f0/0</span><br><span class="line">R1(config-if)#ip add 192.1.1.254 255.255.255.0</span><br><span class="line">R1(config-if)#no shut</span><br><span class="line">R1(config-if)#ex</span><br><span class="line">R1(config)#int s0/3/1</span><br><span class="line">R1(config-if)#ip add 192.1.3.1 255.255.255.0</span><br><span class="line">R1(config-if)#no shut</span><br><span class="line">R1(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="路由器-r2-接口配置过程"><a class="markdownIt-Anchor" href="#路由器-r2-接口配置过程"></a> 路由器 R2 接口配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Router#conf t</span><br><span class="line">Router(config)#hostname R2</span><br><span class="line">R2(config)#int f0/1</span><br><span class="line">R2(config-if)#ip add 192.1.2.254 255.255.255.0</span><br><span class="line">R2(config-if)#no shut</span><br><span class="line">R2(config-if)#ex</span><br><span class="line">R2(config)#int s0/3/0</span><br><span class="line">R2(config-if)#ip add 192.1.3.2 255.255.255.0</span><br><span class="line">R2(config-if)#no shut</span><br><span class="line">R2(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="路由器-r1-rip-配置过程"><a class="markdownIt-Anchor" href="#路由器-r1-rip-配置过程"></a> 路由器 R1 RIP 配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R1#conf t</span><br><span class="line">R1(config)#route rip</span><br><span class="line">R1(config-router)#network 192.1.1.0</span><br><span class="line">R1(config-router)#network 192.1.3.0</span><br><span class="line">R1(config-router)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="路由器-r2-rip-配置过程"><a class="markdownIt-Anchor" href="#路由器-r2-rip-配置过程"></a> 路由器 R2 RIP 配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R2#conf t</span><br><span class="line">R2(config)#route rip</span><br><span class="line">R2(config-router)#network 192.1.2.0</span><br><span class="line">R2(config-router)#network 192.1.3.0</span><br><span class="line">R2(config-router)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="路由器-r1-扩展分组过滤器配置过程"><a class="markdownIt-Anchor" href="#路由器-r1-扩展分组过滤器配置过程"></a> 路由器 R1 扩展分组过滤器配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R1&gt;en</span><br><span class="line">R1#conf t</span><br><span class="line">R1(config)#access-list 101 permit tcp host 192.1.1.1 host 192.1.2.7 eq www</span><br><span class="line">R1(config)#access-list 101 permit tcp host 192.1.1.7 eq ftp host 192.1.2.1</span><br><span class="line">R1(config)#access-list 101 permit tcp host 192.1.1.7 gt 1024 host 192.1.2.1</span><br><span class="line">R1(config)#access-list 101 deny ip any any</span><br><span class="line">R1(config)#int f0/0</span><br><span class="line">R1(config-if)#ip access-group 101 in</span><br><span class="line">R1(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h4 id="路由器-r2-扩展分组过滤器配置过程"><a class="markdownIt-Anchor" href="#路由器-r2-扩展分组过滤器配置过程"></a> 路由器 R2 扩展分组过滤器配置过程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R2&gt;en</span><br><span class="line">R2#conf t</span><br><span class="line">R2(config)#access-list 103 permit tcp host 192.1.2.7 eq www host 192.1.1.1</span><br><span class="line">R2(config)#access-list 103 permit tcp host 192.1.2.1 host 192.1.1.7 eq ftp</span><br><span class="line">R2(config)#access-list 103 permit tcp host 192.1.2.1 host 192.1.1.7 gt 1024</span><br><span class="line">R2(config)#access-list 103 deny ip any any</span><br><span class="line">R2(config)#int f0/1</span><br><span class="line">R2(config-if)#ip access-group 103 in</span><br><span class="line">R2(config-if)#ex</span><br></pre></td></tr></table></figure>
+<h3 id="实验分析-2"><a class="markdownIt-Anchor" href="#实验分析-2"></a> 实验分析</h3>
+<p>分析路由器 R1 丢弃 PC0 发送给 Web 服务器的 ICMP 报文的原因：</p>
+<p>PC0（终端 A，192.1.1.1）主机虽然可以访问 Web 服务器，但是其所发送的 ICMP 报文的端口号不是 80，在路由器 R1 根据访问列表 101 检查数据包时，只能与 “deny ip any any” 这一语句相匹配，因而无法通过，IP 分组被过滤。</p>
+<h2 id="彩蛋"><a class="markdownIt-Anchor" href="#彩蛋"></a> 彩蛋</h2>
+<p><img src="cover.jpg" alt=""></p>
+<ul>
+<li>彩蛋图片：
+<ul>
+<li>作者：カンパ twi@campagne_9，pid：2520952</li>
+<li>来源：pixiv ID: 119037357</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>Recogeta @ Recogeta's Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/07/acatcoc-firewall/">https://r3c0ger.github.io/2025/07/acatcoc-firewall/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「网络空间实战攻防能力训练-防火墙实验」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-07-05 00:56:48</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-05 01:40:07</p>
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">赞助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+  <div class="sponsor-tip">~ 给灵梦的赛钱箱投个币吧 ~</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/alipay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/wechat.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="/2025/07/isfat-linux/cover.png" data-sizes="auto" alt="信息安全基础能力训练课程-Linux实验" class="lazyload">
+      
+      <a href="/2025/07/isfat-linux/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          信息安全基础能力训练课程-Linux实验
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Recogeta
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        45.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        03:10
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C-1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text"> 实验 1 标准分组过滤器实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E8%AE%BE%E5%A4%87%E6%94%BE%E7%BD%AE%E5%92%8C%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 进行设备放置和连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 配置路由器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E7%BB%88%E7%AB%AF%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 配置各终端网络信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%B9%B6%E4%BC%A0%E8%BE%93-ip-%E5%88%86%E7%BB%84"><span class="toc-number">1.1.4.</span> <span class="toc-text"> 封装并传输 IP 分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.1.5.</span> <span class="toc-text"> 配置 R1 标准分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%B9%B6%E4%BC%A0%E8%BE%93-ip-%E5%88%86%E7%BB%84-2"><span class="toc-number">1.1.6.</span> <span class="toc-text"> 封装并传输 IP 分组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验要求内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E5%90%84%E6%8E%A5%E5%8F%A3-ip-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 配置 R1 各接口 IP 地址和子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E5%90%84%E6%8E%A5%E5%8F%A3-ip-%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 配置 R2 各接口 IP 地址和子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E8%B7%AF%E7%94%B1%E5%99%A8-rip"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 配置 R1 路由器 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E8%B7%AF%E7%94%B1%E5%99%A8-rip"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 配置 R2 路由器 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E6%A0%87%E5%87%86%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8-2"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 配置 R1 标准分组过滤器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text"> 实验分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C-2-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.</span> <span class="toc-text"> 实验 2 扩展分组过滤器实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">2.1.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%BE%E7%BD%AE%E5%92%8C%E8%BF%9E%E6%8E%A5%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E6%8E%A5%E5%8F%A3%E5%92%8C-rip"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 放置和连接设备，配置路由器接口和 RIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%84%E7%BB%88%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 配置各终端和服务器网络信息</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E9%AA%8C%E8%AF%81%E7%BB%88%E7%AB%AF%E5%92%8C%E7%BB%88%E7%AB%AF%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.1.</span> <span class="toc-text"> （1）验证终端和终端之间的连通性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E9%AA%8C%E8%AF%81%E7%BB%88%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.2.</span> <span class="toc-text"> （2）验证终端和服务器之间的连通性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">2.1.2.3.</span> <span class="toc-text"> （3）验证服务器和服务器之间的连通性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r1-%E7%9A%84%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 配置 R1 的扩展分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-r2-%E7%9A%84%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 配置 R2 的扩展分组过滤器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E4%B8%8D%E5%90%8C%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%88%E7%AB%AF%E4%B9%8B%E9%97%B4%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E4%B8%8D%E8%83%BD-ping-%E9%80%9A"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 验证不同网络的终端之间和服务器之间不能 ping 通</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E5%8F%91%E9%80%81-ip-%E5%88%86%E7%BB%84"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 尝试发送 IP 分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pc2%E7%BB%88%E7%AB%AF-b%E8%AE%BF%E9%97%AE-ftp-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.1.7.</span> <span class="toc-text"> PC2（终端 B）访问 FTP 服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%E5%86%85%E5%AE%B9-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 实验要求内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 路由器 R1 接口配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 路由器 R2 接口配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-rip-%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 路由器 R1 RIP 配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-rip-%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 路由器 R2 RIP 配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r1-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 路由器 R1 扩展分组过滤器配置过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-r2-%E6%89%A9%E5%B1%95%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4%E5%99%A8%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B"><span class="toc-number">2.2.6.</span> <span class="toc-text"> 路由器 R2 扩展分组过滤器配置过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90-2"><span class="toc-number">2.3.</span> <span class="toc-text"> 实验分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">3.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">30</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Recogeta",
+          title: "网络空间实战攻防能力训练-防火墙实验",
+          url: "https://r3c0ger.github.io/2025/07/acatcoc-firewall/",
+          excerpt: "西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验",
+          description: "",
+          stripContent: " 西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验   实验 1 标准分组过滤器实验  实验过程  进行设备放置和连接 放置 2811 路由器时，打开其物理设备视图，断电后添加两个 WIC-2T 设备：  再进行连接并手动开启路由器的各个端口：   配置路由器 完成路由器各个接口 IP 地址和子网掩码配置过程、RIP 配置过程。    配置各终端网络",
+          date: "Sat Jul 05 2025 00:56:48 GMT+0800",
+          updated: "Sat Jul 05 2025 01:40:07 GMT+0800",
+          cover: "/2025/07/acatcoc-firewall/cover.jpg",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.8.5' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

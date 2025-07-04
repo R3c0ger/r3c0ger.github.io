@@ -6,7 +6,7 @@
   <link href="https://r3c0ger.github.io/atom.xml" rel="self"/>
   
   <link href="https://r3c0ger.github.io/"/>
-  <updated>2025-07-03T17:18:50.385Z</updated>
+  <updated>2025-07-04T17:40:07.463Z</updated>
   <id>https://r3c0ger.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络空间实战攻防能力训练-防火墙实验</title>
+    <link href="https://r3c0ger.github.io/2025/07/acatcoc-firewall/"/>
+    <id>https://r3c0ger.github.io/2025/07/acatcoc-firewall/</id>
+    <published>2025-07-04T16:56:48.000Z</published>
+    <updated>2025-07-04T17:40:07.463Z</updated>
+    
+    
+    <summary type="html">西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+  </entry>
   
   <entry>
     <title>信息安全基础能力训练课程-Linux实验</title>
@@ -31,15 +52,15 @@
     <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
-    
     <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
-    
-    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
     <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
+    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
+    
     <category term="linux" scheme="https://r3c0ger.github.io/tags/linux/"/>
+    
+    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
@@ -58,15 +79,15 @@
     <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
-    
     <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
     
     <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
     
     <category term="web" scheme="https://r3c0ger.github.io/tags/web/"/>
-    
-    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
   </entry>
   
@@ -111,13 +132,13 @@
     <category term="其他杂项" scheme="https://r3c0ger.github.io/categories/%E5%85%B6%E4%BB%96%E6%9D%82%E9%A1%B9/"/>
     
     
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
     <category term="网络迷踪" scheme="https://r3c0ger.github.io/tags/%E7%BD%91%E7%BB%9C%E8%BF%B7%E8%B8%AA/"/>
     
     <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
     
     <category term="osint" scheme="https://r3c0ger.github.io/tags/osint/"/>
-    
-    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
     
   </entry>
   
@@ -178,11 +199,11 @@
     
     <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
     
+    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
     <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
     
     <category term="vm" scheme="https://r3c0ger.github.io/tags/vm/"/>
-    
-    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
@@ -236,9 +257,9 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
-    <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
-    
     <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
+    
+    <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
   </entry>
   
@@ -290,9 +311,9 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
-    <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
-    
     <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
+    
+    <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
   </entry>
   
