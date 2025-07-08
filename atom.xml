@@ -6,7 +6,7 @@
   <link href="https://r3c0ger.github.io/atom.xml" rel="self"/>
   
   <link href="https://r3c0ger.github.io/"/>
-  <updated>2025-07-04T17:40:07.463Z</updated>
+  <updated>2025-07-06T08:06:38.025Z</updated>
   <id>https://r3c0ger.github.io/</id>
   
   <author>
@@ -15,6 +15,100 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络空间实战攻防能力训练-渗透测试3</title>
+    <link href="https://r3c0ger.github.io/2025/07/acatcoc-pentest-3/"/>
+    <id>https://r3c0ger.github.io/2025/07/acatcoc-pentest-3/</id>
+    <published>2025-07-06T04:50:15.000Z</published>
+    <updated>2025-07-06T08:06:38.025Z</updated>
+    
+    
+    <summary type="html">西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="pentest" scheme="https://r3c0ger.github.io/tags/pentest/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络空间实战攻防能力训练-渗透测试2</title>
+    <link href="https://r3c0ger.github.io/2025/07/acatcoc-pentest-2/"/>
+    <id>https://r3c0ger.github.io/2025/07/acatcoc-pentest-2/</id>
+    <published>2025-07-06T04:50:11.000Z</published>
+    <updated>2025-07-06T08:06:37.958Z</updated>
+    
+    
+    <summary type="html">西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="pentest" scheme="https://r3c0ger.github.io/tags/pentest/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络空间实战攻防能力训练-渗透测试1</title>
+    <link href="https://r3c0ger.github.io/2025/07/acatcoc-pentest-1/"/>
+    <id>https://r3c0ger.github.io/2025/07/acatcoc-pentest-1/</id>
+    <published>2025-07-05T16:23:17.000Z</published>
+    <updated>2025-07-06T08:06:37.859Z</updated>
+    
+    
+    <summary type="html">西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="pentest" scheme="https://r3c0ger.github.io/tags/pentest/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络空间实战攻防能力训练-渗透测试0-实验环境搭建</title>
+    <link href="https://r3c0ger.github.io/2025/07/acatcoc-pentest-0/"/>
+    <id>https://r3c0ger.github.io/2025/07/acatcoc-pentest-0/</id>
+    <published>2025-07-05T16:15:26.000Z</published>
+    <updated>2025-07-06T08:06:37.826Z</updated>
+    
+    
+    <summary type="html">西工大网络空间实战攻防能力训练（Actual Combat Ability Training of Cybersecurity Offense-defense Confrontation）系列实验-虚拟机安装、Maltego、Nessus等实验环境搭建</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
+    
+    <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
+    
+    <category term="pentest" scheme="https://r3c0ger.github.io/tags/pentest/"/>
+    
+    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>网络空间实战攻防能力训练-防火墙实验</title>
@@ -56,11 +150,11 @@
     
     <category term="learning" scheme="https://r3c0ger.github.io/tags/learning/"/>
     
+    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
     <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
     
     <category term="linux" scheme="https://r3c0ger.github.io/tags/linux/"/>
-    
-    <category term="虚拟机" scheme="https://r3c0ger.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
   </entry>
   
@@ -85,9 +179,9 @@
     
     <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
     
-    <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
-    
     <category term="web" scheme="https://r3c0ger.github.io/tags/web/"/>
+    
+    <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
     
   </entry>
   
@@ -134,9 +228,9 @@
     
     <category term="cybersecurity" scheme="https://r3c0ger.github.io/tags/cybersecurity/"/>
     
-    <category term="网络迷踪" scheme="https://r3c0ger.github.io/tags/%E7%BD%91%E7%BB%9C%E8%BF%B7%E8%B8%AA/"/>
-    
     <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
+    
+    <category term="网络迷踪" scheme="https://r3c0ger.github.io/tags/%E7%BD%91%E7%BB%9C%E8%BF%B7%E8%B8%AA/"/>
     
     <category term="osint" scheme="https://r3c0ger.github.io/tags/osint/"/>
     
@@ -257,9 +351,9 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
-    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
-    
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
+    
+    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
     
   </entry>
   
@@ -311,9 +405,9 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
-    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
-    
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
+    
+    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
     
   </entry>
   
@@ -406,31 +500,6 @@
     <category term="github-pages" scheme="https://r3c0ger.github.io/tags/github-pages/"/>
     
     <category term="github" scheme="https://r3c0ger.github.io/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown Snippets</title>
-    <link href="https://r3c0ger.github.io/2024/12/markdown-snippets/"/>
-    <id>https://r3c0ger.github.io/2024/12/markdown-snippets/</id>
-    <published>2024-12-28T04:08:54.000Z</published>
-    <updated>2025-01-10T16:42:55.140Z</updated>
-    
-    
-    <summary type="html">这里存放这一些撰写 Markdown 文档时可能使用到的排版代码片段。</summary>
-    
-    
-    
-    <category term="技术文章" scheme="https://r3c0ger.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/"/>
-    
-    
-    <category term="test" scheme="https://r3c0ger.github.io/tags/test/"/>
-    
-    <category term="markdown" scheme="https://r3c0ger.github.io/tags/markdown/"/>
-    
-    <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
-    
-    <category term="snippets" scheme="https://r3c0ger.github.io/tags/snippets/"/>
     
   </entry>
   
