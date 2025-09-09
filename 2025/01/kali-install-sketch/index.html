@@ -44,12 +44,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://r3c0ger.github.io/2025/01/kali-install-sketch/cover.jpg">
 <meta property="article:published_time" content="2025-01-10T05:17:29.000Z">
-<meta property="article:modified_time" content="2025-07-13T03:10:23.342Z">
+<meta property="article:modified_time" content="2025-07-13T03:22:20.179Z">
 <meta property="article:author" content="Recogeta">
 <meta property="article:tag" content="cybersecurity">
 <meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="linux">
 <meta property="article:tag" content="kali">
-<meta property="article:tag" content="vm">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://r3c0ger.github.io/2025/01/kali-install-sketch/cover.jpg">
   
@@ -200,9 +200,9 @@
       
         
         
-          <a href="/" id="logo">
+          <span id="logo">
             <h1 data-aos="slide-up">Kali 虚拟机安装流程简要大纲</h1>
-          </a>
+          </span>
         
       
       
@@ -218,19 +218,21 @@
         <div id="content" class="sidebar-left"  >
           <aside id="sidebar">
   
+  <div class="sidebar-wrapper-container sticky">
   
+    
+    
   
-  <div class="sidebar-wrapper wrap-sticky">
+ 
+  <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
       
         
-          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> VMware 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text"> 创建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text"> 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#root"><span class="toc-number">5.</span> <span class="toc-text"> root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-number">6.</span> <span class="toc-text"> 换源与更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vmware-tools"><span class="toc-number">7.</span> <span class="toc-text"> 安装 VMware tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E8%BD%BD%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">8.</span> <span class="toc-text"> 搭载共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text"> 安装其他软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bleachbit-%E5%9E%83%E5%9C%BE%E6%B8%85%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text"> BleachBit - 垃圾清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ibus-%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">9.2.</span> <span class="toc-text"> ibus - 输入法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text"> 代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains"><span class="toc-number">10.1.</span> <span class="toc-text"> proxychains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">11.</span> <span class="toc-text"> 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">12.</span> <span class="toc-text"> 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> VMware 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text"> 创建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text"> 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#root"><span class="toc-number">5.</span> <span class="toc-text"> root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-number">6.</span> <span class="toc-text"> 换源与更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vmware-tools"><span class="toc-number">7.</span> <span class="toc-text"> 安装 VMware tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E8%BD%BD%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">8.</span> <span class="toc-text"> 搭载共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text"> 安装其他软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bleachbit-%E5%9E%83%E5%9C%BE%E6%B8%85%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text"> BleachBit - 垃圾清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ibus-%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">9.2.</span> <span class="toc-text"> ibus - 输入法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text"> 代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains"><span class="toc-number">10.1.</span> <span class="toc-text"> proxychains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">11.</span> <span class="toc-text"> 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">12.</span> <span class="toc-text"> 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -241,7 +243,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -321,8 +323,10 @@
       
     </div>
   </div>
-
+  
   <div class="sidebar-widget">
+  
+  </div>
   
   </div>
   
@@ -332,10 +336,11 @@
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
-  <span class="article-date-link" data-aos="zoom-in">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-01-10T05:17:29.000Z" itemprop="datePublished">2025-01-10</time>
     <time style="display: none;" id="post-update-time">2025-07-13</time>
   </span>
+  
 </div>
 
       
@@ -345,6 +350,7 @@
 
 
     </div>
+    
     <div class="hr-line"></div>
     
 
@@ -495,14 +501,14 @@
     <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/01/kali-install-sketch/">https://r3c0ger.github.io/2025/01/kali-install-sketch/</a></p>
     <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「Kali 虚拟机安装流程简要大纲」</p>
     <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-01-10 13:17:29</p>
-    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:10:23</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:22:20</p>
     <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
     <span class="icon-creative-commons article-copyright-bg"></span>
   </blockquote>
       
       
         <div class="sponsor-wrapper">
-  <div class="sponsor-button-wrapper">
+  <div class="sponsor-button">
     <div class="sponsor-icon rotate"></div>
     <div class="sponsor-title">赞助</div>
     <div class="sponsor-icon rotate"></div>
@@ -534,7 +540,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/vm/" rel="tag">vm</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a></li></ul>
 
 
     </footer>
@@ -543,7 +549,7 @@
   <nav id="article-nav" data-aos="fade-up">
     
       
-      <div class="article-nav-link-wrap article-nav-link-left">
+      <div class="article-nav-link-wrap left">
         
           <img data-src="/2025/01/elementary-maths/cover.png" data-sizes="auto" alt="高数基础 - 初等数学查缺补漏" class="lazyload">
         
@@ -558,7 +564,7 @@
     
     
     
-    <div class="article-nav-link-wrap article-nav-link-right">
+    <div class="article-nav-link-wrap right">
       
         <img data-src="/2025/01/typora-tricks-5/cover.png" data-sizes="auto" alt="Typora 学习索引 - 杂项" class="lazyload">
       
@@ -612,11 +618,12 @@
     
       <div>
         <span class="icon-brush"></span>
-        53k
+        64.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:39
+        04:26
       </div>
+    
     
     
     
@@ -644,13 +651,11 @@
   <div class="sidebar-wrap">
     
       
-        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> VMware 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text"> 创建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text"> 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#root"><span class="toc-number">5.</span> <span class="toc-text"> root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-number">6.</span> <span class="toc-text"> 换源与更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vmware-tools"><span class="toc-number">7.</span> <span class="toc-text"> 安装 VMware tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E8%BD%BD%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">8.</span> <span class="toc-text"> 搭载共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text"> 安装其他软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bleachbit-%E5%9E%83%E5%9C%BE%E6%B8%85%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text"> BleachBit - 垃圾清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ibus-%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">9.2.</span> <span class="toc-text"> ibus - 输入法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text"> 代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains"><span class="toc-number">10.1.</span> <span class="toc-text"> proxychains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">11.</span> <span class="toc-text"> 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">12.</span> <span class="toc-text"> 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> VMware 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text"> 创建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text"> 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#root"><span class="toc-number">5.</span> <span class="toc-text"> root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-number">6.</span> <span class="toc-text"> 换源与更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vmware-tools"><span class="toc-number">7.</span> <span class="toc-text"> 安装 VMware tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E8%BD%BD%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">8.</span> <span class="toc-text"> 搭载共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text"> 安装其他软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bleachbit-%E5%9E%83%E5%9C%BE%E6%B8%85%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text"> BleachBit - 垃圾清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ibus-%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">9.2.</span> <span class="toc-text"> ibus - 输入法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text"> 代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains"><span class="toc-number">10.1.</span> <span class="toc-text"> proxychains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">11.</span> <span class="toc-text"> 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">12.</span> <span class="toc-text"> 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -661,7 +666,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -832,7 +837,7 @@
           description: "",
           stripContent: " VMware 安装 密钥网上找  创建虚拟机 https://blog.csdn.net/lvlheike/article/details/120584366 Debian 10 64 位 Kali_01_22_03  设置 搭载 iso NAT 共享文件夹  安装配置 https://blog.csdn.net/lvlheike/article/details/120584366 GNOME、和 KDE Plasma 也安装 桌面选 lightdm  root 1sudo -i 1sudo ",
           date: "Fri Jan 10 2025 13:17:29 GMT+0800",
-          updated: "Sun Jul 13 2025 11:10:23 GMT+0800",
+          updated: "Sun Jul 13 2025 11:22:20 GMT+0800",
           cover: "/2025/01/kali-install-sketch/cover.jpg",
         };
       </script>
@@ -842,7 +847,7 @@
 <script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
 
       
-<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+<script src="https://npm.webcache.cn/dompurify@3.2.6/dist/purify.min.js" integrity="sha384-JEyTNhjM6R1ElGoJns4U2Ln4ofPcqzSsynQkmEc&#x2F;KGy6336qAZl70tDLufbkla+3" crossorigin="anonymous"></script>
 
       <script data-pjax>
         if (window.mermaid) {
@@ -978,7 +983,7 @@
   \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
                                                   
 `,'color: #ff5252;')
-    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
   </script>
   
 

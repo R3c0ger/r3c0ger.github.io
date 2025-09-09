@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://r3c0ger.github.io/2025/01/hscctf-2024-osint/v2-99b7cdda334086ca8b7d5fe81214bb49_1440w.jpg">
 <meta property="og:image" content="https://r3c0ger.github.io/2025/01/hscctf-2024-osint/cover.jpg">
 <meta property="article:published_time" content="2025-01-12T02:26:27.000Z">
-<meta property="article:modified_time" content="2025-07-13T03:10:11.295Z">
+<meta property="article:modified_time" content="2025-07-13T03:18:51.829Z">
 <meta property="article:author" content="Recogeta">
 <meta property="article:tag" content="cybersecurity">
 <meta property="article:tag" content="网络迷踪">
@@ -254,9 +254,9 @@
       
         
         
-          <a href="/" id="logo">
+          <span id="logo">
             <h1 data-aos="slide-up">HSCCTF 2024 OSINT Writeup</h1>
-          </a>
+          </span>
         
       
       
@@ -272,19 +272,21 @@
         <div id="content" class="sidebar-left"  >
           <aside id="sidebar">
   
+  <div class="sidebar-wrapper-container sticky">
   
+    
+    
   
-  <div class="sidebar-wrapper wrap-sticky">
+ 
+  <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
       
         
-          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nice_river"><span class="toc-number">1.</span> <span class="toc-text"> NICE_RIVER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome_to_hscctf"><span class="toc-number">2.</span> <span class="toc-text"> WELCOME_TO_HSCCTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#france-rn1"><span class="toc-number">3.</span> <span class="toc-text"> FRANCE-RN1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#japan"><span class="toc-number">4.</span> <span class="toc-text"> JAPAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">5.</span> <span class="toc-text"> FLAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"><span class="toc-number">6.</span> <span class="toc-text"> город</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#building%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">7.</span> <span class="toc-text"> BUILDING（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lake%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">8.</span> <span class="toc-text"> LAKE（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BD%99%E5%AE%8C%E5%85%A8%E6%B2%A1%E5%A4%B4%E7%BB%AA%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text"> 其余完全没头绪的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">10.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nice_river"><span class="toc-number">1.</span> <span class="toc-text"> NICE_RIVER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome_to_hscctf"><span class="toc-number">2.</span> <span class="toc-text"> WELCOME_TO_HSCCTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#france-rn1"><span class="toc-number">3.</span> <span class="toc-text"> FRANCE-RN1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#japan"><span class="toc-number">4.</span> <span class="toc-text"> JAPAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">5.</span> <span class="toc-text"> FLAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"><span class="toc-number">6.</span> <span class="toc-text"> город</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#building%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">7.</span> <span class="toc-text"> BUILDING（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lake%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">8.</span> <span class="toc-text"> LAKE（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BD%99%E5%AE%8C%E5%85%A8%E6%B2%A1%E5%A4%B4%E7%BB%AA%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text"> 其余完全没头绪的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">10.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -295,7 +297,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -375,8 +377,10 @@
       
     </div>
   </div>
-
+  
   <div class="sidebar-widget">
+  
+  </div>
   
   </div>
   
@@ -386,10 +390,11 @@
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
-  <span class="article-date-link" data-aos="zoom-in">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-01-12T02:26:27.000Z" itemprop="datePublished">2025-01-12</time>
     <time style="display: none;" id="post-update-time">2025-07-13</time>
   </span>
+  
 </div>
 
       
@@ -399,6 +404,7 @@
 
 
     </div>
+    
     <div class="hr-line"></div>
     
 
@@ -590,14 +596,14 @@
     <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/01/hscctf-2024-osint/">https://r3c0ger.github.io/2025/01/hscctf-2024-osint/</a></p>
     <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「HSCCTF 2024 OSINT Writeup」</p>
     <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-01-12 10:26:27</p>
-    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:10:11</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:18:51</p>
     <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
     <span class="icon-creative-commons article-copyright-bg"></span>
   </blockquote>
       
       
         <div class="sponsor-wrapper">
-  <div class="sponsor-button-wrapper">
+  <div class="sponsor-button">
     <div class="sponsor-icon rotate"></div>
     <div class="sponsor-title">赞助</div>
     <div class="sponsor-icon rotate"></div>
@@ -638,7 +644,7 @@
   <nav id="article-nav" data-aos="fade-up">
     
       
-      <div class="article-nav-link-wrap article-nav-link-left">
+      <div class="article-nav-link-wrap left">
         
           <img data-src="/2025/07/subject-1/cover.png" data-sizes="auto" alt="【自用】驾考科目一口诀" class="lazyload">
         
@@ -653,7 +659,7 @@
     
     
     
-    <div class="article-nav-link-wrap article-nav-link-right">
+    <div class="article-nav-link-wrap right">
       
         <img data-src="/2025/01/text-on-traffic-accident-recording/cover.png" data-sizes="auto" alt="交通事故录像经" class="lazyload">
       
@@ -707,11 +713,12 @@
     
       <div>
         <span class="icon-brush"></span>
-        53k
+        64.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:39
+        04:26
       </div>
+    
     
     
     
@@ -739,13 +746,11 @@
   <div class="sidebar-wrap">
     
       
-        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nice_river"><span class="toc-number">1.</span> <span class="toc-text"> NICE_RIVER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome_to_hscctf"><span class="toc-number">2.</span> <span class="toc-text"> WELCOME_TO_HSCCTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#france-rn1"><span class="toc-number">3.</span> <span class="toc-text"> FRANCE-RN1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#japan"><span class="toc-number">4.</span> <span class="toc-text"> JAPAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">5.</span> <span class="toc-text"> FLAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"><span class="toc-number">6.</span> <span class="toc-text"> город</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#building%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">7.</span> <span class="toc-text"> BUILDING（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lake%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">8.</span> <span class="toc-text"> LAKE（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BD%99%E5%AE%8C%E5%85%A8%E6%B2%A1%E5%A4%B4%E7%BB%AA%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text"> 其余完全没头绪的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">10.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nice_river"><span class="toc-number">1.</span> <span class="toc-text"> NICE_RIVER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#welcome_to_hscctf"><span class="toc-number">2.</span> <span class="toc-text"> WELCOME_TO_HSCCTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#france-rn1"><span class="toc-number">3.</span> <span class="toc-text"> FRANCE-RN1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#japan"><span class="toc-number">4.</span> <span class="toc-text"> JAPAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">5.</span> <span class="toc-text"> FLAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"><span class="toc-number">6.</span> <span class="toc-text"> город</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#building%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">7.</span> <span class="toc-text"> BUILDING（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lake%E6%B2%A1%E6%90%9E%E5%87%BA%E6%9D%A5"><span class="toc-number">8.</span> <span class="toc-text"> LAKE（没搞出来）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BD%99%E5%AE%8C%E5%85%A8%E6%B2%A1%E5%A4%B4%E7%BB%AA%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text"> 其余完全没头绪的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">10.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -756,7 +761,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -927,7 +932,7 @@
           description: "",
           stripContent: "本人啥都不会，只能靠这个捞点可怜的分数了呜呜……  NICE_RIVER 题目：  直接谷歌搜图，尤其是搜索那个桥：  得知这里位于广州珠江的琶洲大桥附近。  从卫星图上可以很快辨别方位：题目图中有一片在建的建筑群，因此可以判断拍摄者位于上图的东南边。（卫星图和路网错位了） 再从原图中仔细寻找更多信息：  左下角河边有一块绿地，绿地中间还有 一小段空地； 左下角的左下角，有一个 建筑物楼顶的方方棱棱的角，可以推测拍摄人所在的楼层较高、这个被拍到的建筑物很大可能是规整的长方体。   再观察卫星图：",
           date: "Sun Jan 12 2025 10:26:27 GMT+0800",
-          updated: "Sun Jul 13 2025 11:10:11 GMT+0800",
+          updated: "Sun Jul 13 2025 11:18:51 GMT+0800",
           cover: "/2025/01/hscctf-2024-osint/cover.jpg",
         };
       </script>
@@ -937,7 +942,7 @@
 <script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
 
       
-<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+<script src="https://npm.webcache.cn/dompurify@3.2.6/dist/purify.min.js" integrity="sha384-JEyTNhjM6R1ElGoJns4U2Ln4ofPcqzSsynQkmEc&#x2F;KGy6336qAZl70tDLufbkla+3" crossorigin="anonymous"></script>
 
       <script data-pjax>
         if (window.mermaid) {
@@ -1073,7 +1078,7 @@
   \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
                                                   
 `,'color: #ff5252;')
-    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
   </script>
   
 

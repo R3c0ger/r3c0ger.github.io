@@ -1,0 +1,1319 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="false"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_tq6stt6tcg';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"license_type":"by-nc-sa","content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://r3c0ger.github.io';</script>
+  
+  <title>
+    从几何上直观理解线性代数 |
+    
+    Recogeta&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="重新认识线性代数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从几何上直观理解线性代数">
+<meta property="og:url" content="https://r3c0ger.github.io/2025/09/linalg-0/index.html">
+<meta property="og:site_name" content="Recogeta&#39;s Blog">
+<meta property="og:description" content="重新认识线性代数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/linalg-0/cover-full.jpg">
+<meta property="article:published_time" content="2025-09-04T05:53:44.000Z">
+<meta property="article:modified_time" content="2025-09-09T08:02:06.799Z">
+<meta property="article:author" content="Recogeta">
+<meta property="article:tag" content="maths">
+<meta property="article:tag" content="linear-algebra">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3c0ger.github.io/2025/09/linalg-0/cover-full.jpg">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Recogeta's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" crossorigin="anonymous">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/2025/09/linalg-0/cover.jpg" alt="从几何上直观理解线性代数">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">从几何上直观理解线性代数</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F-%E5%9F%BA-%E5%BC%A0%E6%88%90-%E7%A9%BA%E9%97%B4-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text"> 向量、基、张成、空间、线性相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2-%E7%9F%A9%E9%98%B5-%E5%9F%BA%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text"> 线性变换、矩阵、基变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text"> 矩阵乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5"><span class="toc-number">4.</span> <span class="toc-text"> 相似矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E5%86%85%E6%B6%B5%E4%B8%8E%E6%80%A7%E8%B4%A8"><span class="toc-number">5.</span> <span class="toc-text"> 行列式：内涵与性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5-%E5%88%97%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="toc-number">6.</span> <span class="toc-text"> 逆矩阵、列空间与零空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E7%A7%AF%E4%B8%8E%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text"> 点积与对偶性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%89%E7%A7%AF%E4%B8%8E%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text"> 叉积与对偶性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F-%E7%89%B9%E5%BE%81%E5%80%BC-%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="toc-number">9.</span> <span class="toc-text"> 特征向量、特征值、对角化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="toc-number">10.</span> <span class="toc-text"> 抽象向量空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E8%8E%B1%E5%A7%86%E6%B3%95%E5%88%99-%E6%AD%A3%E4%BA%A4-%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="toc-number">11.</span> <span class="toc-text"> 克莱姆法则、正交、行列式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E4%B8%8E%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">12.</span> <span class="toc-text"> 参考资料与推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">29</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-linalg-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-04T05:53:44.000Z" itemprop="datePublished">2025-09-04</time>
+    <time style="display: none;" id="post-update-time">2025-09-09</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" data-aos="zoom-in">专业学习</a>
+  </div>
+
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p>本文最初只作为 3B1B 视频的听课/读书笔记，因此对我而言过于基础的内容不会提及，细节也不会过多展开，有些地方自然会有些跳跃。但是我会尽量保持逻辑与思维的连贯性。本人学艺不精，欢迎各位大佬指正。</p>
+<h2 id="向量-基-张成-空间-线性相关"><a class="markdownIt-Anchor" href="#向量-基-张成-空间-线性相关"></a> 向量、基、张成、空间、线性相关</h2>
+<p>向量，从物理角度看是空间中的箭头，从计算机角度看是有序的数据列表。我们将这些事物抽象为数学中的向量。</p>
+<p>The <strong>basis</strong> of a vector space is a set of <strong>linearly independent</strong> vectors that <strong>span</strong> the full space.<br>
+向量空间的 <strong>一组基</strong> 是 <strong>张成</strong> 该空间的一个 <strong>线性无关</strong> 向量集。</p>
+<p>具体而言，基是一个最小的向量集，通过线性组合可以表示空间中的所有向量。可以将基看作线性空间的“坐标系”。</p>
+<ul>
+<li>如果一组向量中有多余的向量，该向量对空间的张成没有贡献，移除该向量不会减小张成的空间，那么这组向量就是 <strong>线性相关</strong> 的；<br>
+换言之，多余的向量可以表示为其他向量的线性组合。</li>
+<li>反之，如果一组向量中没有多余的向量，所有向量都为张成的空间添加了新的维度，那么这组向量就是 <strong>线性无关</strong> 的。</li>
+</ul>
+<hr>
+<p>什么是空间？数学上的空间可以理解为一组集合，该集合具备一些规则、公理或操作。换句话说，就是具有特定数学结构（如距离、拓扑）的集合。<br>
+例如，二维空间 $\mathbb{R}^2$ 是由所有形如 $(x,y)$ 的点组成的集合，其中 $x$ 和 $y$ 是实数。这个空间具备向量加法和数乘等操作。</p>
+<p>更本质、更直观的描述参见孟岩《理解矩阵》：</p>
+<blockquote>
+<p>这个空间可以容纳运动，这里我们所说的运动是 <strong>从一个点到另一个点的移动（变换）</strong>，而不是微积分意义上的“连续”性的运动……<strong>容纳运动是空间的本质特征</strong>。<br>
+事实上，不管是什么空间，都必须容纳和支持在其中发生的符合规则的运动（变换）。你会发现，在某种空间中往往会存在一种相对应的变换，比如拓扑空间中有拓扑变换，线性空间中有线性变换，仿射空间中有仿射变换，其实这些变换都只不过是对应空间中允许的运动形式而已。<br>
+因此只要知道，“空间”是容纳运动的一个对象集合，而变换则规定了对应空间的运动。</p>
+</blockquote>
+<h2 id="线性变换-矩阵-基变换"><a class="markdownIt-Anchor" href="#线性变换-矩阵-基变换"></a> 线性变换、矩阵、基变换</h2>
+<p>变换可看作为函数，但额外包含对向量（点）进行移动的含义。</p>
+<p><strong>线性变换：直线映射为直线，原点保持不动。</strong><br>
+线性变换（linear transformation）对空间进行操作，保持网格线的平行和均匀分布，并保持原点位置不变。</p>
+<p>在已知基的情况下，对空间的线性变换可以通过 <strong>基向量的变换</strong> 来完全描述。<br>
+即只要记录了变换后基向量的新位置，对空间中任意一条向量，与基向量进行线性组合（即对每条基向量进行缩放/数乘，再相加），就能推导出该向量的变换结果。</p>
+<ul>
+<li>在对空间进行变换的视角下，坐标系发生了变换，但向量（点）本身的坐标值不变。</li>
+<li>而在对向量进行变换的视角下，坐标系保持不变，但向量（点）的位置发生了变化。</li>
+</ul>
+<p>例如二维空间中的基向量 $\boldsymbol{i} &#x3D; (1,0)$ 和 $\boldsymbol{j} &#x3D; (0,1)$，如果变换后它们分别变为 $\hat{\boldsymbol{i}} &#x3D; (2,1)$ 和 $\hat{\boldsymbol{j}} &#x3D; (1,1)$，那么任意向量 $(x,y)$ 的变换结果可以通过线性组合得到：</p>
+<p>$$T(x,y) &#x3D; x \underbrace{\left[\begin{matrix}2 \\ 1\end{matrix}\right]}_{\hat{\boldsymbol{i}}} + y \underbrace{\left[\begin{matrix}1 \\ 1\end{matrix}\right]}_{\hat{\boldsymbol{j}}} &#x3D; \left[\begin{matrix}2x + y \\ x + y\end{matrix}\right]
+$$</p><p>一般地，使用矩阵形式表示二维线性变换：</p>
+<p>$$T(x,y) &#x3D; \left[\begin{matrix}{\color{green} a} &amp; {\color{red}b} \\ {\color{green} c} &amp; {\color{red} d}\end{matrix}\right] \left[\begin{matrix}x \\ y\end{matrix}\right] &#x3D; x\underbrace{\left[{\begin{matrix}\color{green}a \\ \color{green}c\end{matrix}}\right]}_{\hat{\boldsymbol{i}}} + y\underbrace{\left[{\begin{matrix}\color{red}b \\ \color{red}d\end{matrix}}\right]}_{\hat{\boldsymbol{j}}} &#x3D; \left[\begin{matrix}{\color{green} a}x + {\color{red} b}y \\ {\color{green} c}x + {\color{red} d}y\end{matrix}\right]
+$$</p><p>这样一来，我们 <strong>将矩阵的每一列分别对应变换后基向量的位置</strong>，将矩阵与向量的乘法（本质上还是矩阵乘法）看作是 <strong>基向量的线性组合</strong>。因此，我们可以用矩阵来描述对空间/向量的线性变换：<strong>以基向量为列向量组成的矩阵是一个线性变换</strong>。</p>
+<p>另外，在二维空间中，如果变换后的两条基向量线性相关，意味着其中一个向量是另一个向量缩放的结果，那么变换就会导致空间的维度降低为一维空间。</p>
+<p>上述一切在孟岩老师的《理解矩阵》中有更易于理解的总结：</p>
+<blockquote>
+<p>矩阵的本质是运动的描述。<br>
+向量本身不是也可以看成是 $n \times 1$ 矩阵吗？这实在是很奇妙，一个空间中的对象和运动竟然可以用相类同的方式表示。<br>
+“运动”的概念不是微积分中的连续性的运动，而是瞬间发生的变化。……因此我们最后换用一个正牌的数学术语—— <strong>变换</strong>，来描述这个事情。……所谓变换，其实就是空间里从一个点（元素/对象）到另一个点（元素/对象）的跃迁。<br>
+一旦我们理解了“变换”这个概念，矩阵的定义就变成：“<strong>矩阵是线性空间里的变换的描述。</strong>”<br>
+最后我们把矩阵的定义完善如下：“矩阵是线性空间中的线性变换的一个描述。在一个线性空间中，只要我们选定一组基，那么对于任何一个线性变换，都能够用一个确定的矩阵来加以描述。”</p>
+</blockquote>
+<blockquote>
+<p>矩阵描述了一个坐标系。<br>
+……之所以矩阵又是运动，又是坐标系，那是因为——“运动等价于坐标系变换”。<br>
+对不起，这话其实不准确，我只是想让你印象深刻。准确的说法是：“对象的变换等价于坐标系的变换”。<br>
+或者：<strong>“固定坐标系下的一个对象的变换，等价于固定对象所处的坐标系变换。”</strong><br>
+说白了就是：“运动是相对的。”</p>
+</blockquote>
+<blockquote>
+<p>矩阵不仅可以作为线性变换的描述，而且可以作为一组基的描述。<br>
+而作为变换的矩阵，不但可以把线性空间中的一个点给变换到另一个点去，而且也能够把线性空间中的一个坐标系（基）表换到另一个坐标系（基）去。<br>
+而且，变换点与变换坐标系，具有异曲同工的效果。</p>
+</blockquote>
+<p>对于线性变换 $\boldsymbol{M}\boldsymbol{a} &#x3D; \boldsymbol{b}$，我们可以有两种理解方式：</p>
+<ol>
+<li>固定坐标系 $\boldsymbol{M}$，点 $\boldsymbol{a}$ 运动到 $\boldsymbol{b}$，即“向量 $\boldsymbol{a}$ 经过矩阵 $\boldsymbol{M}$ 所描述的变换，变成了向量 $\boldsymbol{b}$。”</li>
+<li>固定点 $\boldsymbol{a}$，坐标系 $\boldsymbol{M}$ 运动到单位矩阵 $\boldsymbol{I}$（$\boldsymbol{M}\boldsymbol{a} &#x3D; \boldsymbol{I}\boldsymbol{b}$），即“在坐标系 $\boldsymbol{M}$ 下的某一向量度量为 $\boldsymbol{a}$，在坐标系 $\boldsymbol{I}$ 的度量下，这个向量的度量结果是 $\boldsymbol{b}$。”
+<ul>
+<li>考虑在坐标系 $\boldsymbol{I}$ 下，向量 $\boldsymbol{a}$ 度量结果为 $\boldsymbol{a}$。此时仅将坐标系变为 $\boldsymbol{M}$，该向量度量不变，但是在坐标系 $\boldsymbol{I}$ 下的度量结果变为 $\boldsymbol{b}$。</li>
+<li>为什么 <strong>矩阵乘法表示“度量”</strong>？“度量”在这里指的是向量在特定坐标系下的坐标值。<br>
+坐标值取决于基向量的选择。矩阵与向量的乘法（$\boldsymbol{M} \boldsymbol{a}$）本质上是一种线性组合：<br>
+它取坐标系 $\boldsymbol{M}$ 的基向量（$\boldsymbol{M}&#x3D;\left[\begin{matrix}\boldsymbol{m}_1 &amp; \boldsymbol{m}_2 &amp; \cdots &amp; \boldsymbol{m}_n \end{matrix}\right]$），<br>
+并用向量 $\boldsymbol{a}$ 的分量进行加权求和（$\sum{a_i \boldsymbol{m}_i}$），才得到向量在标准坐标系下的实际位置。<br>
+因此，在执行矩阵乘法之前的向量 $\boldsymbol{a}$ 的坐标值，是相对于坐标系 $\boldsymbol{M}$ 的基向量而言的，而乘法之后的结果 $\boldsymbol{b}$，则是该向量在标准坐标系下的坐标值。</li>
+</ul>
+</li>
+</ol>
+<p>苏剑林老师表达如下：</p>
+<blockquote>
+<p>矩阵是一个点到另外一个点的变换，变换的方式就是坐标系的变换。</p>
+<p>苏剑林. (Oct. 31, 2012). 《《新理解矩阵2》：矩阵是什么？ 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1768">https://spaces.ac.cn/archives/1768</a></p>
+</blockquote>
+<h2 id="矩阵乘法"><a class="markdownIt-Anchor" href="#矩阵乘法"></a> 矩阵乘法</h2>
+<p>多个矩阵相乘形成复合矩阵，描述了多个线性变换的连续应用。注意这个线性变换的顺序是 <strong>从右到左</strong> 的，<strong>类比于函数复合</strong>。<br>
+从另一个角度看，用表示某一坐标系的矩阵，与描述某一线性变换的矩阵相乘，就是对坐标系施加变换。</p>
+<p>考虑二维空间中的两个线性变换 $\boldsymbol{M}_1$ 和 $\boldsymbol{M}_2$:</p>
+<p>$$\overbrace{\left[{\begin{matrix}\color{green} a &amp; \color{green} b \\ \color{green} c &amp; \color{green} d\end{matrix}}\right]}^{\boldsymbol{M}_2} \overbrace{\left[\begin{matrix}{\color{red} e} &amp; {\color{blue} f} \\ {\color{red} g} &amp; {\color{blue} h}\end{matrix}\right]}^{\boldsymbol{M}_1} &#x3D; \left[\begin{matrix}
+{\color{green} a}{\color{red} e} + {\color{green} b}{\color{red} g} &amp; {\color{green} a}{\color{blue} f} + {\color{green} b}{\color{blue} h} \\
+{\color{green} c}{\color{red} e} + {\color{green} d}{\color{red} g} &amp; {\color{green} c}{\color{blue} f} + {\color{green} d}{\color{blue} h}
+\end{matrix}\right]
+$$</p><p>还记得我们 <strong>将矩阵的每一列分别对应变换后基向量的位置</strong> 吗？在进行 $\boldsymbol{M}_2$ 变换之前，$\hat{\boldsymbol{i}}_1 &#x3D; (e,g)$ 和 $\hat{\boldsymbol{j}}_1 &#x3D; (f,h)$ 分别是 $\boldsymbol{M}_1$ 变换后基向量的位置。经过 $\boldsymbol{M}_2$ 变换后，新的基向量位置分别为 $\boldsymbol{M}_2 \hat{\boldsymbol{i}}_1$ 和 $\boldsymbol{M}_2 \hat{\boldsymbol{j}}_1$：</p>
+<p>$$\begin{cases}
+\hat{\boldsymbol{i}}_2 &#x3D; \left[{\begin{matrix}\color{green} a &amp; \color{green} b \\ \color{green} c &amp; \color{green} d\end{matrix}}\right] \left[{\begin{matrix}\color{red} e \\ \color{red} g \end{matrix}}\right] &#x3D; \left[\begin{matrix}{\color{green} a}{\color{red} e} + {\color{green} b}{\color{red} g} \\ {\color{green} c}{\color{red} e} + {\color{green} d}{\color{red} g}\end{matrix}\right] \\
+\hat{\boldsymbol{j}}_2 &#x3D; \left[{\begin{matrix}\color{green} a &amp; \color{green} b \\ \color{green} c &amp; \color{green} d\end{matrix}}\right] \left[{\begin{matrix}\color{blue} f \\ \color{blue} h \end{matrix}}\right] &#x3D; \left[\begin{matrix}{\color{green} a}{\color{blue} f} + {\color{green} b}{\color{blue} h} \\ {\color{green} c}{\color{blue} f} + {\color{green} d}{\color{blue} h}\end{matrix}\right]
+\end{cases}
+$$</p><p>可以看出，矩阵乘法既可以看作是对一组基向量（坐标系）进行变换，也可以看作是两个线性变换的复合。</p>
+<blockquote>
+<p>比如 $\boldsymbol{A}\boldsymbol{B}$，我们就可以看作是矩阵 $\boldsymbol{B}$ 给出了一个坐标系，但是这个坐标系的各个分量是在 $\boldsymbol{A}$ 坐标系下测量得到的，而 $\boldsymbol{A}$ 是在直角坐标系下测量得到的，所以要把 $\boldsymbol{B}$ 的各个分量（列向量）与矩阵 $\boldsymbol{A}$ 作乘法后，才得到了这个仿射坐标系在直角坐标系下的“像”。</p>
+<p>苏剑林. (Oct. 31, 2012). 《《新理解矩阵2》：矩阵是什么？ 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1768">https://spaces.ac.cn/archives/1768</a></p>
+</blockquote>
+<ul>
+<li>矩阵乘法不满足交换律。复合函数也是如此，$f(g(x))$ 不一定等于 $g(f(x))$。</li>
+<li>矩阵乘法满足结合律，从变换按照相同顺序依次作用的角度看，这也是显然的。</li>
+</ul>
+<h2 id="相似矩阵"><a class="markdownIt-Anchor" href="#相似矩阵"></a> 相似矩阵</h2>
+<p>孟岩《理解矩阵》：</p>
+<blockquote>
+<p>对于一个线性变换，只要你选定一组基，那么就可以找到一个矩阵来描述这个线性变换。换一组基，就得到一个不同的矩阵。所有这些矩阵都是这同一个线性变换的描述，但又都不是线性变换本身。</p>
+<p>好在，我们可以找到同一个线性变换的矩阵兄弟们的一个性质，那就是：<br>
+若矩阵 $\boldsymbol{A}$ 与 $\boldsymbol{B}$ 是同一个线性变换的两个不同的描述（之所以会不同，是因为选定了不同的基，也就是选定了不同的坐标系），则一定能找到一个非奇异矩阵 $\boldsymbol{P}$，使得 $\boldsymbol{A}$、$\boldsymbol{B}$ 之间满足这样的关系：</p>
+<p>$$\boldsymbol{A}&#x3D;\boldsymbol{P}^{-1}\boldsymbol{B}\boldsymbol{P}
+$$</p><p>……<strong>所谓相似矩阵，就是同一个线性变换的不同的描述矩阵。</strong></p>
+</blockquote>
+<p>苏剑林. (Nov. 11, 2012). 《《新理解矩阵4》：相似矩阵的那些事儿 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1777%EF%BC%9A">https://spaces.ac.cn/archives/1777：</a></p>
+<blockquote>
+<p>首先来一个比较物理的理解：矩阵 $\boldsymbol{A}$ 描述了向量 $\boldsymbol{x}$ 到向量 $\boldsymbol{y}$ 的一个运动，即 $\boldsymbol{y}&#x3D;\boldsymbol{A}\boldsymbol{x}$；<br>
+但是，这仅仅是在直角坐标系下测量的，在一个新的坐标系 $\boldsymbol{P}$ 之下，假设测量结果为 $\boldsymbol{y}&#39;&#x3D;\boldsymbol{B}\boldsymbol{x}&#39;$。</p>
+<p>根据我们在前边给出的矩阵几何理解，在 $\boldsymbol{P}$ 坐标系下测量的 $\boldsymbol{x}&#39;$，在直角坐标系测量为 $\boldsymbol{x}$，可以表示成 $\boldsymbol{P}\boldsymbol{x}&#39;&#x3D;\boldsymbol{x}$；同理有 $\boldsymbol{P}\boldsymbol{y}&#39;&#x3D;\boldsymbol{y}$。代入就得到：$\boldsymbol{P}\boldsymbol{y}&#39;&#x3D;\boldsymbol{A}\boldsymbol{P}\boldsymbol{x}&#39;$，可以稍稍改成 $\boldsymbol{P}\boldsymbol{y}&#39;&#x3D;\boldsymbol{P}(\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P})\boldsymbol{x}&#39;$，换句话说，在 $\boldsymbol{P}$ 坐标系下，从 $\boldsymbol{x}&#39;$ 到 $\boldsymbol{y}&#39;$ 的运动用矩阵 $\boldsymbol{B}&#x3D;\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P}$ 表示，这就是 $\boldsymbol{A}$ 的一个相似矩阵！所以说，一族相似矩阵，只不过是同一个线性变换在不同坐标系下的一个测量结果而已。</p>
+</blockquote>
+<p>换种更直观的理解方式，对于标准坐标系下的线性变换 $\boldsymbol{A}$，和坐标系 $\boldsymbol{P}$ 下的线性变换 $\boldsymbol{B}$，若两者描述的是同一个线性变换，则对于坐标系 $\boldsymbol{P}$ 下的任意向量 $\boldsymbol{x}&#39;$，有：</p>
+<ul>
+<li>$\boldsymbol{P}\boldsymbol{x}&#39;$ 等于在标准坐标系下度量的向量 $\boldsymbol{x}$；</li>
+<li>$\boldsymbol{A}(\boldsymbol{P}\boldsymbol{x}&#39;)$ 表示在标准坐标系下，向量 $\boldsymbol{P}\boldsymbol{x}&#39; &#x3D; \boldsymbol{x}$ 经过线性变换 $\boldsymbol{A}$ 后的结果；</li>
+<li>$\boldsymbol{P}^{-1}(\boldsymbol{A}(\boldsymbol{P}\boldsymbol{x}&#39;))$ 表示将变换结果重新映射回坐标系 $\boldsymbol{P}$ 下的度量结果；</li>
+<li>此时，$\boldsymbol{B}\boldsymbol{x}&#39;&#x3D;(\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P})\boldsymbol{x}&#39;$，即 $\boldsymbol{B}&#x3D;\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P}$。</li>
+</ul>
+<p>（这里实践了将线性变换类比于函数的思想，在之后解释叉积时还会用到。）</p>
+<h2 id="行列式内涵与性质"><a class="markdownIt-Anchor" href="#行列式内涵与性质"></a> 行列式：内涵与性质</h2>
+<p>矩阵的行列式（determinant），在几何上表示 <strong>线性变换对空间体积（面积）的缩放比例</strong>。</p>
+<ul>
+<li>由于线性变换的性质——保持网格线的平行和均匀分布，同一线性变换对于任意大小和形状的区域，体积缩放比例都相同。因此行列式可以表示对任意区域的体积缩放比例。</li>
+<li>显然有：$\textrm{det}(\boldsymbol{M_1} \boldsymbol{M}_2) &#x3D; \textrm{det}(\boldsymbol{M}_1) \cdot \textrm{det}(\boldsymbol{M}_2)$。<br>
+两个线性变换相继作用时，整体对空间体积的缩放因子，等于每个变换单独作用时缩放因子的乘积。</li>
+<li>若行列式 $\textrm{det}(\boldsymbol{A})&lt;0$，则表示变换后空间体积的符号发生了变化，即变换改变了空间的定向（orientation）。<br>
+“定向”本质上描述的是一个坐标系中基向量的顺序所定义的一种内在“手性”（Chirality）或“旋向性”。一个经典的例子是二维中的镜像反射。</li>
+<li>若行列式 $\textrm{det}(\boldsymbol{A})&#x3D;0$，则表示变换后空间体积为零，即变换将区域压缩到了一个低维子空间。换言之，就是该矩阵所描述的变换，对空间进行了降维，这一变换无法恢复。<br>
+→ <strong>行列式为零</strong> 的矩阵称为奇异矩阵（singular matrix），<strong>不可逆</strong>，该矩阵的 <strong>列向量（基向量）线性相关</strong>。</li>
+</ul>
+<p>苏剑林. (Nov. 04, 2012). 《《新理解矩阵3》：行列式的点滴 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1770%EF%BC%9A">https://spaces.ac.cn/archives/1770：</a></p>
+<blockquote>
+<p>行列式的出现其实是为了判断一个矩阵是否可逆的，它通过某些方式构造出一个“相对简单”的函数来达到这个目的……<br>
+……矩阵可逆意味着什么呢？之前已经提到过，矩阵是从一个点到另外一个点的变换，那么逆矩阵很显然就是为了把它变换回来。我们还说过，“运动是相对的”，点的变换又可以用坐标系的变换来实现。<br>
+……一切坐标系都是平权的。那么给出一个坐标系，可以自然地变换到另外一个坐标系，也可以自然地将它变换回来。既然矩阵是这种坐标系的一个描述，那么矩阵不可逆的唯一可能性就是：</p>
+<p><strong>这个 $n$ 阶矩阵的 $n$ 个列向量根本就构不成一个 $n$ 维空间的坐标系。</strong></p>
+<p>$n$ 个向量可以构成一个坐标系就意味着这些向量不共面！<br>
+$n$ 个向量可以构成一个坐标系就意味着这些向量构成的一个 $n$ 维平行立体（联想我们的平行六面体）体积不为 $0$！</p>
+</blockquote>
+<p>这个能判断矩阵是否可逆的函数应满足如下性质：</p>
+<ul>
+<li>$\textrm{det}(\cdot)$ 应是矩阵的每个列向量的函数，即对于 $\boldsymbol{A} &#x3D; [\boldsymbol{a}_1, \boldsymbol{a}_2, \cdots, \boldsymbol{a}_n]$，有 $\textrm{det}(\boldsymbol{A}) &#x3D; f(\boldsymbol{a}_1, \cdots, \boldsymbol{a}_n)$；</li>
+<li>$\textrm{det}(\cdot)$ 应是线性的，即对于 $\boldsymbol{A} &#x3D; [\boldsymbol{a}_1, \boldsymbol{a}_2, \cdots, \boldsymbol{a}_n]$，有
+<ul>
+<li>$\textrm{det}(\boldsymbol{A}&#39;) &#x3D; \textrm{det}([\boldsymbol{a}_1, \cdots, k\boldsymbol{a}_i, \cdots, \boldsymbol{a}_n]) &#x3D; k \cdot \textrm{det}([\boldsymbol{a}_1, \cdots, \boldsymbol{a}_i, \cdots, \boldsymbol{a}_n]) &#x3D; k \cdot \textrm{det}(\boldsymbol{A})$</li>
+<li>$\textrm{det}([\boldsymbol{a}_1, \cdots, \boldsymbol{z}_i, \cdots, \boldsymbol{a}_n]) &#x3D; \textrm{det}([\boldsymbol{a}_1, \cdots, \boldsymbol{x}_i, \cdots, \boldsymbol{a}_n]) + \textrm{det}([\boldsymbol{a}_1, \cdots, \boldsymbol{y}_i, \cdots, \boldsymbol{a}_n])$，其中 $\boldsymbol{z}_i &#x3D; \boldsymbol{x}_i + \boldsymbol{y}_i$</li>
+</ul>
+</li>
+<li>若有两列向量相同，则函数值为零，即 $\textrm{det}([\cdots, \boldsymbol{x}, \cdots, \boldsymbol{x}, \cdots]) &#x3D; 0$；</li>
+<li>$\textrm{det}(\boldsymbol{I}) &#x3D; 1$。</li>
+</ul>
+<p>上述性质可以唯一确定一条函数。而在第一卦限的 $n$ 维平行立体的体积满足如上性质，在所有卦限上，推广的体积概念（可以有负号）同样满足。因此，直观来讲，<strong>体积就是行列式。</strong></p>
+<p>苏剑林. (Oct. 16, 2018). 《再谈非方阵的行列式 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/6096%EF%BC%9A">https://spaces.ac.cn/archives/6096：</a></p>
+<blockquote>
+<p>$n$ 维方阵的行列式的绝对值，等于它的各个行（或列）向量所张成的 $n$ 维立体的超体积。</p>
+</blockquote>
+<ul>
+<li>交换矩阵的两行将行列式乘以 $-1$，即 $\textrm{det}(\cdots, \boldsymbol{a}_i, \cdots, \boldsymbol{a}_j, \cdots) &#x3D; -\textrm{det}(\cdots, \boldsymbol{a}_j, \cdots, \boldsymbol{a}_i, \cdots)$。</li>
+<li>如果矩阵是上三角矩阵或下三角矩阵，行列式等于对角线元素的乘积。对角矩阵既是上三角矩阵也是下三角矩阵。</li>
+<li>如果矩阵中有一行或一列全为零，行列式为零。</li>
+</ul>
+<h2 id="逆矩阵-列空间与零空间"><a class="markdownIt-Anchor" href="#逆矩阵-列空间与零空间"></a> 逆矩阵、列空间与零空间</h2>
+<p>线性方程组可通过矩阵与向量的乘法来表达。考虑一个线性方程组 $\boldsymbol{A}\vec{\mathbf{x}} &#x3D; \vec{\mathbf{v}}$：</p>
+<ul>
+<li>如果 $\textrm{det}(\boldsymbol{A}) \neq 0$，即 $\boldsymbol{A}$ 可逆，则存在唯一解 $\vec{\mathbf{x}} &#x3D; \boldsymbol{A}^{-1}\vec{\mathbf{v}}$。</li>
+<li>如果 $\textrm{det}(\boldsymbol{A}) &#x3D; 0$，即 $\boldsymbol{A}$ 不可逆，出现了降维，则可能有无穷多解或无解。<br>
+$\boldsymbol{A}$ 的各个列表示变换后的基向量，这些基向量（列向量）张成的空间称作 <strong>列空间</strong>，换言之变换后的空间就是列空间。此时 $\boldsymbol{A}$ 变换后的空间维数降低，也就是说，$\boldsymbol{A}$ 的列空间是一个低维子空间。
+<ul>
+<li>无穷多解的情况发生在 $\vec{\mathbf{v}}$ 位于 $\boldsymbol{A}$ 的列空间时。</li>
+<li>无解的情况发生在 $\vec{\mathbf{v}}$ 不位于 $\boldsymbol{A}$ 的列空间内时。此时 $\vec{\mathbf{v}}$ 的某些维度是 $\boldsymbol{A}$ 的列向量无法张成的，也就是说 $\vec{\mathbf{v}}$ 无法通过 $\boldsymbol{A}$ 的列向量线性组合得到，因此不存在解 $\vec{\mathbf{x}}$。</li>
+</ul>
+</li>
+</ul>
+<p>我们记 <strong>列空间的维数</strong> 为矩阵的 <strong>秩（rank）</strong>，若 $\boldsymbol{A}$ 变换后空间维数为 $r$，则 $\textrm{rank}(\boldsymbol{A}) &#x3D; r$。<br>
+对于一个 $n \times n$ 的方阵 $\boldsymbol{A}$：</p>
+<ul>
+<li>若 $\textrm{rank}(\boldsymbol{A}) &#x3D; n$，即变换后的空间维数为 $n$，此时矩阵可逆，秩达到了最大值，与列数相等，我们称该矩阵为 <strong>满秩矩阵</strong>。</li>
+<li>若 $\textrm{rank}(\boldsymbol{A}) &#x3D; n - k$，即变换后的空间维数为 $n-k$，此时矩阵不可逆，$\boldsymbol{A}$ 的列向量中有 $k$ 个向量是多余的（线性相关），可以被其他向量线性组合表示出来。</li>
+</ul>
+<blockquote>
+<p>矩阵 $\boldsymbol{A}$ 可逆<br>
+$\Leftrightarrow$ $\textrm{det}(\boldsymbol{A}) \neq 0$ （变换后体积不为零）<br>
+$\Leftrightarrow$ $\textrm{rank}(\boldsymbol{A}) &#x3D; n$ （没有降维）<br>
+$\Leftrightarrow$ $\boldsymbol{A}$ 的列向量线性无关<br>
+$\Leftrightarrow$ 齐次线性方程组 $\boldsymbol{A}\vec{\mathbf{x}} &#x3D; \vec{\mathbf{0}}$ 只有零解<br>
+$\Leftrightarrow$ 非齐次线性方程组 $\boldsymbol{A}\vec{\mathbf{x}} &#x3D; \vec{\mathbf{v}}$ 有唯一解<br>
+$\Leftrightarrow$ $\boldsymbol{A}$ 的特征值均非零。</p>
+</blockquote>
+<p>非满秩矩阵将空间压缩到更低的维度上，此时会有一系列向量 $\vec{\mathbf{z}}$，使得 $\boldsymbol{A}\vec{\mathbf{z}} &#x3D; \vec{\mathbf{0}}$，即这些向量在 $\boldsymbol{A}$ 变换后都映射到零向量 $\vec{\mathbf{0}} &#x3D; [0, 0, \cdots, 0]^T$ 上，也就是落在了原点。<br>
+变换后落在原点的向量的集合称作矩阵的 <strong>零空间（null space）</strong> 或 <strong>核（kernel）</strong>。<br>
+$\boldsymbol{A}\vec{\mathbf{x}} &#x3D; \vec{\mathbf{0}}$ 就是一个齐次线性方程组，显然 $\boldsymbol{A}$ 的零空间是齐次线性方程组的一组解空间（零解）。这样，我们还可以将矩阵的零空间类比为函数的零点（$f(x)&#x3D;0$）。</p>
+<h2 id="点积与对偶性"><a class="markdownIt-Anchor" href="#点积与对偶性"></a> 点积与对偶性</h2>
+<p>点积：</p>
+<p>$$\boldsymbol{a} \cdot \boldsymbol{b} &#x3D; \|\boldsymbol{a}\| \|\boldsymbol{b}\| \cos\theta &#x3D; a_1b_1 + a_2b_2 + \cdots + a_nb_n
+$$</p><ul>
+<li>点积的几何意义：向量 $\boldsymbol{a}$ 在 $\boldsymbol{b}$ 方向上的投影长度与 $\boldsymbol{b}$ 长度的乘积。</li>
+<li>余弦相似度 $\text{cosine similarity}$：</li>
+</ul>
+<p>$$\text{cosine similarity} &#x3D; \frac{\boldsymbol{a} \cdot \boldsymbol{b}}{\|\boldsymbol{a}\| \|\boldsymbol{b}\|} &#x3D; \cos\theta
+$$</p><ul>
+<li>将二维向量转置，可以将点积看作矩阵乘法：<p>$$\boldsymbol{a} \cdot \boldsymbol{b} &#x3D; \boldsymbol{a}^T \boldsymbol{b} &#x3D; \left[\begin{matrix}a_1 &amp; a_2 &amp; \cdots &amp; a_n\end{matrix}\right] \left[\begin{matrix}b_1 \\ b_2 \\ \vdots \\ b_n\end{matrix}\right] &#x3D; a_1b_1 + a_2b_2 + \cdots + a_nb_n
+$$</p>从几何角度看，将其中一个向量看作 $1 \times n$ 的矩阵（线性变换），点积就是通过该线性变换将空间降至一维，而另外一个向量被投影到这个一维的数轴上。</li>
+</ul>
+<p>这里可以体现出 <strong>对偶性(duality)</strong> 的思想：一个将多维空间映射到一维空间（数轴）的线性变换，对应着多维空间中的唯一一个向量。这个向量称为该变换的 <strong>对偶向量</strong>。<br>
+因此，应用一个从高维空间到数轴的变换 $\equiv$ 与表述该变换的对偶向量做点积。$\boldsymbol{a} \cdot \boldsymbol{b} &#x3D; \boldsymbol{a}^T \boldsymbol{b}$</p>
+<h2 id="叉积与对偶性"><a class="markdownIt-Anchor" href="#叉积与对偶性"></a> 叉积与对偶性</h2>
+<p>向量的叉积（cross product）表示两个向量所张成的平行四边形的面积，并且结果是一个向量，方向垂直于这两个向量所在的平面。</p>
+<p>$$\boldsymbol{a} \times \boldsymbol{b} &#x3D; \|\boldsymbol{a}\| \|\boldsymbol{b}\| \sin\theta \, \boldsymbol{n}
+$$</p><p>其中 $\boldsymbol{n}$ 是垂直于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 的单位向量，方向由右手定则确定。</p>
+<p>显然，叉积的标量值可以由行列式计算（此处为非严格定义；矩阵与其转置的行列式相等）：</p>
+<p>$$\boldsymbol{a} \times \boldsymbol{b} &#x3D; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{a} &amp; \boldsymbol{b}\end{matrix}\right]\right) &#x3D; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{a}^T \\ \boldsymbol{b}^T\end{matrix}\right]\right)
+$$</p><p>直观理解，将这两个向量看作基向量，基向量张成的平行四边形的面积，比上标准坐标系下的单位面积，就是这两个基向量代表的线性变换对面积的缩放比例，即由基向量构成的矩阵的行列式。</p>
+<p>真正的叉积定义为：</p>
+<p>$$\boldsymbol{a} \times \boldsymbol{b} &#x3D; \left|\begin{matrix}
+\boldsymbol{i} &amp; \boldsymbol{j} &amp; \boldsymbol{k} \\
+a_1 &amp; a_2 &amp; a_3 \\
+b_1 &amp; b_2 &amp; b_3
+\end{matrix}\right| &#x3D; \begin{aligned} \boldsymbol{i}({\color{orange}a_2} \cdot {\color{blue}b_3} - {\color{orange}a_3} \cdot {\color{blue}b_2}) &amp; + \\ \boldsymbol{j}({\color{orange}a_3} \cdot {\color{blue}b_1} - {\color{orange}a_1} \cdot {\color{blue}b_3}) &amp; + \\ \boldsymbol{k}({\color{orange}a_1} \cdot {\color{blue}b_2} - {\color{orange}a_2} \cdot {\color{blue}b_1})&amp; \end{aligned} &#x3D; \left[\begin{matrix}a_2b_3 - a_3b_2 \\ a_3b_1 - a_1b_3 \\ a_1b_2 - a_2b_1\end{matrix}\right]
+$$</p><ul>
+<li>叉积只在三维空间中定义。</li>
+</ul>
+<p>通常，我们可以根据这个定义来计算叉积结果的大小和方向，但是如何从几何上理解，大小和方向的结果是这样的呢？</p>
+<hr>
+<p>上一节中，我们提到了一个对偶性的情形：<strong>应用线性变换等价于与对偶向量做点积</strong>。现在我们尝试将这个对偶性的思想推广到叉积：我们希望找到一个将三维空间映射到一维空间的线性变换，其对偶向量就是叉积的结果向量。</p>
+<p>现在先考虑如下函数：</p>
+<p>$$f\left(\left[\begin{matrix}x \\ y \\ z\end{matrix}\right]\right) &#x3D; \textrm{det}\left(\left[\begin{matrix}x &amp; a_1 &amp; b_1\\ y &amp; a_2 &amp; b_2\\ z &amp; a_3 &amp; b_3\end{matrix}\right]\right)
+$$</p><p>该函数是线性的，因此该函数所代表的线性变换，可通过与一个 $1 \times 3$ 的特殊矩阵 $\boldsymbol{p}$ 相乘来表示：</p>
+<p>$$f\left(\left[\begin{matrix}x \\ y \\ z\end{matrix}\right]\right) &#x3D; \overbrace{\left[\begin{matrix}p_1 &amp; p_2 &amp; p_3\end{matrix}\right]}^{\boldsymbol{p}^T} \left[\begin{matrix}x \\ y \\ z\end{matrix}\right]
+$$</p><p>然后，根据对偶性，我们可以将这个矩阵乘法（降维的线性变换）看作向量的点积（<em>等式 1</em>）：</p>
+<p>$$\overbrace{\left[\begin{matrix}p_1 &amp; p_2 &amp; p_3\end{matrix}\right]}^{\boldsymbol{p}^T} \left[\begin{matrix}x \\ y \\ z\end{matrix}\right] &#x3D; \overbrace{\left[\begin{matrix}p_1 \\ p_2 \\ p_3\end{matrix}\right]}^{\boldsymbol{p}} \cdot \left[\begin{matrix}x \\ y \\ z\end{matrix}\right] &#x3D; \textrm{det}\left(\left[\begin{matrix}x &amp; a_1 &amp; b_1\\ y &amp; a_2 &amp; b_2\\ z &amp; a_3 &amp; b_3\end{matrix}\right]\right)
+$$</p><p>现在有：</p>
+<p>$${\color{red}p_1} \cdot x + {\color{red}p_2} \cdot y + {\color{red}p_3} \cdot z &#x3D; \begin{aligned} x({\color{orange}a_2} \cdot {\color{blue}b_3} - {\color{orange}a_3} \cdot {\color{blue}b_2}) &amp; + \\ y({\color{orange}a_3} \cdot {\color{blue}b_1} - {\color{orange}a_1} \cdot {\color{blue}b_3}) &amp; + \\ z({\color{orange}a_1} \cdot {\color{blue}b_2} - {\color{orange}a_2} \cdot {\color{blue}b_1})&amp; \end{aligned}
+$$</p><p>从而可以得到 $\boldsymbol{p}$ 的各个分量。此时可以发现，$\boldsymbol{p}$ 就是 $\boldsymbol{a} \times \boldsymbol{b}$ 所表示的变换：</p>
+<p>$$\boldsymbol{p} &#x3D; \left[\begin{matrix}p_1 \\ p_2 \\ p_3\end{matrix}\right] &#x3D; \left[\begin{matrix}a_2b_3 - a_3b_2 \\ a_3b_1 - a_1b_3 \\ a_1b_2 - a_2b_1\end{matrix}\right] &#x3D; \boldsymbol{a} \times \boldsymbol{b}
+$$</p><p>要想找到这样一个可以满足 $\boldsymbol{p} &#x3D; \boldsymbol{a} \times \boldsymbol{b}$ 的对偶向量 $\boldsymbol{p}$，我们需要满足 <em>等式 1</em>：</p>
+<ul>
+<li>对 <strong>任意一个</strong> $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$ 与 $\boldsymbol{p}$ 的点积，</li>
+<li>恒等于由 $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$、$\boldsymbol{a}$ 和 $\boldsymbol{b}$ 三个向量组成的矩阵的行列式。</li>
+</ul>
+<p>进一步推理就是：</p>
+<ul>
+<li>任意一个 $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$ 投影到 $\boldsymbol{p}$ 方向上的长度与 $\boldsymbol{p}$ 长度的乘积，</li>
+<li>恒等于该 $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$、$\boldsymbol{a}$ 和 $\boldsymbol{b}$ 三个向量张成的平行六面体的体积。</li>
+</ul>
+<p>再推：</p>
+<ul>
+<li>任意一个 $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$ 投影到 $\boldsymbol{p}$ 方向上的长度，与 $\boldsymbol{p}$ 长度的乘积，</li>
+<li>恒等于该 $\left[\begin{matrix}x &amp; y &amp; z\end{matrix}\right]^T$ 投影到垂直于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 的方向上的长度，与 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 张成的平行四边形面积的乘积。</li>
+</ul>
+<p>因此，我们要找的 $\boldsymbol{p}$，正是垂直于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 张成的平行四边形的向量，并且其长度等于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 张成的平行四边形的面积。<br>
+在方向也正确的情况下，这个 $\boldsymbol{p}$ 就可以满足 $\boldsymbol{p} &#x3D; \boldsymbol{a} \times \boldsymbol{b}$。</p>
+<p>上述内容总结而言：</p>
+<ul>
+<li>我们希望找出一个自变量为 $3 \times 1$ 向量的函数 $f(\boldsymbol{x}) &#x3D; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{x} &amp; \boldsymbol{a} &amp; \boldsymbol{b}\end{matrix}\right]\right)$，发现该函数是一个线性函数。</li>
+<li>此时目标转化为，找出一个 $1 \times 3$ 的矩阵（线性变换） $\boldsymbol{p}^T$，使得该函数可以表示为 $\boldsymbol{p}^T \boldsymbol{x}$。根据对偶性知，$\boldsymbol{p}^T \boldsymbol{x} &#x3D; \boldsymbol{p} \cdot \boldsymbol{x}$。</li>
+<li>现在展开式子 $\boldsymbol{p} \cdot \boldsymbol{x} &#x3D; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{x} &amp; \boldsymbol{a} &amp; \boldsymbol{b}\end{matrix}\right]\right)$，可以发现 $\boldsymbol{p}$ 的各个分量正好是 $\boldsymbol{a} \times \boldsymbol{b}$ 的结果。也就是说，对偶向量 $\boldsymbol{p} &#x3D; \boldsymbol{a} \times \boldsymbol{b}$。</li>
+<li>再通过几何角度理解式子 $\boldsymbol{p} \cdot \boldsymbol{x} &#x3D; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{x} &amp; \boldsymbol{a} &amp; \boldsymbol{b}\end{matrix}\right]\right)$，可以发现 $\boldsymbol{p}$ 的方向垂直于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 张成的平面，并且其长度等于 $\boldsymbol{a}$ 和 $\boldsymbol{b}$ 张成的平行四边形的面积。这样我们就找到了这个线性变换及其对偶向量。</li>
+</ul>
+<h2 id="特征向量-特征值-对角化"><a class="markdownIt-Anchor" href="#特征向量-特征值-对角化"></a> 特征向量、特征值、对角化</h2>
+<p>对于一个线性变换，我们关注它对一个特定向量的作用，考虑该向量张成的空间，即一条经过原点和向量尖端的直线。<br>
+大部分向量在变换后离开了其张成的空间，或多或少发生了旋转，但有一些向量在变换后仍然位于其张成的空间上，仅仅在大小上发生了变化，这些向量称为该变换的 <strong>特征向量（eigenvector）</strong>，每个特征向量在变换中大小变化的比例称为 <strong>特征值（eigenvalue）</strong>：</p>
+<p>$$\boldsymbol{A}\boldsymbol{v} &#x3D; \lambda \boldsymbol{v}
+$$</p><p>其中 $\boldsymbol{A}$ 是线性变换，$\boldsymbol{v}$ 是特征向量，$\lambda$ 是对应的特征值。<br>
+很显然，由于矩阵并没有改变特征向量的方向（不包括反向），只改变了大小，才会导致矩阵×特征向量=特征值×特征向量。反向后的向量仍在其张成的空间上，特征值也可以为负。</p>
+<p>考虑一个旋转变换，如果能找到旋转的特征向量，那么找到的就是旋转轴。旋转变换的特征值为 $1$，因为旋转并没有改变旋转轴上向量的长度。</p>
+<p>上面的等式可以改写为：</p>
+<p>$$(\boldsymbol{A} - \lambda \boldsymbol{I})\boldsymbol{v} &#x3D; \boldsymbol{0}
+$$</p><p>此时 $\boldsymbol{v}$ 是齐次线性方程组的解。为了使该方程组还有非零解，必须使得 $\boldsymbol{A} - \lambda \boldsymbol{I}$ 所代表的变换降维 / 行列式为零，这样才会存在非零向量，使得矩阵与该向量乘积为零向量。因此，我们可以通过求解如下 <strong>特征方程</strong> 来得到特征值，进而求得特征向量：</p>
+<p>$$\textrm{det}(\boldsymbol{A} - \lambda \boldsymbol{I}) &#x3D; 0
+$$</p><hr>
+<p>若一个线性变换可由对角矩阵 $\displaystyle \boldsymbol{\Lambda} &#x3D; \left[\begin{matrix}\lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_n\end{matrix}\right]$ 来表示，<br>
+那么它的作用是对每个坐标轴进行独立的缩放，而不改变坐标轴的方向。</p>
+<p>因此，对于标准基向量 $\mathbf{e}_i$（其中第 $i$ 个分量为 $1$，其余为 $0$），我们有：$\boldsymbol{\Lambda} \mathbf{e}_i &#x3D; \lambda_i \mathbf{e}_i$。换言之，每个标准基向量 $\mathbf{e}_i$ 都是对角矩阵的特征向量，对应的特征值分别为 $\lambda_i$。<br>
+当然，标准基向量的任意标量倍也是对角矩阵的特征向量，该对角矩阵的各个列向量（基向量）也是其特征向量。</p>
+<p>计算对角矩阵的高次幂较为简单。</p>
+<hr>
+<p>若变换 $\boldsymbol{A}$ 的特征向量足够多到可以张成整个空间，则将其特征向量作为基向量，构造一个新的变换 $\boldsymbol{P}$，称其为基变换矩阵（change of basis matrix），该矩阵显然可逆。此时有：</p>
+<p>$$\boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{P} &#x3D; \boldsymbol{\Lambda}
+$$</p><p>其中 $\boldsymbol{\Lambda}$ 是一个对角矩阵，对角线上的元素为各个特征值。这个过程称为 <strong>对角化（diagonalization）</strong>。</p>
+<ul>
+<li>为什么 $\boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{P}$ 之后的结果是对角矩阵呢？<br>
+因为 $\boldsymbol{P}$ 的基向量是 $\boldsymbol{A}$ 的特征向量，$\boldsymbol{A}$ 变换作用在 $\boldsymbol{P}$ 坐标系的基向量上时，仅仅是缩放了这些列向量，而没有改变它们的方向，因此 $\boldsymbol{A}\boldsymbol{P}$ 的结果仍然是 $\boldsymbol{P}$ 的列向量的线性组合，只不过每个列向量被缩放了相应的特征值。再乘以 $\boldsymbol{P}^{-1}$，相当于将结果重新映射回标准坐标系下，不过每个基向量仍是仅被其对应的特征值缩放，因此结果是一个对角矩阵。</li>
+<li>数学解释在这里可能更直观一点：<br>
+考虑矩阵乘法 $\boldsymbol{A} \boldsymbol{P}$：<br>
+$\boldsymbol{A} \boldsymbol{P} &#x3D; \boldsymbol{A} \begin{bmatrix} \boldsymbol{v}_1 &amp; \boldsymbol{v}_2 &amp; \cdots &amp; \boldsymbol{v}_n \end{bmatrix} &#x3D; \begin{bmatrix} \boldsymbol{A} \boldsymbol{v}_1 &amp; \boldsymbol{A} \boldsymbol{v}_2 &amp; \cdots &amp; \boldsymbol{A} \boldsymbol{v}_n \end{bmatrix} &#x3D; \begin{bmatrix} \lambda_1 \boldsymbol{v}_1 &amp; \lambda_2 \boldsymbol{v}_2 &amp; \cdots &amp; \lambda_n \boldsymbol{v}_n \end{bmatrix}$<br>
+这可以写成：<br>
+$\boldsymbol{A} \boldsymbol{P} &#x3D; \begin{bmatrix} \boldsymbol{v}_1 &amp; \boldsymbol{v}_2 &amp; \cdots &amp; \boldsymbol{v}_n \end{bmatrix} \begin{bmatrix} \lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_n \end{bmatrix} &#x3D; \boldsymbol{P} \boldsymbol{\Lambda}$<br>
+两边再左乘 $\boldsymbol{P}^{-1}$，得到 $\boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{P} &#x3D; \boldsymbol{\Lambda}$。</li>
+<li>上式表明，$\boldsymbol{A}$ 和 $\boldsymbol{\Lambda}$ 是相似矩阵。</li>
+<li>并非所有矩阵都可以对角化。对角化的条件是矩阵必须有 $n$ 个线性无关的特征向量（对于 $n \times n$ 的方阵）。</li>
+<li>应用：若要计算某个矩阵的高次幂，可以先对角化，然后计算对角矩阵的高次幂，最后再变换回原坐标系：$\boldsymbol{A}^n &#x3D; \boldsymbol{P} \boldsymbol{\Lambda}^n \boldsymbol{P}^{-1}$<br>
+参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/356536588">2016 年数一 21 题</a></li>
+</ul>
+<h2 id="抽象向量空间"><a class="markdownIt-Anchor" href="#抽象向量空间"></a> 抽象向量空间</h2>
+<p>线性的严格定义：</p>
+<ul>
+<li>可加性（additivity）：$L(\boldsymbol{u} + \boldsymbol{v}) &#x3D; L(\boldsymbol{u}) + L(\boldsymbol{v})$</li>
+<li>成比例（scaling）：$L(c\boldsymbol{u}) &#x3D; cL(\boldsymbol{u})$<br>
+换言之，线性变换保持向量加法和数乘。</li>
+</ul>
+<p>函数空间中的函数可以看作无穷维向量。微分算子 $\boldsymbol{D} &#x3D; \frac{d}{dx}$ 是一个线性变换。现在我们尝试用矩阵来描述求导：</p>
+<ul>
+<li>先将空间局限在全体多项式上，要为这个空间赋予坐标的含义，需要选定一组基向量。<br>
+我们可以选择 $x$ 的不同次幂 $\{1, x, x^2, x^3, \cdots\}$ 作为基向量集合。<br>
+此时的坐标系可以看做是无限维的标准坐标系 $\boldsymbol{I}$（单位矩阵），$x^n$ 对应第 $n+1$ 条列向量 $\boldsymbol{I}_{:, n+1} &#x3D; b_n(x) &#x3D; x^n &#x3D; [0, \cdots, \overbrace{1}^{\textrm{Row }n+1}, \cdots]^T, n &#x3D; 0, 1, 2, \ldots$。</li>
+<li>对任意的多项式 $f(x) &#x3D; a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$，其系数向量为 $\boldsymbol{f} &#x3D; [a_0, a_1, a_2, a_3, \cdots]^T$。此时显然有 $f(x) &#x3D; \boldsymbol{I} \boldsymbol{f}$。</li>
+<li>在该坐标系中，求导可用一个无限维矩阵 $\boldsymbol{D}$ 来表示，其中绝大部分元素为 $0$，但在次对角线上按序排列正整数：<p>$$\boldsymbol{D} &#x3D; \frac{d}{dx} &#x3D; \begin{bmatrix}
+0 &amp; {\color{red} 1} &amp; 0 &amp; 0  &amp; \cdots \\
+0 &amp; 0 &amp; {\color{red} 2} &amp; 0  &amp; \cdots \\
+0 &amp; 0 &amp; 0 &amp; {\color{red} 3}  &amp; \cdots \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots
+\end{bmatrix}
+\Rightarrow \frac{df(x)}{dx}  &#x3D; \boldsymbol{D} \boldsymbol{f} &#x3D; \begin{bmatrix}
+0 &amp; {\color{red} 1} &amp; 0 &amp; 0  &amp; \cdots \\
+0 &amp; 0 &amp; {\color{red} 2} &amp; 0  &amp; \cdots \\
+0 &amp; 0 &amp; 0 &amp; {\color{red} 3}  &amp; \cdots \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots
+\end{bmatrix} \begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \vdots \end{bmatrix}
+$$</p>可以看到 $\boldsymbol{D}$ 的 $n$ 行 $n+1$ 列元素 $D_{n, n+1} &#x3D; n$，其余元素为 $0$。$\boldsymbol{D}$ 为什么是这个样子的呢？</li>
+<li>对于基函数（基向量 $\boldsymbol{I}_{:, n+1}$）：$b_n(x) &#x3D; x^n &#x3D; [0, \cdots, \overbrace{1}^{\textrm{Row }n+1}, \cdots]^T, n &#x3D; 0, 1, 2, \ldots$，有：<p>$$\frac{d}{dx}b_n(x) &#x3D; \frac{d}{dx}x^n &#x3D; n x^{n-1} &#x3D; [0, \cdots, {\overbrace{\color{red} n}^{\color{red}{\textrm{Row }}\color{red} n}}, \cdots]^T,\;\frac{d}{dx}b_0(x) &#x3D; [0, 0, 0, \cdots]^T 
+$$</p>该向量是基向量经求导变换 $\boldsymbol{D}$ 后得到的新的基向量，在矩阵中的位置和原来的基向量一致，简单来说矩阵的列就是变换后的基向量，因此 $\frac{d}{dx}b_n(x)$ 为 $\boldsymbol{D}$ 的第 $n+1$ 列。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>线性代数中的概念</th>
+<th>应用于函数时的别名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性变换</td>
+<td>线性算子（linear operator）</td>
+</tr>
+<tr>
+<td>点积</td>
+<td>内积（inner product）</td>
+</tr>
+<tr>
+<td>特征向量</td>
+<td>特征函数（eigenfunction）</td>
+</tr>
+</tbody>
+</table>
+<p>向量加法和数乘的公理（axioms）：</p>
+<ul>
+<li>加法结合律：$\boldsymbol{u} + (\boldsymbol{v} + \boldsymbol{w}) &#x3D; (\boldsymbol{u} + \boldsymbol{v}) + \boldsymbol{w}$</li>
+<li>加法交换律：$\boldsymbol{u} + \boldsymbol{v} &#x3D; \boldsymbol{v} + \boldsymbol{u}$</li>
+<li>加法零元：存在零向量 $\boldsymbol{0}$，使得 $\boldsymbol{u} + \boldsymbol{0} &#x3D; \boldsymbol{u}$</li>
+<li>加法逆元：对于任意向量 $\boldsymbol{u}$，存在一个向量 $-\boldsymbol{u}$，使得 $\boldsymbol{u} + (-\boldsymbol{u}) &#x3D; \boldsymbol{0}$</li>
+<li>数乘结合律：$a(b\boldsymbol{u}) &#x3D; (ab)\boldsymbol{u}$</li>
+<li>数乘分配律（1）：$a(\boldsymbol{u} + \boldsymbol{v}) &#x3D; a\boldsymbol{u} + a\boldsymbol{v}$</li>
+<li>数乘分配律（2）：$(a + b)\boldsymbol{u} &#x3D; a\boldsymbol{u} + b\boldsymbol{u}$</li>
+<li>数乘单位元：$1\boldsymbol{u} &#x3D; \boldsymbol{u}$</li>
+</ul>
+<p>矢量、数列、函数等的集合，遵循着上述公理，对其进行抽象，就构成了一个 <strong>向量空间</strong>。<br>
+一个抽象向量空间，包含两个组成部分：</p>
+<ul>
+<li>向量的集合，但是其中的向量可以是任何东西：函数、多项式、矩阵，甚至物理信号等。</li>
+<li>定义在这些向量上的加法和数乘运算。</li>
+</ul>
+<h2 id="克莱姆法则-正交-行列式"><a class="markdownIt-Anchor" href="#克莱姆法则-正交-行列式"></a> 克莱姆法则、正交、行列式</h2>
+<p>行列式和特征向量与所选坐标系无关：</p>
+<ul>
+<li>行列式表示线性变换对空间体积的缩放比例；<p>$$\det(\boldsymbol{A}&#39;) &#x3D; \det(\boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{P}) &#x3D; \det(\boldsymbol{P}^{-1}) \det(\boldsymbol{A}) \det(\boldsymbol{P}) &#x3D; \frac{1}{\det(\boldsymbol{P})} \det(\boldsymbol{A}) \det(\boldsymbol{P}) &#x3D; \det(\boldsymbol{A})
+$$</p></li>
+<li>特征向量表示线性变换中在留在其自身所张成的空间中的向量。<p>$$\boldsymbol{A}&#39; \boldsymbol{v}&#39; &#x3D; (\boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{P}) (\boldsymbol{P}^{-1} \boldsymbol{v}) &#x3D; \boldsymbol{P}^{-1} \boldsymbol{A} \boldsymbol{v} &#x3D; \boldsymbol{P}^{-1} (\lambda \boldsymbol{v}) &#x3D; \lambda (\boldsymbol{P}^{-1} \boldsymbol{v}) &#x3D; \lambda \boldsymbol{v}&#39;
+$$</p></li>
+</ul>
+<hr>
+<p>克莱姆法则和高斯消元法是解线性方程组的两种方法。对于如下方程组 $\boldsymbol{Ax} &#x3D; \boldsymbol{b}$：</p>
+<p>$$\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &#x3D; b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &#x3D; b_2 \\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n &#x3D; b_n
+\end{cases}
+\Rightarrow
+\overbrace{\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}
+\end{bmatrix}}^{\boldsymbol{A}}
+\overbrace{\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}}^{\boldsymbol{x}} &#x3D; \overbrace{\begin{bmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{bmatrix}}^{\boldsymbol{b}}
+$$</p><p>目前只讨论 $\textrm{det}(\boldsymbol{A}) \ne 0$，即线性变换后维数保持不变的情况，此时该变换的输入输出一一对应，方程组有唯一解。</p>
+<hr>
+<p>在 $\boldsymbol{A}$ 为 <strong>规范正交矩阵（orthonormal matrix）</strong> 的情况下，$\boldsymbol{A}$ 只进行旋转，没有拉伸、压缩或变形。<br>
+正交（orthogonal）矩阵是指其转置矩阵等于其逆矩阵的方阵。规范正交矩阵是特殊的正交矩阵，其列向量是单位向量且两两正交。<br>
+例如，二维空间中的旋转矩阵 $\boldsymbol{R} &#x3D; \begin{bmatrix}\cos \theta &amp; -\sin \theta \\\sin \theta &amp; \cos \theta\end{bmatrix}$ 就是一个规范正交矩阵。</p>
+<p>对于大多数线性变换而言，点积并不保持不变，因此我们无法通过点积来求解 $\boldsymbol{Ax} &#x3D; \boldsymbol{b}$。<br>
+而那些保持点积不变的线性变换，就是规范正交矩阵，可以使基向量仍然是单位向量且两两正交。<br>
+i.e. If $\boldsymbol{T}\boldsymbol{v} \cdot \boldsymbol{T}\boldsymbol{w} &#x3D; \boldsymbol{v} \cdot \boldsymbol{w}$ for all vectors $\boldsymbol{v}$ and $\boldsymbol{w}$, then $\boldsymbol{T}$ is orthonormal.</p>
+<p>因此，在 $\boldsymbol{A}$ 为规范正交矩阵的情况下，可以通过点积来求解 $\boldsymbol{Ax} &#x3D; \boldsymbol{b}$：<br>
+对于正交变换 $\boldsymbol{A}$，其已知的输出向量和矩阵列向量的点积，等于未知的输入向量和变换前的基向量的点积。<br>
+原因是，变换前后基向量和输入输出向量长度不变，且输出向量和变换后基向量的夹角等于输入向量和变换前基向量的夹角。</p>
+<p>此时，$\boldsymbol{x}$ 的坐标就是 $\boldsymbol{b}$ 与 $\boldsymbol{A}$ 的列向量的点积（即在各个列向量上的投影）：$x_i &#x3D; \boldsymbol{b} \cdot \boldsymbol{A}_{:, i}$</p>
+<hr>
+<p>根据上面这种特殊情况的启发，我们希望找到一种对输入向量坐标值的几何解释，使得其能在线性变换之后保持不变。——自然想到 <strong>行列式</strong>，毕竟行列式表示线性变换对空间体积的缩放比例，与坐标系无关。</p>
+<p>未知输入向量 $\boldsymbol{x}$ 与除了 $\boldsymbol{e}_i$ 之外的所有基向量张成的平行立体的（有向）体积，其值等于 $x_i$。<br>
+以三维为例，$\boldsymbol{x}$ 与 $\boldsymbol{e}_1$ 和 $\boldsymbol{e}_2$ 张成的平行六面体，其底面为 $1 \times 1$ 的正方形，高为 $x_3$，故体积为 $x_3$。数学表达如下：</p>
+<p>$$\textrm{det}\left(\left[\begin{matrix}\boldsymbol{e}_1 &amp; \boldsymbol{e}_2 &amp; \boldsymbol{x}\end{matrix}\right]\right) &#x3D; \textrm{det}\left(\left[\begin{matrix}1 &amp; 0 &amp; x_1 \\ 0 &amp; 1 &amp; x_2 \\ 0 &amp; 0 &amp; x_3\end{matrix}\right]\right) &#x3D; 1 \cdot 1 \cdot x_3 &#x3D; x_3
+$$</p><p>同理有：$\textrm{det}\left(\left[\begin{matrix}\boldsymbol{x} &amp; \boldsymbol{e}_2 &amp; \boldsymbol{e}_3\end{matrix}\right]\right) &#x3D; x_1,\; \textrm{det}\left(\left[\begin{matrix}\boldsymbol{e}_1 &amp; \boldsymbol{x} &amp; \boldsymbol{e}_3\end{matrix}\right]\right) &#x3D; x_2$</p>
+<p>此时，对于 $\boldsymbol{Ax} &#x3D; \boldsymbol{b}$，经历线性变换 $\boldsymbol{A}$ 后，$\boldsymbol{x}$ 与除了 $\boldsymbol{e}_i$ 之外的所有基向量张成的平行立体的体积，缩放了 $\textrm{det}(\boldsymbol{A})$ 倍，也就是说：新的体积 $&#x3D; \textrm{det}(\boldsymbol{A}) \cdot x_i$.<br>
+而新的体积又等于 $\boldsymbol{b}$ 与除了 $\boldsymbol{A}$ 的第 $i$ 列之外的所有列向量张成的平行立体的体积，因此有：</p>
+<p>$$x_i &#x3D; \frac{\textrm{New Area}}{\textrm{det}(\boldsymbol{A})} &#x3D; \frac{\textrm{det}\left(\left[\begin{matrix}\boldsymbol{A}_{:, 1} &amp; \cdots &amp; \boldsymbol{A}_{:, i-1} &amp; \boldsymbol{b} &amp; \boldsymbol{A}_{:, i+1} &amp; \cdots &amp; \boldsymbol{A}_{:, n}\end{matrix}\right]\right)}{\textrm{det}(\boldsymbol{A})}
+$$</p><p>即，将 $\boldsymbol{A}$ 的第 $i$ 列替换为 $\boldsymbol{b}$ 后的行列式，除以 $\textrm{det}(\boldsymbol{A})$，就得到 $\boldsymbol{x}$ 的第 $i$ 个分量。</p>
+<p>以二维空间为例，对方程组 $\left[\begin{matrix}a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}\end{matrix}\right] \left[\begin{matrix}x \\ y\end{matrix}\right] &#x3D; \left[\begin{matrix}b_1 \\ b_2\end{matrix}\right]$ 进行求解：</p>
+<p>$$y &#x3D; \frac{\textrm{det}\left(\left[\begin{matrix}\boldsymbol{A}_{:, 1} &amp; \boldsymbol{b}\end{matrix}\right]\right)}{\textrm{det}(\boldsymbol{A})} &#x3D; \frac{\textrm{det}\left(\left[\begin{matrix}a_{11} &amp; b_1 \\ a_{21} &amp; b_2\end{matrix}\right]\right)}{\textrm{det}\left(\left[\begin{matrix}a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}\end{matrix}\right]\right)} &#x3D; \frac{a_{11}b_2 - a_{21}b_1}{a_{11}a_{22} - a_{21}a_{12}}
+$$</p><p>$$x &#x3D; \frac{\textrm{det}\left(\left[\begin{matrix}\boldsymbol{b} &amp; \boldsymbol{A}_{:, 2}\end{matrix}\right]\right)}{\textrm{det}(\boldsymbol{A})} &#x3D; \frac{\textrm{det}\left(\left[\begin{matrix}b_1 &amp; a_{12} \\ b_2 &amp; a_{22}\end{matrix}\right]\right)}{\textrm{det}\left(\left[\begin{matrix}a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}\end{matrix}\right]\right)} &#x3D; \frac{b_1a_{22} - b_2a_{12}}{a_{11}a_{22} - a_{21}a_{12}}
+$$</p><p>这便是克莱姆法则（Cramer’s Rule）的内容。</p>
+<h2 id="参考资料与推荐阅读"><a class="markdownIt-Anchor" href="#参考资料与推荐阅读"></a> 参考资料与推荐阅读</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E">【官方双语/合集】线性代数的本质 - 系列合集</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1935115608074196190">苏剑林博客分类整理</a></li>
+<li>孟岩. 《理解矩阵》.</li>
+<li>苏剑林. (Oct. 31, 2012). 《《新理解矩阵2》：矩阵是什么？ 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1768">https://spaces.ac.cn/archives/1768</a></li>
+<li>苏剑林. (Nov. 04, 2012). 《《新理解矩阵3》：行列式的点滴 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1770">https://spaces.ac.cn/archives/1770</a></li>
+<li>苏剑林. (Nov. 11, 2012). 《《新理解矩阵4》：相似矩阵的那些事儿 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/1777">https://spaces.ac.cn/archives/1777</a></li>
+<li>苏剑林. (Dec. 25, 2013). 《《新理解矩阵5》：体积=行列式 》[Blog post]. Retrieved from <a target="_blank" rel="noopener" href="https://spaces.ac.cn/archives/2208">https://spaces.ac.cn/archives/2208</a></li>
+<li><a target="_blank" rel="noopener" href="https://textbooks.math.gatech.edu/ila/index.html">Interactive Linear Algebra</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/356536588">2016考研数学一真题及解析</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/445465637">学物理真能去二次元吗? / 如果你事线代, 也好</a></li>
+</ul>
+<h2 id="彩蛋"><a class="markdownIt-Anchor" href="#彩蛋"></a> 彩蛋</h2>
+<p><img src="cover-full.jpg" alt=""></p>
+<ul>
+<li>彩蛋图片：
+<ul>
+<li>作者：syuri22，pid: 132450</li>
+<li>来源：pixiv ID: 134315846</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>Recogeta @ Recogeta's Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/09/linalg-0/">https://r3c0ger.github.io/2025/09/linalg-0/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「从几何上直观理解线性代数」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-09-04 13:53:44</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-09-09 16:02:06</p>
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">赞助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+  <div class="sponsor-tip">~ 给灵梦的赛钱箱投个币吧 ~</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/alipay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/wechat.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/linear-algebra/" rel="tag">linear-algebra</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/maths/" rel="tag">maths</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap right">
+      
+        <img data-src="/2025/07/acatcoc-pentest-3/cover.png" data-sizes="auto" alt="网络空间实战攻防能力训练-渗透测试3" class="lazyload">
+      
+      <a href="/2025/07/acatcoc-pentest-3/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          网络空间实战攻防能力训练-渗透测试3
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Recogeta
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        64.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:26
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F-%E5%9F%BA-%E5%BC%A0%E6%88%90-%E7%A9%BA%E9%97%B4-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text"> 向量、基、张成、空间、线性相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2-%E7%9F%A9%E9%98%B5-%E5%9F%BA%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text"> 线性变换、矩阵、基变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text"> 矩阵乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5"><span class="toc-number">4.</span> <span class="toc-text"> 相似矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E5%86%85%E6%B6%B5%E4%B8%8E%E6%80%A7%E8%B4%A8"><span class="toc-number">5.</span> <span class="toc-text"> 行列式：内涵与性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5-%E5%88%97%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="toc-number">6.</span> <span class="toc-text"> 逆矩阵、列空间与零空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E7%A7%AF%E4%B8%8E%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text"> 点积与对偶性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%89%E7%A7%AF%E4%B8%8E%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text"> 叉积与对偶性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F-%E7%89%B9%E5%BE%81%E5%80%BC-%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="toc-number">9.</span> <span class="toc-text"> 特征向量、特征值、对角化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="toc-number">10.</span> <span class="toc-text"> 抽象向量空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E8%8E%B1%E5%A7%86%E6%B3%95%E5%88%99-%E6%AD%A3%E4%BA%A4-%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="toc-number">11.</span> <span class="toc-text"> 克莱姆法则、正交、行列式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E4%B8%8E%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">12.</span> <span class="toc-text"> 参考资料与推荐阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">13.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">29</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Recogeta",
+          title: "从几何上直观理解线性代数",
+          url: "https://r3c0ger.github.io/2025/09/linalg-0/",
+          excerpt: "重新认识线性代数",
+          description: "",
+          stripContent: "本文最初只作为 3B1B 视频的听课/读书笔记，因此对我而言过于基础的内容不会提及，细节也不会过多展开，有些地方自然会有些跳跃。但是我会尽量保持逻辑与思维的连贯性。本人学艺不精，欢迎各位大佬指正。  向量、基、张成、空间、线性相关 向量，从物理角度看是空间中的箭头，从计算机角度看是有序的数据列表。我们将这些事物抽象为数学中的向量。 The basis of a vector space is a set of linearly independent vectors that span the ",
+          date: "Thu Sep 04 2025 13:53:44 GMT+0800",
+          updated: "Tue Sep 09 2025 16:02:06 GMT+0800",
+          cover: "/2025/09/linalg-0/cover.jpg",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.6/dist/purify.min.js" integrity="sha384-JEyTNhjM6R1ElGoJns4U2Ln4ofPcqzSsynQkmEc&#x2F;KGy6336qAZl70tDLufbkla+3" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

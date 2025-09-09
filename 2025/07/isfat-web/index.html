@@ -78,7 +78,7 @@
 <meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/6-2.png">
 <meta property="og:image" content="https://r3c0ger.github.io/2025/07/isfat-web/cover.png">
 <meta property="article:published_time" content="2025-07-03T16:42:46.000Z">
-<meta property="article:modified_time" content="2025-07-13T03:13:07.199Z">
+<meta property="article:modified_time" content="2025-07-13T03:18:58.483Z">
 <meta property="article:author" content="Recogeta">
 <meta property="article:tag" content="cybersecurity">
 <meta property="article:tag" content="ctf">
@@ -234,9 +234,9 @@
       
         
         
-          <a href="/" id="logo">
+          <span id="logo">
             <h1 data-aos="slide-up">信息安全基础能力训练课程-Web实验</h1>
-          </a>
+          </span>
         
       
       
@@ -252,19 +252,21 @@
         <div id="content" class="sidebar-left"  >
           <aside id="sidebar">
   
+  <div class="sidebar-wrapper-container sticky">
   
+    
+    
   
-  <div class="sidebar-wrapper wrap-sticky">
+ 
+  <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
       
         
-          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -275,7 +277,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -355,8 +357,10 @@
       
     </div>
   </div>
-
+  
   <div class="sidebar-widget">
+  
+  </div>
   
   </div>
   
@@ -366,10 +370,11 @@
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
-  <span class="article-date-link" data-aos="zoom-in">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-07-03T16:42:46.000Z" itemprop="datePublished">2025-07-04</time>
     <time style="display: none;" id="post-update-time">2025-07-13</time>
   </span>
+  
 </div>
 
       
@@ -379,6 +384,7 @@
 
 
     </div>
+    
     <div class="hr-line"></div>
     
 
@@ -667,14 +673,14 @@
     <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/07/isfat-web/">https://r3c0ger.github.io/2025/07/isfat-web/</a></p>
     <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「信息安全基础能力训练课程-Web实验」</p>
     <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-07-04 00:42:46</p>
-    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:13:07</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-07-13 11:18:58</p>
     <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
     <span class="icon-creative-commons article-copyright-bg"></span>
   </blockquote>
       
       
         <div class="sponsor-wrapper">
-  <div class="sponsor-button-wrapper">
+  <div class="sponsor-button">
     <div class="sponsor-icon rotate"></div>
     <div class="sponsor-title">赞助</div>
     <div class="sponsor-icon rotate"></div>
@@ -715,7 +721,7 @@
   <nav id="article-nav" data-aos="fade-up">
     
       
-      <div class="article-nav-link-wrap article-nav-link-left">
+      <div class="article-nav-link-wrap left">
         
           <img data-src="/2025/07/isfat-linux/cover.png" data-sizes="auto" alt="信息安全基础能力训练课程-Linux实验" class="lazyload">
         
@@ -730,7 +736,7 @@
     
     
     
-    <div class="article-nav-link-wrap article-nav-link-right">
+    <div class="article-nav-link-wrap right">
       
         <img data-src="/2025/07/subject-1/cover.png" data-sizes="auto" alt="【自用】驾考科目一口诀" class="lazyload">
       
@@ -784,11 +790,12 @@
     
       <div>
         <span class="icon-brush"></span>
-        53k
+        64.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        03:39
+        04:26
       </div>
+    
     
     
     
@@ -816,13 +823,11 @@
   <div class="sidebar-wrap">
     
       
-        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper toc-div-class" >
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
-      
-  </div>
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text"> 实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 实验过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E9%87%8D%E8%A6%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 网络配置（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text"> 参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E9%A2%98%E7%9B%AE%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text"> 后续题目参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">2.1.</span> <span class="toc-text"> HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl"><span class="toc-number">2.2.</span> <span class="toc-text"> curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#burp-suite"><span class="toc-number">2.3.</span> <span class="toc-text"> Burp Suite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfhub"><span class="toc-number">2.4.</span> <span class="toc-text"> CTFHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="toc-number">3.</span> <span class="toc-text"> 实验二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="toc-number">4.</span> <span class="toc-text"> 实验三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">4.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-2"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-curl-%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 2. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 3. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="toc-number">5.</span> <span class="toc-text"> 实验四</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">5.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-4"><span class="toc-number">5.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-3"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 2. 开发者模式方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-curl-%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 3. curl 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 4. 抓包方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="toc-number">6.</span> <span class="toc-text"> 实验五</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">6.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-5"><span class="toc-number">6.2.</span> <span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0-4"><span class="toc-number">6.2.1.</span> <span class="toc-text"> 1. 理论学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-burp-intruder-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.2.</span> <span class="toc-text"> 2. Burp Intruder 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python-%E6%96%B9%E6%B3%95"><span class="toc-number">6.2.3.</span> <span class="toc-text"> 3. Python 方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="toc-number">7.</span> <span class="toc-text"> 实验六</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">7.1.</span> <span class="toc-text"> 实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B-6"><span class="toc-number">7.2.</span> <span class="toc-text"> 实验过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">8.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -833,7 +838,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">22</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -1004,7 +1009,7 @@
           description: "",
           stripContent: "这里是西工大-信息安全基础能力训练（Information Security Fundamental Ability Training）课程的实验报告！敬请参观与指正！请勿直球抄袭！本人不对任何抄袭借鉴行为及其后果负责。 题目来源是 CTFHub 中的技能树-Web-Web前置技能-HTTP协议，网上 Writeup 满天飞好吧。  实验一  实验目的 搭建 DVWA 靶机环境。  实验过程  配置代理，使用 NAT 模式，安装 proxychains 并配置。 下载 DVWA 到本地：输入 p",
           date: "Fri Jul 04 2025 00:42:46 GMT+0800",
-          updated: "Sun Jul 13 2025 11:13:07 GMT+0800",
+          updated: "Sun Jul 13 2025 11:18:58 GMT+0800",
           cover: "/2025/07/isfat-web/cover.png",
         };
       </script>
@@ -1014,7 +1019,7 @@
 <script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
 
       
-<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+<script src="https://npm.webcache.cn/dompurify@3.2.6/dist/purify.min.js" integrity="sha384-JEyTNhjM6R1ElGoJns4U2Ln4ofPcqzSsynQkmEc&#x2F;KGy6336qAZl70tDLufbkla+3" crossorigin="anonymous"></script>
 
       <script data-pjax>
         if (window.mermaid) {
@@ -1150,7 +1155,7 @@
   \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
                                                   
 `,'color: #ff5252;')
-    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
   </script>
   
 
