@@ -1,0 +1,1218 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="false"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_tq6stt6tcg';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"license_type":"by-nc-sa","content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://r3c0ger.github.io';</script>
+  
+  <title>
+    摄像机的几何模型 - 内外参 |
+    
+    Recogeta&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="感觉好像无意间走进了一个大坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摄像机的几何模型 - 内外参">
+<meta property="og:url" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/index.html">
+<meta property="og:site_name" content="Recogeta&#39;s Blog">
+<meta property="og:description" content="感觉好像无意间走进了一个大坑">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250917200854508.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918161505042.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918161639797.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918161203013.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250917221807356.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918130555765.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918144311244.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918151417562.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918193921426.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250918200123138.png">
+<meta property="og:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/cover.png">
+<meta property="article:published_time" content="2025-09-17T09:22:02.000Z">
+<meta property="article:modified_time" content="2025-09-18T16:38:19.450Z">
+<meta property="article:author" content="Recogeta">
+<meta property="article:tag" content="cv">
+<meta property="article:tag" content="cg">
+<meta property="article:tag" content="maths">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3c0ger.github.io/2025/09/3dv-cg-0/image-20250917200854508.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="Recogeta's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" crossorigin="anonymous">
+  
+    
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归档</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/2025/09/3dv-cg-0/cover.png" alt="摄像机的几何模型 - 内外参">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">摄像机的几何模型 - 内外参</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%88%90%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text"> 图像成像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AD%94%E9%80%8F%E8%A7%86%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 针孔透视模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E9%80%8F%E8%A7%86"><span class="toc-number">2.2.</span> <span class="toc-text"> 弱透视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E9%95%9C%E5%A4%B4%E7%9A%84%E7%85%A7%E7%9B%B8%E6%9C%BA-%E9%80%8F%E9%95%9C%E5%88%9D%E6%8E%A2"><span class="toc-number">2.3.</span> <span class="toc-text"> 带镜头的照相机 | 透镜初探</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.</span> <span class="toc-text"> 变换、齐次坐标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9A%E4%BD%93%E5%8F%98%E6%8D%A2%E5%92%8C%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.1.</span> <span class="toc-text"> 刚体变换和齐次坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%9B%BE%E5%85%83-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.2.</span> <span class="toc-text"> 补充：图元、齐次坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%8F%98%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text"> 补充：变换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%8F%82%E6%95%B0-%E5%A4%96%E5%8F%82%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text"> 内参数、外参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E5%9D%90%E6%A0%87%E7%B3%BB%E5%8F%8A%E5%85%B6%E4%B8%8E%E5%86%85%E5%A4%96%E5%8F%82%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">4.1.</span> <span class="toc-text"> 各个坐标系，及其与内外参数的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text"> 内参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text"> 外参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">5.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">31</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-3dv-cg-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-17T09:22:02.000Z" itemprop="datePublished">2025-09-17</time>
+    <time style="display: none;" id="post-update-time">2025-09-19</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" data-aos="zoom-in">专业学习</a>
+  </div>
+
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>这一章主要说明如何 <strong>将 3D 场景投影（project）到 2D 图像平面上</strong>。</p>
+<p>本章内容绝大部分来自于 David Forsyth and Jean Ponce. &quot;Computer Vision: A Modern Approach”, Prentice Hall, 2003.<br>
+因此，本章的数学符号和术语均参考该书，而公式编号也完全沿用该书的编号，但是基本只会标出会被后文引用的公式的编号。</p>
+<p>此外，本章内容参考 Universität Tübingen 的计算机视觉课程（<a target="_blank" rel="noopener" href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/lectures/computer-vision/">链接</a>）。<br>
+文中部分补充内容的图片摘录自该课程的 PPT 讲义，因此图中符号会与文中其他部分不一致。</p>
+<p>之后不再将上述书目和课程额外列入参考文献章节中，后文亦然。</p>
+<h2 id="图像成像"><a class="markdownIt-Anchor" href="#图像成像"></a> 图像成像</h2>
+<h3 id="针孔透视模型"><a class="markdownIt-Anchor" href="#针孔透视模型"></a> 针孔透视模型</h3>
+<p>针对现实中的小孔成像（孔有大小）和摄像机镜头，我们可以用一个简化的 <strong>针孔透视投影模型 pinhole perspective projection model</strong>（又称中心透视投影 central perspective projection）来描述成像过程。在这个模型中，我们假设光线通过 <strong>针孔（pinhole）</strong> 进入摄像机，并在 <strong>成像平面（image plane）</strong> $\Pi$ 上形成一个倒立的图像。</p>
+<p>使用坐标系 $(O, \boldsymbol{i}, \boldsymbol{j}, \boldsymbol{k})$ 来描述该模型，其中：</p>
+<ul>
+<li>原点 $O$ 代表针孔（光心）的位置；</li>
+<li>基向量 $\boldsymbol{i}$ 和 $\boldsymbol{j}$ 组成一个与成像平面 $\Pi$ 平行的二维坐标系，分别表示水平方向和垂直方向；</li>
+<li>向量 $\boldsymbol{k}$ 指向成像平面 $\Pi$ 的法线方向，表示光线的传播方向；</li>
+<li>通过针孔并垂直于平面 $\Pi$ 的直线称为 <strong>光轴（optical axis）</strong>，光轴与成像平面 $\Pi$ 的交点 $c$ 称为 <strong>图像中心（image center）</strong>；</li>
+<li>记成像平面 $\Pi$ 到针孔 $O$ 的距离为 $d$，称为 <strong>焦距（focal length）</strong>。</li>
+</ul>
+<p><img src="image-20250917200854508.png" alt="image-20250917200854508"></p>
+<p>若有 <strong>景物（scene）</strong>（即真实世界）中的一点 $P &#x3D; (X, Y, Z)$，其生成图像 $p &#x3D; (x, y, z)$，此时有 $z &#x3D; d$。<br>
+又因为 $P, O, p$ 这三个点共线，则有 $\overrightarrow{Op} &#x3D; \lambda \overrightarrow{OP}$，此时有：</p>
+<p>$$\begin{cases}
+x &#x3D; \lambda X \\
+y &#x3D; \lambda Y \\
+z &#x3D; d &#x3D; \lambda Z
+\end{cases}
+\Longleftrightarrow \lambda &#x3D; \frac{x}{X} &#x3D; \frac{y}{Y} &#x3D; \frac{d}{Z}
+\quad \Rightarrow \begin{cases}
+\displaystyle x &#x3D; d\frac{X}{Z} \\
+\displaystyle y &#x3D; d\frac{Y}{Z} \\
+\end{cases} \\
+$$</p><h3 id="弱透视"><a class="markdownIt-Anchor" href="#弱透视"></a> 弱透视</h3>
+<p>考虑定义在 $Z &#x3D; Z_0~(Z_0 &lt; 0)$ 上的与光轴正交的平面 $\Pi_0$，对于 $\Pi_0$ 上的任意一点 $P &#x3D; (X, Y, Z_0)$，上式可改写为：</p>
+<p>$$\begin{cases}
+\displaystyle x &#x3D; - mX \\
+\displaystyle y &#x3D; - mY
+\end{cases}
+\quad \text{where } m &#x3D; -\frac{d}{Z_0}.\\
+$$</p><p>其中 $m$ 称为 <strong>放大率（magnification）</strong>，通常 $m &gt; 0$。</p>
+<ul>
+<li>放大率就是成像尺寸与实际尺寸的比值；</li>
+<li>$m &gt; 0$ 时，上面的投影方程中 $X, Y$ 的系数均为负，表示成像是倒置的。</li>
+</ul>
+<p>当景物深度与它们到照相机的平均距离相比很小时，放大率 $m$ 可以看成是一个常数，这种投影模型称为 <strong>弱透视（weak perspective）模型</strong>，或按比例的正交（scaled orthography）。</p>
+<ul>
+<li>景物深度（scene’s relief）：指的是景物中不同点在光轴方向上的深度变化范围 $\Delta Z$，例如一个物体的厚度，或照相机到多个点之间的距离差异；</li>
+<li>到照相机的平均距离：即景物中所有点到相机的平均深度 $\overline{Z}$；</li>
+<li>当景物深度 $\Delta Z$ 相对于平均距离 $\overline{Z}$ 很小时，即 $\Delta Z \ll \overline{Z}$，可以认为所有点的深度 $Z$ 都接近于 $\overline{Z}$，从而使得放大率 $m &#x3D; -\frac{d}{Z}$ 近似为一个常数 $m \approx -\frac{d}{\overline{Z}}$。</li>
+<li>→ 个人理解：对于距离相机较远，且深度变化较小的景物，直接视其为在同一个平面 $Z_0$ 上，也就是用一个固定的放大率 $m$ 来描述整个景物的投影关系。</li>
+</ul>
+<p>在上述弱透视投影的情形下，进一步地将放大率归一化，使得 $m &#x3D; -1$，此时有 $x &#x3D; X, y &#x3D; Y$，这种投影模型称为 <strong>正交投影（orthographic projection）</strong>。<br>
+此时所有光线与 $k$ 轴平行，并与成像平面 $\Pi$ 正交，成像自然也没有倒置。</p>
+<p><img src="image-20250918161505042.png" alt="image-20250918161505042"></p>
+<p><img src="image-20250918161639797.png" alt="image-20250918161639797"></p>
+<ul>
+<li>当我们令 $m &lt; 0$ 时，$X$ 的系数变为正。此时我们可以理解为：将成像平面 $\Pi$ 对称移动到针孔 $O$ 的后面（相对于光线入射的方向），也就是让这个平面 $\Pi^\prime$ 与景物在同一侧。</li>
+<li>进一步地，将这个对称的成像平面 $\Pi^\prime$ 进行归一化，即令 $m &#x3D; -1$，从而得到正交投影模型。</li>
+<li>对称成像平面的意义是什么？——去掉 $X$ 系数中的负号，简化投影方程。</li>
+</ul>
+<p><img src="image-20250918161203013.png" alt="image-20250918161203013"></p>
+<h3 id="带镜头的照相机-透镜初探"><a class="markdownIt-Anchor" href="#带镜头的照相机-透镜初探"></a> 带镜头的照相机 | 透镜初探</h3>
+<p>背景知识：</p>
+<ul>
+<li>相机镜头（lens）相比于实际的小孔，可以聚光并保持图像锐化聚焦。</li>
+<li>入射光 $r_1$ 从折射率为 $n_1$ 的介质进入折射率为 $n_2$ 的介质时，会发生折射，折射光 $r_2$ 的方向由斯涅尔定律（Snell’s law）描述：$n_1 \sin \alpha_1 &#x3D; n_2 \sin \alpha_2$，其中 $\alpha_1, \alpha_2$ 为入射角和折射角。</li>
+</ul>
+<p>理想化模型假设：</p>
+<ul>
+<li>仅考虑折射效果，不考虑反射，即镜头为透镜；</li>
+<li>入射角 $\alpha_1$ 较小时，有 $\sin \alpha_1 \approx \alpha_1$，此时斯涅尔定律可近似为 $n_1 \alpha_1 &#x3D; n_2 \alpha_2$；</li>
+<li>镜头围绕光轴旋转对称，两面均为半径为 $R$ 的球面，折射系数为 $n$；</li>
+<li>镜头在真空中，真空折射系数为 $1$；</li>
+<li>镜头为薄透镜，厚度可忽略，即进入透镜的光线从右边界折射后立即又在左边界上再次折射。</li>
+</ul>
+<p>基于如上假设，给出如下图的薄透镜模型：</p>
+<p><img src="image-20250917221807356.png" alt="image-20250917221807356"></p>
+<p>上图中的射线 $(PO)$ 穿过 $P$ 和透镜中心 $O$，不发生折射，仍然沿直线传播；<br>
+而其他穿过 $P$ 的射线在透镜处发生折射，被聚焦到沿 $(PO)$ 处深度为 $z$ 的点 $p$，满足：</p>
+<p>$$\frac{1}{z} - \frac{1}{Z} &#x3D; \frac{1}{f}, \quad \text{where } f &#x3D; \frac{R}{2(n - 1)} \\
+$$</p><p>其中 $f$ 是透镜的 <strong>焦距长度（focal length）</strong>。</p>
+<ul>
+<li>从针孔透视的角度来考虑，如果取 $d &#x3D; z$，则表示 $P$ 与 $p$ 位置关系的方程与针孔透视投影条件下的情况完全相同，因为 $P$ 与 $p$ 处在穿过透镜中心的射线上。</li>
+<li>当 $Z \to -\infty$ 时，$f$ 就是透镜中心与聚焦物体所在平面之间的距离。光轴上距离透镜中心为 $f$ 的两个点 $F$ 与 $F&#39;$ 称为透镜的焦点（focal points）。</li>
+</ul>
+<h2 id="变换-齐次坐标"><a class="markdownIt-Anchor" href="#变换-齐次坐标"></a> 变换、齐次坐标</h2>
+<h3 id="刚体变换和齐次坐标"><a class="markdownIt-Anchor" href="#刚体变换和齐次坐标"></a> 刚体变换和齐次坐标</h3>
+<blockquote>
+<p>该部分需要对线性代数中的变换、向量与点的关系等有一定了解，参考鄙人拙作《从几何上直观理解线性代数》（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1948766696564293740">知乎</a> | <a href="https://r3c0ger.github.io/2025/09/linalg-0/">blog</a>）。本文符号与该文并不一致，敬请谅解。</p>
+</blockquote>
+<p>本节首次使用齐次坐标系来表征二维（2D）或三维（3D）的点。</p>
+<p><strong>齐次坐标系（homogeneous coordinates）</strong> 是一种用 $N+1$ 维的向量来表示 $N$ 维空间中的点（或向量）的坐标系统。</p>
+<p>考虑坐标系 $(F) &#x3D; (O, \boldsymbol{i}, \boldsymbol{j}, \boldsymbol{k})$ 中的点 $P$：$\boldsymbol{OP} &#x3D; X\boldsymbol{i} + Y\boldsymbol{j} + Z\boldsymbol{k}$，显然坐标点可以看作向量。</p>
+<p>定义一个三维常规（即非齐次，nonhomogeneous）坐标向量 $\boldsymbol{P} &#x3D; (X, Y, Z)^\top \in \mathbb{R}^3$，其对应的齐次坐标向量为 $\tilde{\boldsymbol{P}} &#x3D; (X, Y, Z, 1)^\top \in \mathbb{R}^4$。</p>
+<p>——先给出如上定义，但是为什么要引入齐次坐标系？</p>
+<p>在欧氏空间（Euclidean Space）的笛卡尔坐标系（Cartesian Coordinate System）（即标准 $XYZ$ 坐标系）中，旋转和缩放变换可以通过矩阵乘法来表示，而平移变换则只能通过向量加法来实现。但是，齐次坐标系允许我们将平移变换也表示为矩阵乘法，从而统一了各种几何变换的表示形式。</p>
+<p>例如，考虑对两个三维欧氏坐标系 $(A)$、$(B)$ 之间的 <strong>刚体变换（rigid transformation）</strong>。<br>
+刚体变换又称欧几里得变换（Euclidean Transformation），是保持物体 <strong>形状和大小不变</strong> 的几何变换，不改变点间距离和角度，通常包括 <strong>旋转和平移</strong>。</p>
+<p>坐标系 $(A)$ 经过刚体变换后得到坐标系 $(B)$，该过程如下：<br>
+令 $(A)$ 旋转 $\mathcal{R} \in SO(3)$ （$3 \times 3$ 旋转矩阵）并平移 $\boldsymbol{t} \in \mathbb{R}^3$，则有：</p>
+<p>$${}^{A}\boldsymbol{P} &#x3D; \mathcal{R}{}^{B}\boldsymbol{P} + \boldsymbol{t}\\
+$$</p><p>其中 $^{A}\boldsymbol{P}, ^{B}\boldsymbol{P}$ 分别表示点 $P$ 在坐标系 $(A)$ 和 $(B)$ 下的坐标，$^{A}\boldsymbol{P}, ^{B}\boldsymbol{P} \in \mathbb{R}^3$。</p>
+<p>当我们使用齐次坐标系时，可以将上述刚体变换 <strong>统一表示为矩阵乘法</strong>：</p>
+<p>$${}^{A}\boldsymbol{P} &#x3D; \mathcal{T}{}^{B}\boldsymbol{P}, 
+\quad \text{where } \mathcal{T} &#x3D; \begin{bmatrix}
+\mathcal{R} &amp; \boldsymbol{t} \\
+\boldsymbol{0}^{\top} &amp; 1
+\end{bmatrix}\\
+$$</p><p>此时 $^{A}\boldsymbol{P}, ^{B}\boldsymbol{P} \in \mathbb{R}^4$。</p>
+<p>同样地，利用齐次坐标，也可以将一个 3D 点（固定世界坐标系）到 2D 图像平面（照相机参考坐标系）的透视投影变换，用一个 $3 \times 4$ 的矩阵 $\mathcal{M}$ 来表示。</p>
+<p>在固定世界坐标系中点 $P$ 的坐标向量 $\boldsymbol{P}&#x3D;(X,Y,Z,1)^\top$，和其对应的照相机参考坐标系中的成像点 $p$ 的坐标向量 $\boldsymbol{p} &#x3D; (x,y,1)^\top$，可由如下的透视投影公式表示：</p>
+<p>$$\boldsymbol{p} &#x3D; \frac{1}{Z} \mathcal{M} \boldsymbol{P} \tag{1.9}\label{1.9}\\
+$$</p><p>上式中的投影矩阵 $\mathcal{M}$ 包含了照相机的 6 个外参数，在之后会详细介绍。</p>
+<p>通过上述刚体变换、透视投影变换两个示例，我们可以总结齐次坐标系的优点：齐次坐标系能够将平移、旋转、缩放、透视投影等所有线性变换，<strong>统一表示为矩阵乘法</strong>，从而简化了计算和分析过程。</p>
+<h3 id="补充图元-齐次坐标"><a class="markdownIt-Anchor" href="#补充图元-齐次坐标"></a> 补充：图元、齐次坐标</h3>
+<p>在计算机视觉中，<strong>图元（primitives）</strong> 是指构成图像的基本元素，例如 <strong>点（points）、线（lines）、面（planes）</strong> 等。</p>
+<p>一个 2D 点在非齐次坐标系中表示为 $\boldsymbol{x} &#x3D; (x, y)^\top \in \mathbb{R}^2$，<br>
+其对应的齐次坐标表示为 $\tilde{\boldsymbol{x}} &#x3D; (\tilde{x}, \tilde{y}, \tilde{w})^\top \in \mathbb{P}^2,~\text{where } \mathbb{P}^2 &#x3D; \mathbb{R}^3 \backslash \{(0, 0, 0)\}$。</p>
+<ul>
+<li>$\mathbb{P}^2$ 称为 <strong>投影空间（projective space）</strong>，不同于三维空间 $\mathbb{R}^3$，$\mathbb{P}^2$ 去除了原点 $(0, 0, 0)$。</li>
+<li>两个齐次向量，如果它们只是相差一个共同的倍数（即“比例因子”，scale），那么它们是 <strong>等价的（equivalent）</strong>。例如，$\tilde{\boldsymbol{x}} &#x3D; (\tilde{x}, \tilde{y}, \tilde{w})^\top$ 和 $\lambda \tilde{\boldsymbol{x}} &#x3D; (\lambda \tilde{x}, \lambda \tilde{y}, \lambda \tilde{w})^\top$（其中 $\lambda \neq 0$）表示同一个点。</li>
+<li>所有互为倍数的齐次向量被归为一个组，这个组称为 <strong>等价类（equivalence class）</strong>。</li>
+<li>$\Rightarrow$ 齐次向量的定义仅取决于比例关系。当看到一个齐次坐标时，它的绝对数值大小本身没有意义，有意义的是它的 <strong>各个分量之间的比例关系</strong>。</li>
+<li><strong>末尾为 $1$ 的向量 $\bar{\boldsymbol{x}}$ 称为 增广向量（augmented vector）</strong>。在非齐次向量末尾加上 $1$，即可得到对应的齐次（增广）向量：</li>
+</ul>
+<p>$$\tilde{\boldsymbol{x}}
+&#x3D; \left[\begin{array}{c}\tilde{x}\\ \tilde{y}\\ \tilde{w}\end{array}\right]
+&#x3D; \left[\begin{array}{c}x \\ y \\ 1 \end{array}\right]
+&#x3D; \left[\begin{array}{c}\boldsymbol{x} \\ 1 \end{array}\right]
+&#x3D; \bar{\boldsymbol{x}}\\
+$$</p><ul>
+<li>反向地，有：</li>
+</ul>
+<p>$$\bar{\boldsymbol{x}}
+&#x3D; \left[\begin{array}{c}\boldsymbol{x} \\ 1 \end{array}\right]
+&#x3D; \left[\begin{array}{c}x \\ y \\ 1 \end{array}\right]
+&#x3D; \frac{1}{\tilde{w}} \tilde{\boldsymbol{x}}
+&#x3D; \frac{1}{\tilde{w}} \left[\begin{array}{c}\tilde{x}\\ \tilde{y}\\ \tilde{w}\end{array}\right]
+&#x3D; \left[\begin{array}{c}{\tilde{x}}&#x2F;{\tilde{w}} \\ {\tilde{y}}&#x2F;{\tilde{w}} \\ 1 \end{array}\right]\\
+$$</p><ul>
+<li>令 $\tilde{w} &#x3D; 0$，则齐次坐标 $\tilde{\boldsymbol{x}} &#x3D; (\tilde{x}, \tilde{y}, 0)^\top$ 表示在二维平面上的一个 <strong>无穷远点（point at infinity）</strong>，或理想点（ideal point），即在该方向上延伸到无穷远处的点。这个坐标无法归一化为非齐次坐标，因为除以零是未定义的。在笛卡尔坐标中，这是无法优雅地表示的。</li>
+</ul>
+<p><img src="image-20250918130555765.png" alt="image-20250918130555765"></p>
+<p>上图表示非齐次坐标、齐次坐标与增广坐标之间的关系。<br>
+回顾第一节中针孔透视投影模型，我们发现上图做了这么几件事：</p>
+<ul>
+<li>将成像平面 $\Pi$ 移动到针孔 $O$ 的前面，得到对称成像平面 $\Pi^\prime$，这样就去掉了投影方程中的负号；</li>
+<li>标准化：令成像平面 $\Pi^\prime$ 到针孔 $O$ 的距离 $d &#x3D; 1$，即平面距离针孔一个单位。</li>
+</ul>
+<p>相应地，2D 的线同样可以用齐次坐标 $\tilde{\boldsymbol{l}} &#x3D; (a, b, c)^\top$ 来表示：</p>
+<p>$$\left\{\bar{\boldsymbol{x}} | \tilde{\boldsymbol{l}}^\top \bar{\boldsymbol{x}} &#x3D; 0 \right\}
+\quad \Longleftrightarrow \quad
+\left\{x, y | ax + by + c &#x3D; 0 \right\}
+$$</p><p>对 $\tilde{\boldsymbol{l}}$ 进行标准化：$\tilde{\boldsymbol{l}} &#x3D; (n_x, n_y, d)^\top &#x3D; (\boldsymbol{n}, d)^\top \text{ with }\left\|\boldsymbol{n}\right\|_2 &#x3D; 1$，<br>
+此时，$\boldsymbol{n}$ 是线的法向量，$d$ 是线到原点的距离。<br>
+另外，无穷远线 $\tilde{\boldsymbol{l}}_\infty &#x3D; (0, 0, 1)^\top$ 穿过所有的无穷远点。无穷远线无法标准化。</p>
+<p>同样地，3D 面也可以用齐次坐标 $\tilde{\boldsymbol{m}} &#x3D; (a, b, c, d)^\top$ 来表示：</p>
+<p>$$\left\{\bar{\boldsymbol{x}} | \tilde{\boldsymbol{m}}^\top \bar{\boldsymbol{x}} &#x3D; 0 \right\}
+\quad \Longleftrightarrow \quad
+\left\{x, y, z | ax + by + cz + d &#x3D; 0 \right\}
+$$</p><p>标准化：$\tilde{\boldsymbol{m}} &#x3D; (\boldsymbol{n}, -d)^\top \text{ with }\left\|\boldsymbol{n}\right\|_2 &#x3D; 1$；<br>
+无穷远面 $\tilde{\boldsymbol{m}}_\infty &#x3D; (0, 0, 0, 1)^\top$ 穿过所有的无穷远点。</p>
+<p><img src="image-20250918144311244.png" alt="image-20250918144311244"></p>
+<h3 id="补充变换"><a class="markdownIt-Anchor" href="#补充变换"></a> 补充：变换</h3>
+<p>2D 变换：</p>
+<p><img src="image-20250918151417562.png" alt="image-20250918151417562"></p>
+<ul>
+<li>平移（translation）：$\displaystyle \boldsymbol{x}^\prime &#x3D; \boldsymbol{x} + \boldsymbol{t}\quad\Leftrightarrow\quad \bar{\boldsymbol{x}}^\prime &#x3D;  \left[\begin{matrix}\boldsymbol{I} &amp; \boldsymbol{t} \\ \boldsymbol{0}^\top &amp; 1 \end{matrix}\right]\bar{\boldsymbol{x}}$</li>
+<li>刚体（rigid）/ 欧氏（Euclidean）：$\displaystyle \boldsymbol{x}^\prime &#x3D; \boldsymbol{R}\boldsymbol{x} + \boldsymbol{t}\quad\Leftrightarrow\quad \bar{\boldsymbol{x}}^\prime &#x3D;  \left[\begin{matrix}\boldsymbol{R} &amp; \boldsymbol{t} \\ \boldsymbol{0}^\top &amp; 1 \end{matrix}\right]\bar{\boldsymbol{x}},~\text{where } \boldsymbol{R} \in SO(2)~\text{with } \boldsymbol{R}\boldsymbol{R}^\top &#x3D; \boldsymbol{I}, \text{det}(\boldsymbol{R}) &#x3D; 1$</li>
+<li>相似（similarity）：$\displaystyle \boldsymbol{x}^\prime &#x3D; s\boldsymbol{R}\boldsymbol{x} + \boldsymbol{t}\quad\Leftrightarrow\quad \bar{\boldsymbol{x}}^\prime &#x3D;  \left[\begin{matrix}s\boldsymbol{R} &amp; \boldsymbol{t} \\ \boldsymbol{0}^\top &amp; 1 \end{matrix}\right]\bar{\boldsymbol{x}}$</li>
+<li>仿射（affine）：$\displaystyle \boldsymbol{x}^\prime &#x3D; \boldsymbol{A}\boldsymbol{x} + \boldsymbol{t}\quad\Leftrightarrow\quad \bar{\boldsymbol{x}}^\prime &#x3D;  \left[\begin{matrix}\boldsymbol{A} &amp; \boldsymbol{t} \\ \boldsymbol{0}^\top &amp; 1 \end{matrix}\right]\bar{\boldsymbol{x}},~\text{where } \boldsymbol{A} \in \mathbb{R}^{2\times 2},~\text{det}(\boldsymbol{A}) \neq 0$</li>
+<li>投影（projective）：$\displaystyle \tilde{\boldsymbol{x}}^\prime &#x3D; \boldsymbol{H}\tilde{\boldsymbol{x}}\quad (\bar{\boldsymbol{x}} &#x3D; \frac{1}{\tilde{w}}\tilde{\boldsymbol{x}}), ~\text{where } \boldsymbol{H} \in \mathbb{R}^{3\times 3}$</li>
+</ul>
+<h2 id="内参数-外参数"><a class="markdownIt-Anchor" href="#内参数-外参数"></a> 内参数、外参数</h2>
+<h3 id="各个坐标系及其与内外参数的关系"><a class="markdownIt-Anchor" href="#各个坐标系及其与内外参数的关系"></a> 各个坐标系，及其与内外参数的关系</h3>
+<p>数字图像是空间离散的，通常是分割成矩形的图像元素，即 <strong>像素（pixels）</strong>。<br>
+景物在映射到图像平面 $\Pi$ 之后，还需要进一步映射到像素平面上。</p>
+<p>事实上，世界坐标系和图像坐标系是相对于一系列的物理参数而言的，例如：镜头的焦距、像素大小、图像中心位置与照相机的位置和方向。这些参数可分为：</p>
+<ul>
+<li><strong>内参数（intrinsic parameters）</strong>：关于照相机坐标系相对于理想坐标系（见上一节）的参数；</li>
+<li><strong>外参数（extrinsic parameters）</strong>：关于照相机坐标系对应固定世界坐标系，并且在空间中指定其位置和方向的参数。</li>
+</ul>
+<p>——各位稍等一下，上面的这几段话是我从 David Forsyth 书中抄下来的，不知道大家有没有读懂，反正我是没读懂。个人感觉英文原文比中文翻译好懂，但真让我翻译那还是省省吧。先看看英文原文：</p>
+<blockquote>
+<p>This section identifies these parameters. We will distinguish the intrinsic parameters, which relate the camera’s coordinate system to the idealized coordinate system used in Section 1.1, from the extrinsic parameters, which relate the camera’s coordinate system to a fixed world coordinate system and specify its position and orientation in space.</p>
+</blockquote>
+<p>relate sth. to sth. 意为&quot;把某事物与另一事物联系起来&quot;，常用于表示两者之间的关联性。这里将这个词组翻译为“相对于”或“对应”显然是不合适的。<br>
+接下来我将从我的理解出发，重新讲讲 David Forsyth 书中这一部分开篇的内容。</p>
+<hr>
+<p>为了从数学上研究从 3D 到 2D 的投影过程中的各种变换，先给出如下几个坐标系的定义：</p>
+<ul>
+<li><strong>世界坐标系</strong>：3D，描述现实世界物体位置，通常是一个固定的参考系；</li>
+<li><strong>相机坐标系</strong>：3D，描述物体相对于相机的位置和方向，以相机焦点为原点，光轴为 $z$ 轴的坐标系（焦点即所有光线汇聚的点，如针孔透视模型中的针孔）；</li>
+<li><strong>图像物理坐标系</strong>（又称物理成像坐标系）：2D，描述图像平面上点的位置，以光轴和图像平面交点为原点，单位为物理长度（如毫米）；</li>
+<li><strong>图像像素坐标系</strong>：2D，描述图像上像素位置，以图像左上角为原点，单位为像素。</li>
+</ul>
+<p>我们可以发现：</p>
+<ul>
+<li>世界坐标系不一定与相机坐标系对齐，二者之间存在一个刚体变换关系；</li>
+<li>从相机坐标系到图像坐标系的变换是一个透视投影过程，从 3D 投影到 2D；</li>
+<li>为了能形成数字图像，图像物理坐标系还需要映射到图像像素坐标系上，这个过程涉及到像素的大小和位置。</li>
+</ul>
+<p>内外参数是描述各个坐标系之间变换的物理参数：</p>
+<ul>
+<li>外参描述 <strong>相机坐标系</strong> 与 <strong>世界坐标系</strong> 之间的联系，确定了相机在空间中的位置和姿态。</li>
+<li>内参描述 <strong>图像坐标系</strong> 与 <strong>相机坐标系</strong> 之间的联系，描述了相机内部属性。</li>
+</ul>
+<p><img src="image-20250918193921426.png" alt="image-20250918193921426"></p>
+<h3 id="内参数"><a class="markdownIt-Anchor" href="#内参数"></a> 内参数</h3>
+<p>回顾针孔透视投影模型，将透镜简化为小孔成像（因此这里的 $f$ 应为像距），从 3D 投影到 2D 时，有：</p>
+<p>$$\frac{Z}{f} &#x3D; \frac{X}{x} &#x3D; \frac{Y}{y}
+\quad \Rightarrow \quad
+\begin{cases}
+x &#x3D; f\dfrac{X}{Z} \\
+y &#x3D; f\dfrac{Y}{Z}
+\end{cases} \\
+$$</p><p>现在我们将相机坐标系中的点 $\boldsymbol{P} &#x3D; (X, Y, Z)^\top$ 投影到物理坐标系上，具体来讲就是投影到一个虚拟的、旋转到针孔另一侧的成像平面 $\Pi^\prime$ 上，该平面与针孔的距离为一个单位距离（$f&#x3D;1$），也就是投影到归一化成像平面上，得到齐次坐标投影点 $\tilde{\boldsymbol{p}} &#x3D; (\tilde{x}, \tilde{y}, 1)^\top$：（相机 → 物理）</p>
+<p>$$\begin{cases}
+\tilde{x} &#x3D; \dfrac{X}{Z} \\
+\tilde{y} &#x3D; \dfrac{Y}{Z}
+\end{cases} 
+\quad \Longleftrightarrow \quad
+\tilde{\boldsymbol{p}} &#x3D; \frac{1}{Z} \left(\begin{matrix}Id &amp; \boldsymbol{0}\end{matrix}\right) \boldsymbol{P}
+\tag{1.10}\label{1.10}\\
+$$</p><p>为啥要投影到这么一个增广向量上呢？</p>
+<ul>
+<li>一方面，投影到虚拟的对称成像平面上可以去掉投影方程中的负号，让像不再颠倒，但是在数学上能够与实像等价；</li>
+<li>另一方面，物理坐标系可看作是 3D 的相机坐标系与 2D 的图像像素坐标系之间的中间过渡，有了物理坐标系后，可以通过对物理坐标进行缩放，来适应像素长宽不同的数字图像。
+<ul>
+<li>显然，对于一组平行的成像平面，它们都是等价的。若有一条直线与这些平面相交，得到的所有交点的坐标之间只相差一个比例因子，坐标的各个分量比例仍保持不变。</li>
+<li>选用归一化的成像平面之后，上式从相机坐标系到物理坐标系的投影方程没有额外的系数，如果选用其他平行的成像平面（如投影到 $\lambda \boldsymbol{p}$ 上），则在接下来从物理坐标系映射到像素坐标系的过程中，又额外地引入一个系数 $\lambda$。</li>
+<li>总而言之，选用归一化的成像平面是出于计算方便，与选择其他平行的成像平面并无本质区别。</li>
+</ul>
+</li>
+</ul>
+<p>然后再从物理坐标系映射到像素坐标系上，此时的像素成像平面——或称物理视网膜（retina）——与针孔的距离 $f \neq 1$。同时，点 $p$ 坐标的单位也变为像素，而这个像素有可能是长方形，所以在 $x$ 和 $y$ 分量上各有一个额外的比例因子 $k$ 和 $l$，因此有：（物理 → 像素）</p>
+<p>$$\begin{cases}
+x&#x3D;kf\dfrac{X}{Z} &#x3D; kf\tilde{x} \\
+y&#x3D;lf\dfrac{Y}{Z} &#x3D; lf\tilde{y}
+\end{cases}
+\quad \xrightarrow[\beta &#x3D; lf]{\alpha &#x3D; kf} \quad
+\begin{cases}
+x &#x3D; \alpha \tilde{x} \\
+y &#x3D; \beta \tilde{y}
+\end{cases} \tag{1.11}\label{1.11}\\
+$$</p><p>其中，像素大小为 $1&#x2F;k \times 1&#x2F;l$，$k,l$ 的单位为像素 / 单位长度，$\alpha, \beta$ 分别是相机在 $x$ 和 $y$ 方向上的 <strong>等效焦距</strong>，单位为像素。</p>
+<p><img src="image-20250918200123138.png" alt="image-20250918200123138"></p>
+<p>还没完成呢！接下来还有两件事要干。<br>
+前面说过，像素坐标系的原点在图像的某个顶点，比如左上角或左下角，因此需要对式 $\eqref{1.11}$ 做个平移变换 $\boldsymbol{t} &#x3D; (x_0, y_0)^\top$：</p>
+<p>$$\begin{cases}
+x &#x3D; \alpha \tilde{x} + x_0 \\
+y &#x3D; \beta \tilde{y} + y_0
+\end{cases} \tag{1.12}\label{1.12}\\
+$$</p><p>最后，由于制造工艺的误差，照相机坐标系可能存在偏差，即两个坐标轴之间的夹角 $0$ 不完全等于 $90°$。在这种情况下，式 $\eqref{1.12}$ 改为：</p>
+<p>$$\begin{cases}
+x &#x3D; \alpha \tilde{x} - \alpha \cot \theta \tilde{y} + x_0 \\
+y &#x3D; \dfrac{\beta}{\sin \theta} \tilde{y} + y_0
+\end{cases} \tag{1.13}\label{1.13}\\
+$$</p><p>改写成矩阵形式：</p>
+<p>$$\boldsymbol{p} &#x3D; \mathcal{K} \tilde{\boldsymbol{p}},
+\quad \text{where } \boldsymbol{p} &#x3D; \begin{bmatrix}x \\ y \\ 1\end{bmatrix},~
+\text{and } \mathcal{K} &#x3D; \begin{bmatrix}
+\alpha &amp; -\alpha \cot \theta &amp; x_0 \\
+0 &amp; \dfrac{\beta}{\sin \theta} &amp; y_0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix} \tag{1.14}\label{1.14}\\
+$$</p><p>这个 $3 \times 3$ 矩阵 $\mathcal{K}$ 叫做照相机的 <strong>内部矫正矩阵（calibration matrix）</strong>，是一个仿射变换。</p>
+<p>结合式 $\eqref{1.10}$ 和式 $\eqref{1.14}$，可得到在上一节中提到的式 $\eqref{1.9}$：</p>
+<p>$$\boldsymbol{p} &#x3D; \frac{1}{Z} \mathcal{K} (\begin{matrix}Id &amp; \boldsymbol{0}\end{matrix}) \boldsymbol{P} &#x3D; \frac{1}{Z} \mathcal{M} \boldsymbol{P}, \quad \text{where } \mathcal{M} &#x3D;  (\begin{matrix}\mathcal{K} &amp; \boldsymbol{0}\end{matrix})
+$$</p><p>这里 $\alpha$、$\beta$、$\theta$、$x_0$、$y_0$ 是照相机的 5 个内参数。</p>
+<h3 id="外参数"><a class="markdownIt-Anchor" href="#外参数"></a> 外参数</h3>
+<blockquote>
+<p>按照从 3D 到 2D 的顺序，是不是应该先讲从世界坐标系到相机坐标系的变换，也就是先讲外参数，再讲内参数呢？大家姑且读下去吧……</p>
+</blockquote>
+<p>现在再考虑，如果世界坐标系 $(W)$ 与相机坐标系 $(C)$ 不同，则从 $(W)$ 到 $(C)$ 的变换是一个刚体变换，有：</p>
+<p>$$^{C}\boldsymbol{P} &#x3D; \begin{bmatrix}
+\mathcal{R} &amp; \boldsymbol{t} \\
+\boldsymbol{0}^\top &amp; 1
+\end{bmatrix} {}^{W}\boldsymbol{P}\\
+$$</p><p>其中，旋转矩阵 $\mathcal{R} \in SO(3)$ 由三个独立参数定义，平移向量 $\boldsymbol{t} \in \mathbb{R}^3$ 有三个坐标值，这六个参数便是照相机的外参数。外参数定义了相机坐标系 $(C)$ 相对于世界坐标系 $(W)$ 的位置和方向。</p>
+<hr>
+<p>现在，结合内外参数，得到一般形式的 <strong>透视投影方程</strong>：</p>
+<p>$$\boldsymbol{p} &#x3D; \frac{1}{Z} \mathcal{M} \boldsymbol{P},\quad
+\text{where } \mathcal{M} &#x3D; \mathcal{K} (\begin{matrix}\mathcal{R} &amp; \boldsymbol{t}\end{matrix})
+\tag{1.16}\label{1.16}\\
+$$</p><p>令 $\boldsymbol{m}^{\top}_1,~\boldsymbol{m}^{\top}_2,~\boldsymbol{m}^{\top}_3$ 表示 $\mathcal{M}$ 的三个行向量，则有 $Z &#x3D; \boldsymbol{m}_3 \boldsymbol{P}$，式 $\eqref{1.16}$ 可写成如下等价形式：</p>
+<p>$$\begin{cases}
+x &#x3D; \dfrac{\boldsymbol{m}_1 \cdot \boldsymbol{P}}{\boldsymbol{m}_3 \cdot \boldsymbol{P}} \\
+y &#x3D; \dfrac{\boldsymbol{m}_2 \cdot \boldsymbol{P}}{\boldsymbol{m}_3 \cdot \boldsymbol{P}}
+\end{cases} \tag{1.17}\label{1.17}\\
+$$</p><p>透视投影矩阵可以由 5 个内参数、矩阵 $\mathcal{R}$ 的三个行向量（$\boldsymbol{r}^{\top}_1,~\boldsymbol{r}^{\top}_2,~\boldsymbol{r}^{\top}_3$）和向量 $\boldsymbol{t}$ 的三个坐标（$t_1,~t_2,~t_3$）显式表示：</p>
+<p>$$\mathcal{M} &#x3D; \begin{bmatrix}
+\alpha \boldsymbol{r}^{\top}_1 - \alpha \cot \theta \boldsymbol{r}^{\top}_2 + x_0 \boldsymbol{r}^{\top}_3 &amp; \alpha t_1 - \alpha \cot \theta t_2 + x_0 t_3 \\
+\dfrac{\beta}{\sin \theta} \boldsymbol{r}^{\top}_2 + y_0 \boldsymbol{r}^{\top}_3 &amp; \dfrac{\beta}{\sin \theta} t_2 + y_0 t_3 \\
+\boldsymbol{r}^{\top}_3 &amp; t_3
+\end{bmatrix} \tag{1.18}\label{1.18}\\
+$$</p><p>$\mathcal{R}$ 由三个基旋转的积表示，则 $\boldsymbol{r}_i~(i&#x3D;1,2,3)$ 可以显式地用三个角度来表示。<br>
+上式显式地给出 $\mathcal{M}$ 中全部的 11 个照相机参数。</p>
+<p>总结整个透视投影过程：</p>
+<p>$$\boldsymbol{p} &#x3D; \underbrace{
+\underbrace{\begin{bmatrix}
+k &amp; -k \cot \theta &amp; x_0 \\
+0 &amp; \dfrac{l}{\sin \theta} &amp; y_0 \\
+0 &amp; 0 &amp; 1 
+\end{bmatrix}}_{\text{仿射变换}}
+\underbrace{\begin{bmatrix}
+f &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; f &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{bmatrix}}_{\text{透视投影变换}}
+}_{\text{内参矩阵}}
+\underbrace{
+\underbrace{
+\begin{bmatrix}
+\mathcal{R} &amp; \boldsymbol{t} \\
+\boldsymbol{0}^\top &amp; 1
+\end{bmatrix}
+}_{\text{刚体变换}}
+}_{\text{外参矩阵}}
+\boldsymbol{P}\\
+$$</p><h2 id="彩蛋"><a class="markdownIt-Anchor" href="#彩蛋"></a> 彩蛋</h2>
+<p><img src="cover.png" alt=""></p>
+<ul>
+<li>彩蛋图片：
+<ul>
+<li>作者：カンパ twi@campagne_9，pid：2520952</li>
+<li>来源：pixiv ID：111239440</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>Recogeta @ Recogeta's Blog</p>
+    <p><strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://r3c0ger.github.io/2025/09/3dv-cg-0/">https://r3c0ger.github.io/2025/09/3dv-cg-0/</a></p>
+    <p><strong><span class="icon-pencil icon"></span>本文标题：</strong>「摄像机的几何模型 - 内外参」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2025-09-17 17:22:02</p>
+    <p><strong><span class="icon-calendar icon"></span>本文更新时间：</strong>2025-09-19 00:38:19</p>
+    <p><strong><span class="icon-copyright icon"></span>本文版权：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">赞助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+  <div class="sponsor-tip">~ 给灵梦的赛钱箱投个币吧 ~</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/alipay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/sponsor/wechat.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cg/" rel="tag">cg</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cv/" rel="tag">cv</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/maths/" rel="tag">maths</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap right">
+      
+        <img data-src="/2025/09/linalg-0/cover.jpg" data-sizes="auto" alt="从几何上直观理解线性代数" class="lazyload">
+      
+      <a href="/2025/09/linalg-0/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          从几何上直观理解线性代数
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      Recogeta
+    </div>
+    
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        70.4k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:52
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%88%90%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text"> 图像成像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AD%94%E9%80%8F%E8%A7%86%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 针孔透视模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E9%80%8F%E8%A7%86"><span class="toc-number">2.2.</span> <span class="toc-text"> 弱透视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E9%95%9C%E5%A4%B4%E7%9A%84%E7%85%A7%E7%9B%B8%E6%9C%BA-%E9%80%8F%E9%95%9C%E5%88%9D%E6%8E%A2"><span class="toc-number">2.3.</span> <span class="toc-text"> 带镜头的照相机 | 透镜初探</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.</span> <span class="toc-text"> 变换、齐次坐标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9A%E4%BD%93%E5%8F%98%E6%8D%A2%E5%92%8C%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.1.</span> <span class="toc-text"> 刚体变换和齐次坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%9B%BE%E5%85%83-%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-number">3.2.</span> <span class="toc-text"> 补充：图元、齐次坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%8F%98%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text"> 补充：变换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%8F%82%E6%95%B0-%E5%A4%96%E5%8F%82%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text"> 内参数、外参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E5%9D%90%E6%A0%87%E7%B3%BB%E5%8F%8A%E5%85%B6%E4%B8%8E%E5%86%85%E5%A4%96%E5%8F%82%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">4.1.</span> <span class="toc-text"> 各个坐标系，及其与内外参数的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%8F%82%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text"> 内参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text"> 外参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">5.</span> <span class="toc-text"> 彩蛋</span></a></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Recogeta" class="lazyload">
+  <div class="sidebar-author-name">Recogeta</div>
+  <div class="sidebar-description">Ciallo～(∠・ω&lt; )⌒★</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">31</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/R3c0ger itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-zhihu sidebar-social-icon">
+      <a href=https://www.zhihu.com/people/Phortitudual itemprop="url" target="_blank" aria-label="zhihu" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Recogeta",
+          title: "摄像机的几何模型 - 内外参",
+          url: "https://r3c0ger.github.io/2025/09/3dv-cg-0/",
+          excerpt: "感觉好像无意间走进了一个大坑",
+          description: "",
+          stripContent: " 前言 这一章主要说明如何 将 3D 场景投影（project）到 2D 图像平面上。 本章内容绝大部分来自于 David Forsyth and Jean Ponce. &amp;quot;Computer Vision: A Modern Approach”, Prentice Hall, 2003. 因此，本章的数学符号和术语均参考该书，而公式编号也完全沿用该书的编号，但是基本只会标出会被后文引用的公式的编号。 此外，本章内容参考 Universität Tübingen 的计算机视觉课程（链接）",
+          date: "Wed Sep 17 2025 17:22:02 GMT+0800",
+          updated: "Fri Sep 19 2025 00:38:19 GMT+0800",
+          cover: "/2025/09/3dv-cg-0/cover.png",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@9.4.3/dist/mermaid.min.js" integrity="sha384-aG3Gai4tbCHF0iXo48HwLoOZyut7mBl50oMC9GD1m75xyHfJDv6w8hD&#x2F;kZRD47aJ" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.6/dist/purify.min.js" integrity="sha384-JEyTNhjM6R1ElGoJns4U2Ln4ofPcqzSsynQkmEc&#x2F;KGy6336qAZl70tDLufbkla+3" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.2' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+  
+    
+<script src="https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6&#x2F;1Nxveei" crossorigin="anonymous" defer data-pjax></script>
+
+    <script data-pjax>
+      window.MathJax = {"tex":{"tags":"ams","useLabelIds":true,"inlineMath":[["$","$"],["\\\\(","\\\\)"]],"displayMath":[["$$","$$"],["\\\\[","\\\\]"]],"processEscapes":true,"processEnvironments":true,"autoload":{"color":[],"colorv2":["color"]},"packages":{"[+]":["noerrors"]}},"options":{"skipHtmlTags":["script","noscript","style","textarea","pre","code"],"ignoreHtmlClass":"tex2jax_ignore","processHtmlClass":"tex2jax_process"},"loader":{"load":["input/asciimath","[tex]/noerrors"]}};
+    </script>
+  
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

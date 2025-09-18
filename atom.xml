@@ -6,7 +6,7 @@
   <link href="https://r3c0ger.github.io/atom.xml" rel="self"/>
   
   <link href="https://r3c0ger.github.io/"/>
-  <updated>2025-09-09T08:02:06.799Z</updated>
+  <updated>2025-09-18T16:38:19.450Z</updated>
   <id>https://r3c0ger.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>摄像机的几何模型 - 内外参</title>
+    <link href="https://r3c0ger.github.io/2025/09/3dv-cg-0/"/>
+    <id>https://r3c0ger.github.io/2025/09/3dv-cg-0/</id>
+    <published>2025-09-17T09:22:02.000Z</published>
+    <updated>2025-09-18T16:38:19.450Z</updated>
+    
+    
+    <summary type="html">感觉好像无意间走进了一个大坑</summary>
+    
+    
+    
+    <category term="专业学习" scheme="https://r3c0ger.github.io/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="cv" scheme="https://r3c0ger.github.io/tags/cv/"/>
+    
+    <category term="cg" scheme="https://r3c0ger.github.io/tags/cg/"/>
+    
+    <category term="maths" scheme="https://r3c0ger.github.io/tags/maths/"/>
+    
+  </entry>
   
   <entry>
     <title>从几何上直观理解线性代数</title>
@@ -186,9 +209,9 @@
     
     <category term="ctf" scheme="https://r3c0ger.github.io/tags/ctf/"/>
     
-    <category term="web" scheme="https://r3c0ger.github.io/tags/web/"/>
-    
     <category term="kali" scheme="https://r3c0ger.github.io/tags/kali/"/>
+    
+    <category term="web" scheme="https://r3c0ger.github.io/tags/web/"/>
     
   </entry>
   
@@ -352,11 +375,11 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
+    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
+    
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
     <category term="typesetting" scheme="https://r3c0ger.github.io/tags/typesetting/"/>
-    
-    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
     
   </entry>
   
@@ -404,11 +427,11 @@
     
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
+    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
+    
     <category term="css" scheme="https://r3c0ger.github.io/tags/css/"/>
     
     <category term="typesetting" scheme="https://r3c0ger.github.io/tags/typesetting/"/>
-    
-    <category term="html" scheme="https://r3c0ger.github.io/tags/html/"/>
     
   </entry>
   
@@ -457,25 +480,6 @@
     <category term="typora" scheme="https://r3c0ger.github.io/tags/typora/"/>
     
     <category term="toc" scheme="https://r3c0ger.github.io/tags/toc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《脑髓地狱》哪版译本最好？</title>
-    <link href="https://r3c0ger.github.io/2025/01/dogura-magura/"/>
-    <id>https://r3c0ger.github.io/2025/01/dogura-magura/</id>
-    <published>2025-01-02T02:51:11.000Z</published>
-    <updated>2025-07-13T03:18:44.196Z</updated>
-    
-    
-    <summary type="html">参见知乎问题：https://www.zhihu.com/question/301331615/answer/3391140761</summary>
-    
-    
-    
-    <category term="随笔杂谈" scheme="https://r3c0ger.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/"/>
-    
-    
-    <category term="reading-notes" scheme="https://r3c0ger.github.io/tags/reading-notes/"/>
     
   </entry>
   
