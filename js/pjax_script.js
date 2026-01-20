@@ -28,7 +28,7 @@ var scrollIntoViewAndWait = (element) => {
 
 // anchor
 _$$(
-  ".article-entry h1>a, .article-entry h2>a, .article-entry h3>a, .article-entry h4>a, .article-entry h5>a, .article-entry h6>a"
+  ".article-entry h1>a:first-of-type, .article-entry h2>a:first-of-type, .article-entry h3>a:first-of-type, .article-entry h4>a:first-of-type, .article-entry h5>a:first-of-type, .article-entry h6>a:first-of-type"
 ).forEach((element) => {
   if (window.REIMU_CONFIG.icon_font) {
     // iconfont
@@ -75,8 +75,32 @@ _$$(".article-entry img").forEach((element) => {
   element.parentNode.removeChild(element);
   a.appendChild(element);
 });
-window.lightboxStatus = "ready";
-window.dispatchEvent(new Event("lightbox:ready"));
+
+// table wrap
+_$$(".article-entry table").forEach((element) => {
+  if (element.closest("figure.highlight")) return;
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("table-wrapper");
+  element.parentNode?.insertBefore(wrapper, element);
+  element.parentNode?.removeChild(element);
+  wrapper.appendChild(element);
+});
+
+// wrap details content for old @reimujs/hexo-renderer-markdown-it-plus
+_$$(".article-entry details.custom-block").forEach((element) => {
+  if (element.querySelector(".detail-content")) return;
+  const summary = element.querySelector("summary");
+  if (!summary) return;
+  const detailContent = document.createElement("div");
+  detailContent.classList.add("detail-content");
+
+  const range = document.createRange();
+  range.setStartAfter(summary);
+  range.setEndAfter(element.lastChild);
+  detailContent.appendChild(range.extractContents());
+
+  element.appendChild(detailContent);
+});
 
 // Mobile nav
 var isMobileNavAnim = false;
@@ -358,7 +382,7 @@ shareWeixinHandler = (e) => {
         sw.style.display = "none";
         sw.removeEventListener("transitionend", handler);
       },
-      { once: true },
+      { once: true }
     );
   }
 };
